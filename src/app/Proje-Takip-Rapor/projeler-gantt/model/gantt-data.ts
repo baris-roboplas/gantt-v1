@@ -12,6 +12,14 @@ export class Task {
 
   end!: Date;
 
+  duration?: number ;
+
+  BaselineStartDate?: Date;
+
+  BaselineEndDate?: Date;
+
+  taskStatusColor?: string | null;
+
   progress!: number;
 }
 

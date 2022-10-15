@@ -26,10 +26,13 @@
               "node_modules/devextreme/dist/css/dx.common.css",
               "node_modules/devextreme/dist/css/dx.light.css",
               "node_modules/devexpress-gantt/dist/dx-gantt.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
-              "node_modules/devexpress-gantt/dist/dx-gantt.min.js"
+              "node_modules/devexpress-gantt/dist/dx-gantt.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {
