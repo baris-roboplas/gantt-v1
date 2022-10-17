@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <!-- Gantt Options -->
-  <div class="row mb-3">
+  <div class="row mt-3 mb-3">
     <div class="col-12">
       <div class="options">
-        <div class="caption">Options</div>
         <div class="column">
+          <div class="caption">Options</div>
           <div class="option">
             <div class="label">Scale Type:</div>
             <div class="value">
@@ -86,10 +86,10 @@
     </div>
   </div>
   <!-- Gantt -->
-
   <div class="row">
     <div class="col-12">
       <dx-gantt
+        keyExpr="ID"
         [rootValue]="0"
         [taskListWidth]="500"
         scaleType="weeks"
@@ -116,6 +116,7 @@
         [endDateRange]="endDateRange"
         (onCustomCommand)="onCustomCommandClick($event)"
         (onContextMenuPreparing)="onContextMenuPreparing($event)"
+        (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
       >
         <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu>
         <dxo-tasks [dataSource]="tasks"></dxo-tasks>
@@ -152,9 +153,34 @@
         ></dxi-column>
         <!-- <dxi-column dataField="duration" caption="Duration" dataType="number"></dxi-column> -->
         <dxi-column
-          dataField="progress"
+          dataField="customProgress"
           caption="Tamamlanma %"
           dataType="number"
+        ></dxi-column>
+        <dxi-column
+          dataField="company"
+          caption="Firma"
+          dataType="string"
+        ></dxi-column>
+        <dxi-column
+          dataField="isRevision"
+          caption="Revizyon?"
+          dataType="boolean"
+        ></dxi-column>
+        <dxi-column
+          dataField="customer"
+          caption="Müşteri"
+          dataType="string"
+        ></dxi-column>
+        <dxi-column
+          dataField="status"
+          caption="Durum"
+          dataType="string"
+        ></dxi-column>
+        <dxi-column
+          dataField="notes"
+          caption="Notlar"
+          dataType="string"
         ></dxi-column>
 
         <dxo-toolbar>
@@ -224,7 +250,7 @@
           *dxTemplate="let task of 'taskProgressTooltipContentTemplate'"
           class="custom-task-edit-tooltip"
         >
-          <div class="custom-tooltip-title">{{ task.progress }}%</div>
+          <div class="custom-tooltip-title">{{ task.customProgress }}%</div>
         </div>
       </dx-gantt>
       <!-- ToolbarButton1 -->
@@ -249,99 +275,163 @@
       </dx-popup>
     </div>
   </div>
-
   <!-- Export Options -->
-  <div class="options">
-    <div class="column">
-      <div class="caption">Export Options</div>
-      <div class="option">
-        <div class="label">Document format:</div>
-        <div class="value">
-          <dx-select-box
-            id="formatBox"
-            [items]="formats"
-            [(value)]="formatBoxValue"
-          >
-          </dx-select-box>
+  <div class="row">
+    <div class="col-12">
+      <div class="options">
+        <div class="column">
+          <div class="caption">Export Options</div>
+          <div class="option">
+            <div class="label">Document format:</div>
+            <div class="value">
+              <dx-select-box
+                id="formatBox"
+                [items]="formats"
+                [(value)]="formatBoxValue"
+              >
+              </dx-select-box>
+            </div>
+          </div>
+          <div class="option">
+            <div class="label">Landscape orientation:</div>
+            <div class="value">
+              <dx-check-box [(value)]="landscapeCheckBoxValue"></dx-check-box>
+            </div>
+          </div>
+          <div class="option">
+            <div class="label">Export mode:</div>
+            <div class="value">
+              <dx-select-box
+                [items]="exportModes"
+                [(value)]="exportModeBoxValue"
+              >
+              </dx-select-box>
+            </div>
+          </div>
+          <div class="option">
+            <div class="label">Date range:</div>
+            <div class="value">
+              <dx-select-box
+                [items]="dateRanges"
+                [(value)]="dateRangeBoxValue"
+                (onValueChanged)="onDateRangeBoxSelectionChanged($event)"
+              >
+              </dx-select-box>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="option">
-        <div class="label">Landscape orientation:</div>
-        <div class="value">
-          <dx-check-box [(value)]="landscapeCheckBoxValue"></dx-check-box>
-        </div>
-      </div>
-      <div class="option">
-        <div class="label">Export mode:</div>
-        <div class="value">
-          <dx-select-box [items]="exportModes" [(value)]="exportModeBoxValue">
-          </dx-select-box>
-        </div>
-      </div>
-      <div class="option">
-        <div class="label">Date range:</div>
-        <div class="value">
-          <dx-select-box
-            [items]="dateRanges"
-            [(value)]="dateRangeBoxValue"
-            (onValueChanged)="onDateRangeBoxSelectionChanged($event)"
-          >
-          </dx-select-box>
-        </div>
-      </div>
-    </div>
-    <div class="column">
-      <div class="caption">Task Filter Options</div>
-      <div class="option">
-        <div class="label">Start task (index):</div>
-        <div class="value">
-          <dx-number-box
-            [disabled]="customRangeDisabled"
-            [(value)]="startTaskIndex"
-            [min]="0"
-            [max]="endTaskIndex"
-            [showSpinButtons]="true"
-          >
-          </dx-number-box>
-        </div>
-      </div>
-      <div class="option">
-        <div class="label">End task (index):</div>
-        <div class="value">
-          <dx-number-box
-            [disabled]="customRangeDisabled"
-            [(value)]="endTaskIndex"
-            [min]="startTaskIndex"
-            [max]="tasks.length - 1"
-            [showSpinButtons]="true"
-          >
-          </dx-number-box>
-        </div>
-      </div>
-      <div class="option">
-        <div class="label">Start date:</div>
-        <div class="value">
-          <dx-date-box
-            [disabled]="customRangeDisabled"
-            [(value)]="startDate"
-            [max]="endDate"
-            type="date"
-          >
-          </dx-date-box>
-        </div>
-      </div>
-      <div class="option">
-        <div class="label">End date:</div>
-        <div class="value">
-          <dx-date-box
-            [disabled]="customRangeDisabled"
-            [(value)]="endDate"
-            [min]="startDate"
-            type="date"
-          >
-          </dx-date-box>
+        <div class="column">
+          <div class="caption">Task Filter Options</div>
+          <div class="option">
+            <div class="label">Start task (index):</div>
+            <div class="value">
+              <dx-number-box
+                [disabled]="customRangeDisabled"
+                [(value)]="startTaskIndex"
+                [min]="0"
+                [max]="endTaskIndex"
+                [showSpinButtons]="true"
+              >
+              </dx-number-box>
+            </div>
+          </div>
+          <div class="option">
+            <div class="label">End task (index):</div>
+            <div class="value">
+              <dx-number-box
+                [disabled]="customRangeDisabled"
+                [(value)]="endTaskIndex"
+                [min]="startTaskIndex"
+                [max]="tasks.length - 1"
+                [showSpinButtons]="true"
+              >
+              </dx-number-box>
+            </div>
+          </div>
+          <div class="option">
+            <div class="label">Start date:</div>
+            <div class="value">
+              <dx-date-box
+                [disabled]="customRangeDisabled"
+                [(value)]="startDate"
+                [max]="endDate"
+                type="date"
+              >
+              </dx-date-box>
+            </div>
+          </div>
+          <div class="option">
+            <div class="label">End date:</div>
+            <div class="value">
+              <dx-date-box
+                [disabled]="customRangeDisabled"
+                [(value)]="endDate"
+                [min]="startDate"
+                type="date"
+              >
+              </dx-date-box>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Task Details Popup/Form -->
+  <dx-popup id="popup" [(visible)]="isPopupVisible" [hideOnOutsideClick]="true">
+    <div id="app-container">
+      <form (submit)="handleSubmit($event)">
+        <dx-form
+          id="form"
+          [(formData)]="customTaskDetailsForm"
+          labelLocation="top"
+          [showColonAfterLabel]="false"
+        >
+          <dxi-item itemType="group" [colCount]="2">
+            <dxi-item itemType="group" caption="Görev Detayları-1">
+              <dxi-item dataField="id" [visible]="false"></dxi-item>
+              <dxi-item dataField="parentId" [visible]="false"></dxi-item>
+              <dxi-item dataField="title" [isRequired]="true"></dxi-item>
+              <dxi-item
+                dataField="BaselineStartDate"
+                [isRequired]="true"
+              ></dxi-item>
+              <dxi-item
+                dataField="BaselineEndDate"
+                [isRequired]="true"
+              ></dxi-item>
+              <dxi-item dataField="start" [isRequired]="true"></dxi-item>
+              <dxi-item dataField="end" [isRequired]="true"></dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="Görev Detayları-2">
+              <dxi-item dataField="customProgress" [isRequired]="false"></dxi-item>
+                <dxi-item
+                  dataField="isRevision"
+                  editorType="dxSwitch"
+                  [isRequired]="false"
+                  [editorOptions]="{ switchedOnText: 'Evet', switchedOffText: 'Hayır',width: '10%' }"
+                ></dxi-item>
+              <dxi-item itemType="tabbed">
+                <dxo-tab-panel-options [height]="260"> </dxo-tab-panel-options>
+                <dxi-tab title="İlave Bilgiler">
+                  <dxi-item dataField="company" [isRequired]="true"></dxi-item>
+                  <dxi-item dataField="customer" [isRequired]="true"></dxi-item>
+                </dxi-tab>
+                <dxi-tab title="Not">
+                  <dxi-item dataField="notes" editorType="dxTextArea">
+                  </dxi-item>
+                </dxi-tab>
+              </dxi-item>
+            </dxi-item>
+          </dxi-item>
+          <dxi-item
+            itemType="button"
+            horizontalAlignment="center"
+            [buttonOptions]="submitButtonOptions"
+          >
+          </dxi-item>
+        </dx-form>
+      </form>
+    </div>
+  </dx-popup>
 </div>

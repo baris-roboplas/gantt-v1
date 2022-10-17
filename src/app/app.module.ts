@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DxCheckBoxModule, DxSelectBoxModule, DxDateBoxModule, DxPopupModule, DxNumberBoxModule } from 'devextreme-angular';
+import { DxCheckBoxModule, DxSelectBoxModule, DxDateBoxModule, DxPopupModule, DxNumberBoxModule, DxFormModule, DxTextAreaModule, DxSwitchModule } from 'devextreme-angular';
 import { DxGanttModule } from 'devextreme-angular/ui/gantt';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +22,10 @@ import { ProjeGanttDetailsComponent } from './Proje-Takip-Rapor/projeler-gantt/p
     DxSelectBoxModule,
     DxDateBoxModule,
     DxPopupModule,
-    DxNumberBoxModule
+    DxNumberBoxModule,
+    DxFormModule,
+    DxTextAreaModule,
+    DxSwitchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

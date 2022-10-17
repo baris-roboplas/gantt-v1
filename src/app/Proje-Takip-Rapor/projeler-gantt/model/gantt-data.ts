@@ -1,6 +1,7 @@
-export interface GanttData {
-}
+export interface GanttData {}
 
+
+// bunları class değil interface yapmak daha iyi olur mu?
 export class Task {
   id!: number;
 
@@ -12,15 +13,23 @@ export class Task {
 
   end!: Date;
 
-  duration?: number ;
+  // duration?: number;
 
-  BaselineStartDate?: Date;
+  BaselineStartDate!: Date;
 
-  BaselineEndDate?: Date;
+  BaselineEndDate!: Date;
 
-  taskStatusColor?: string | null;
+  customProgress!: string;
 
-  progress!: number;
+  company!: string;
+
+  isRevision!: boolean;
+
+  customer!: string;
+
+  status!: string;
+
+  notes!: string;
 }
 
 export class Dependency {

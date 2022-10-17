@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { DxGanttComponent } from 'devextreme-angular';
-import popup from 'devextreme/ui/popup';
 import {
   Task,
   Dependency,
@@ -10,10 +9,8 @@ import {
 import { GanttDataService } from './services/gantt-data.service';
 
 import { exportGantt as exportGanttToPdf } from 'devextreme/pdf_exporter';
-// import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
-
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
@@ -46,7 +43,7 @@ export class ProjelerGanttComponent implements OnInit {
 
   infoPopupButtonOptions: any;
   saveDataButtonOptions: any;
-  exportButtonOptions:any;
+  exportButtonOptions: any;
 
   infoPopupVisible!: boolean;
 
@@ -78,13 +75,24 @@ export class ProjelerGanttComponent implements OnInit {
   customRangeDisabled!: boolean;
 
   // sorting
-
   sortingMode!: 'single' | 'multiple' | 'none';
 
   showSortIndexes!: boolean;
 
+  // Task Details Form
+  customTaskDetailsForm: any;
 
-  constructor(private ganttDataService: GanttDataService,private ref: ChangeDetectorRef) {}
+  submitButtonOptions = {
+    text: 'Submit the Form',
+    useSubmitBehavior: true,
+  };
+
+  isPopupVisible!: boolean;
+
+  constructor(
+    private ganttDataService: GanttDataService,
+    private ref: ChangeDetectorRef
+  ) {}
 
   @ViewChild(DxGanttComponent, { static: false })
   gantt!: DxGanttComponent;
@@ -133,9 +141,9 @@ export class ProjelerGanttComponent implements OnInit {
       icon: 'save',
       stylingMode: 'text',
       onClick: () => {
-        this.saveData();
-      }
-    }
+        this.saveGanttModifications();
+      },
+    };
 
     this.exportButtonOptions = {
       hint: 'Export to PDF',
@@ -145,6 +153,9 @@ export class ProjelerGanttComponent implements OnInit {
     };
 
     this.contextMenuItems = this.getContextMenuItems();
+
+    // Task Details Form/Popup
+    this.isPopupVisible = false;
   }
 
   getTimeEstimate(task: any) {
@@ -176,15 +187,12 @@ export class ProjelerGanttComponent implements OnInit {
   repaint() {
     this.gantt.instance.repaint();
   }
-  saveData() {
-    confirm('Data saved');
-  }
 
   onContextMenuPreparing(e: any) {
-    alert('Context menu is openning');
+    // alert('Context menu is openning');
   }
 
-  onCustomCommandClick(e:any) {
+  onCustomCommandClick(e: any) {
     if (e.name == 'ToggleDisplayOfResources') {
       this.showResources = !this.showResources;
     }
@@ -225,37 +233,50 @@ export class ProjelerGanttComponent implements OnInit {
     // else {
     //   dataRange = dataRangeMode;
     // }
-    exportGanttToPdf(
-      {
-        component: gantt,
-        createDocumentMethod: (args?: any) => new jsPDF(args),
-        format,
-        landscape: isLandscape,
-        exportMode,
-        dateRange: dataRange,
-      },
-    ).then((doc) => doc.save('gantt.pdf'));
+    exportGanttToPdf({
+      component: gantt,
+      createDocumentMethod: (args?: any) => new jsPDF(args),
+      format,
+      landscape: isLandscape,
+      exportMode,
+      dateRange: dataRange,
+    }).then((doc) => doc.save('gantt.pdf'));
   }
 
   getExportMode() {
-    if (this.exportModeBoxValue === 'Tree List') { return 'treeList'; }
-    if (this.exportModeBoxValue === 'All') { return 'all'; }
-    if (this.exportModeBoxValue === 'Chart') { return 'chart'; }
+    if (this.exportModeBoxValue === 'Tree List') {
+      return 'treeList';
+    }
+    if (this.exportModeBoxValue === 'All') {
+      return 'all';
+    }
+    if (this.exportModeBoxValue === 'Chart') {
+      return 'chart';
+    }
     return 'all';
   }
 
-  onDateRangeBoxSelectionChanged(e:any) {
+  onDateRangeBoxSelectionChanged(e: any) {
     this.customRangeDisabled = e.value !== 'Custom';
     this.ref.detectChanges();
   }
-  // onTaskEditDialogShowing(e: any) {
-  //   e.cancel = true;
-  //   this.yourCustomMethod(e);
-  // }
 
-  // yourCustomMethod(e:any) {
-  //   this.gantt.instance.showTaskDetailsDialog('11');
-  //   e.cancel = false
-  //   // ...
-  // }
+  saveGanttModifications() {
+    confirm('Data Saved(Database)');
+  }
+
+  onTaskEditDialogShowing(e: any) {
+    e.cancel = true;
+    this.customTaskDetailsForm = this.tasks.find((t) => t.id === Number(e.key));
+    this.showTaskDetailsCustomForm(e);
+  }
+
+  showTaskDetailsCustomForm(e: any) {
+    this.isPopupVisible = true;
+    // ...
+  }
+
+  handleSubmit = function (e: any) {
+    e.preventDefault();
+  };
 }
