@@ -88,10 +88,10 @@
   <!-- Gantt -->
   <div class="row">
     <div class="col-12">
+      <!-- [rootValue]="0" -->
       <dx-gantt
-        keyExpr="ID"
-        [rootValue]="0"
-        [taskListWidth]="500"
+        colorExpr="red"
+        [taskListWidth]="1000"
         scaleType="weeks"
         height="700"
         [taskTitlePosition]="titlePosition"
@@ -129,15 +129,15 @@
         <dxi-column
           dataField="title"
           caption="Subject"
-          [width]="300"
+          [width]="200"
         ></dxi-column>
         <dxi-column
-          dataField="BaselineStartDate"
+          dataField="taskPlannedStartDate"
           caption="Planlanmış Başlangıç"
           dataType="date"
         ></dxi-column>
         <dxi-column
-          dataField="BaselineEndDate"
+          dataField="taskPlannedEndDate"
           caption="Planlanmış Bitiş"
           dataType="date"
         ></dxi-column>
@@ -151,34 +151,40 @@
           caption="Güncel Bitiş"
           dataType="date"
         ></dxi-column>
-        <!-- <dxi-column dataField="duration" caption="Duration" dataType="number"></dxi-column> -->
         <dxi-column
-          dataField="customProgress"
-          caption="Tamamlanma %"
+          dataField="taskDuration"
+          caption="Süre"
           dataType="number"
+          [visible]="false"
         ></dxi-column>
         <dxi-column
-          dataField="company"
+          dataField="progress"
+          caption="Tamamlanma %"
+          dataType="number"
+          [visible]="false"
+        ></dxi-column>
+        <dxi-column
+          dataField="taskCompany"
           caption="Firma"
           dataType="string"
         ></dxi-column>
         <dxi-column
-          dataField="isRevision"
+          dataField="taskIsRevision"
           caption="Revizyon?"
           dataType="boolean"
         ></dxi-column>
         <dxi-column
-          dataField="customer"
+          dataField="taskCustomer"
           caption="Müşteri"
           dataType="string"
         ></dxi-column>
         <dxi-column
-          dataField="status"
+          dataField="taskStatus"
           caption="Durum"
           dataType="string"
         ></dxi-column>
         <dxi-column
-          dataField="notes"
+          dataField="taskNotes"
           caption="Notlar"
           dataType="string"
         ></dxi-column>
@@ -393,32 +399,39 @@
               <dxi-item dataField="parentId" [visible]="false"></dxi-item>
               <dxi-item dataField="title" [isRequired]="true"></dxi-item>
               <dxi-item
-                dataField="BaselineStartDate"
+                dataField="taskPlannedStartDate"
                 [isRequired]="true"
               ></dxi-item>
               <dxi-item
-                dataField="BaselineEndDate"
+                dataField="taskPlannedEndDate"
                 [isRequired]="true"
               ></dxi-item>
               <dxi-item dataField="start" [isRequired]="true"></dxi-item>
               <dxi-item dataField="end" [isRequired]="true"></dxi-item>
             </dxi-item>
             <dxi-item itemType="group" caption="Görev Detayları-2">
-              <dxi-item dataField="customProgress" [isRequired]="false"></dxi-item>
-                <dxi-item
-                  dataField="isRevision"
-                  editorType="dxSwitch"
-                  [isRequired]="false"
-                  [editorOptions]="{ switchedOnText: 'Evet', switchedOffText: 'Hayır',width: '10%' }"
-                ></dxi-item>
+              <dxi-item
+                dataField="taskStatus"
+                [isRequired]="true"
+              ></dxi-item>
+              <dxi-item
+                dataField="taskIsRevision"
+                editorType="dxSwitch"
+                [isRequired]="false"
+                [editorOptions]="{
+                  switchedOnText: 'Evet',
+                  switchedOffText: 'Hayır',
+                  width: '10%'
+                }"
+              ></dxi-item>
               <dxi-item itemType="tabbed">
                 <dxo-tab-panel-options [height]="260"> </dxo-tab-panel-options>
                 <dxi-tab title="İlave Bilgiler">
-                  <dxi-item dataField="company" [isRequired]="true"></dxi-item>
-                  <dxi-item dataField="customer" [isRequired]="true"></dxi-item>
+                  <dxi-item dataField="taskCompany" [isRequired]="true"></dxi-item>
+                  <dxi-item dataField="taskCustomer" [isRequired]="true"></dxi-item>
                 </dxi-tab>
                 <dxi-tab title="Not">
-                  <dxi-item dataField="notes" editorType="dxTextArea">
+                  <dxi-item dataField="taskNotes" editorType="dxTextArea">
                   </dxi-item>
                 </dxi-tab>
               </dxi-item>

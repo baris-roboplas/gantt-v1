@@ -13,23 +13,26 @@ export class Task {
 
   end!: Date;
 
-  // duration?: number;
+  progress!: number;
 
-  BaselineStartDate!: Date;
+  taskDuration?: number
 
-  BaselineEndDate!: Date;
+  taskPlannedStartDate!: Date;
 
-  customProgress!: string;
+  taskPlannedEndDate!: Date;
 
-  company!: string;
+  taskCompany!: string;
 
-  isRevision!: boolean;
+  taskIsRevision!: boolean;
 
-  customer!: string;
+  taskCustomer!: string;
 
-  status!: string;
+  taskStatus!: string;
 
-  notes!: string;
+  taskColor!: string;
+
+  taskNotes!: string;
+
 }
 
 export class Dependency {
