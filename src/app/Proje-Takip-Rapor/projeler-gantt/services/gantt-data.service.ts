@@ -44,7 +44,7 @@ const tasks: Task[] = [
     taskCompany: 'Roboplas',
     taskIsRevision: true,
     taskCustomer: 'Aselsan',
-    taskStatus: 'Tasarımda Olan Projeler',
+    taskStatus: 'a',
     taskColor: 'red',
     taskNotes: 'Random Project taskNotes',
   },

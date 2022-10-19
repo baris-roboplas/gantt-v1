@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { DxGanttComponent } from 'devextreme-angular';
 import {
   Task,
@@ -91,7 +98,9 @@ export class ProjelerGanttComponent implements OnInit {
 
   constructor(
     private ganttDataService: GanttDataService,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private renderer: Renderer2,
+    private el: ElementRef
   ) {}
 
   @ViewChild(DxGanttComponent, { static: false })
@@ -106,7 +115,7 @@ export class ProjelerGanttComponent implements OnInit {
     this.titlePosition = 'outside';
     this.showResources = true;
     this.showDependencies = true;
-    this.showDifferentTaskContent = false;
+    this.showDifferentTaskContent = true;
     this.showCustomTaskTooltip = true;
     this.startDateRange = new Date(2018, 11, 1);
     this.endDateRange = new Date(2019, 11, 1);
@@ -279,4 +288,142 @@ export class ProjelerGanttComponent implements OnInit {
   handleSubmit = function (e: any) {
     e.preventDefault();
   };
+
+  // onContentReady(e: any) {
+  //   let taskListRows =
+  //     e.element.children[1].children[0].children[0].children[0].children[5]
+  //       .children[0].children[0].children[0].children[0].children[0].children[1]
+  //       .children;
+  //   let tds;
+  //   let td;
+  //   for (let index = 0; index < taskListRows.length; index++) {
+  //     tds = taskListRows[index];
+  //     for (let index = 0; index < tds.children.length; index++) {
+  //       td = tds.children[index];
+  //       if (td.innerText == 'a') {
+  //         td.style.backgroundColor = 'blue';
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // Custom Task Content Template
+  getTaskContentTemplate(item: any) {
+    var parentContainer = document.createElement('div');
+
+    this.appendPlannedTask(
+      item.taskData,
+      item.taskResources[0],
+      item.taskSize.width,
+      parentContainer
+    );
+    this.appendActualTask(item.taskData, item.taskSize.width, parentContainer);
+
+    return parentContainer;
+  }
+  appendPlannedTask(
+    taskData: any,
+    resource: any,
+    taskWidth: any,
+    container: any
+  ) {
+    const plannedTaskContainer = this.renderer.createElement('div');
+    // plannedTaskContainer.addClass('planned-task');
+    this.renderer.addClass(plannedTaskContainer, 'planned-task');
+    this.renderer.setAttribute(
+      plannedTaskContainer,
+      'width',
+      `${taskWidth + 'px'}`
+    );
+    this.renderer.appendChild(container, plannedTaskContainer);
+    // var plannedTaskContainer = document
+    //   .createElement('div')
+    //   .addClass('planned-task')
+    //   .attr('style', 'width:' + taskWidth + 'px;')
+    //   .appendTo(container);
+
+    const wrapper = this.renderer.createElement('div');
+    this.renderer.addClass(wrapper, 'planned-task-wrapper');
+    this.renderer.appendChild(plannedTaskContainer, wrapper);
+
+    // var wrapper = document
+    //   .createElement('div')
+    //   .addClass('planned-task-wrapper')
+    //   .appendTo(plannedTaskContainer);
+
+    const wrapperChild1 = this.renderer.createElement('div');
+    this.renderer.addClass(wrapperChild1, 'planned-task-title');
+    const wrapperChild1Text = this.renderer.createText(taskData.Title);
+    this.renderer.appendChild(wrapperChild1, wrapperChild1Text);
+    this.renderer.appendChild(wrapper, wrapperChild1);
+    // document
+    //   .createElement('div')
+    //   .addClass('planned-task-title')
+    //   .text(taskData.Title)
+    //   .appendTo(wrapper);
+
+    const wrapperChild2 = this.renderer.createElement('div');
+    this.renderer.addClass(wrapperChild2, 'planned-task-resource');
+    const wrapperChild2Text = this.renderer.createText(
+      resource ? resource.text : ''
+    );
+    this.renderer.appendChild(wrapperChild2, wrapperChild2Text);
+    this.renderer.appendChild(wrapper, wrapperChild2);
+    // document
+    //   .createElement('div')
+    //   .addClass('planned-task-resource')
+    //   .text(resource ? resource.text : '')
+    //   .appendTo(wrapper);
+
+    const plannedTaskContainerChild1 = this.renderer.createElement('div');
+    this.renderer.addClass(plannedTaskContainerChild1, 'planned-task-progress');
+    this.renderer.setAttribute(
+      plannedTaskContainerChild1,
+      'width',
+      `${parseFloat(taskData.Progress) + '%;'}`
+    );
+    this.renderer.appendChild(plannedTaskContainer, plannedTaskContainerChild1);
+    // document
+    //   .createElement('div')
+    //   .addClass('planned-task-progress')
+    //   .attr('style', 'width:' + parseFloat(taskData.Progress) + '%;')
+    //   .appendTo(plannedTaskContainer);
+  }
+
+  appendActualTask(taskData: any, taskWidth: any, container: any) {
+    var taskRange = taskData.EndDate - taskData.StartDate;
+    var tickSize = taskWidth / taskRange;
+    var actualTaskOffset = 5;
+    // new Date(taskData.start) - taskData.taskPlannedStartDate;
+    var actualTaskRange =
+      // new Date(taskData.end) - new Date(taskData.start);
+      10;
+
+    var actualTaskWidth = Math.round(actualTaskRange * tickSize) + 'px';
+    var actualTaskLeftPosition = Math.round(actualTaskOffset * tickSize) + 'px';
+
+    const actualTaskContainer = this.renderer.createElement('div');
+    this.renderer.addClass(actualTaskContainer, 'actual-task');
+    this.renderer.setAttribute(
+      actualTaskContainer,
+      'width',
+      `${actualTaskWidth + 'px'}`
+    );
+    this.renderer.setAttribute(
+      actualTaskContainer,
+      'left',
+      actualTaskLeftPosition
+    );
+    this.renderer.appendChild(container, actualTaskContainer);
+    // document
+    //   .createElement('div')
+    //   .addClass('actual-task')
+    //   .attr(
+    //     'style',
+    //     'width:' + actualTaskWidth + '; left:' + actualTaskLeftPosition
+    //   )
+    //   .appendTo(container);
+  }
 }
+// dx-gantt.dx-widget.dx-visibility-change-handler.dx-gantt

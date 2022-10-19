@@ -69,18 +69,61 @@
   font-weight: 600;
 }
 
-
-/* Task Details Form */
-/* #form {
-  padding: 10px;
-  border: 1px solid;
-}
-
-#check-box {
-  margin-top: 10px;
-}
-
-#app-container {
-  width: 900px;
-  position: relative;
+/* ::ng-deep #projectGantt > dx-gantt > div.dx-gantt-main-wrapper > .dx-gantt-treelist-wrapper > .dx-widget > .dx-treelist-container > .dx-treelist-rowsview> .dx-scrollable-wrapper > .dx-scrollable-container > .dx-scrollable-content > .dx-treelist-content > .dx-treelist-table > tbody > .dx-row {
+  background-color: red!important;
 } */
+
+::ng-deep .taskStatus1 {
+  background-color: red!important;
+}
+
+/* Custom Task Content */
+.actual-task {
+  height: 100%;
+  display: inline-block;
+  overflow: hidden;
+  position: absolute;
+  background-color: #92c3f2;
+  opacity: 0.5;
+  border-radius:3px;
+}
+
+.planned-task {
+  max-height: 48px;
+  height: 100%;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 3px 3px 0px 0px;
+  background-color: #5C57C9;
+}
+
+.planned-task-wrapper {
+  padding: 8px;
+  color: #fff;
+}
+
+  .planned-task-wrapper > * {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+
+
+.planned-task-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.planned-task-resource {
+  font-size: 12px;
+}
+
+.planned-task-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 4px;
+  background: rgba(0, 0, 0, .5);
+  border-radius:0px 0px 0px 3px;
+}

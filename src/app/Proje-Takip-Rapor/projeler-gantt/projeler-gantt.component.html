@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" #ganttElement>
   <!-- Gantt Options -->
   <div class="row mt-3 mb-3">
     <div class="col-12">
@@ -87,10 +87,9 @@
   </div>
   <!-- Gantt -->
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" id="projectGantt">
       <!-- [rootValue]="0" -->
       <dx-gantt
-        colorExpr="red"
         [taskListWidth]="1000"
         scaleType="weeks"
         height="700"
@@ -99,7 +98,7 @@
         [showResources]="showResources"
         [showDependencies]="showDependencies"
         [taskContentTemplate]="
-          showDifferentTaskContent ? 'taskContentTemplate' : undefined
+          showDifferentTaskContent ? 'myTaskContentTemplate' : undefined
         "
         [taskTooltipContentTemplate]="
           showCustomTaskTooltip ? 'taskTooltipContentTemplate' : undefined
@@ -128,7 +127,7 @@
 
         <dxi-column
           dataField="title"
-          caption="Subject"
+          caption="Title"
           [width]="200"
         ></dxi-column>
         <dxi-column
@@ -257,6 +256,15 @@
           class="custom-task-edit-tooltip"
         >
           <div class="custom-tooltip-title">{{ task.customProgress }}%</div>
+        </div>
+
+        <!-- Custom TaskContentTemplate -->
+        <div
+          *dxTemplate="let item of 'myTaskContentTemplate'"
+          class="custom-task {{ getTaskColor(item.taskData.id) }}"
+          style.width="{{ item.taskSize.width }}px"
+        >
+          {{ getTaskContentTemplate(item) }}
         </div>
       </dx-gantt>
       <!-- ToolbarButton1 -->
@@ -410,10 +418,7 @@
               <dxi-item dataField="end" [isRequired]="true"></dxi-item>
             </dxi-item>
             <dxi-item itemType="group" caption="Görev Detayları-2">
-              <dxi-item
-                dataField="taskStatus"
-                [isRequired]="true"
-              ></dxi-item>
+              <dxi-item dataField="taskStatus" [isRequired]="true"></dxi-item>
               <dxi-item
                 dataField="taskIsRevision"
                 editorType="dxSwitch"
@@ -427,8 +432,14 @@
               <dxi-item itemType="tabbed">
                 <dxo-tab-panel-options [height]="260"> </dxo-tab-panel-options>
                 <dxi-tab title="İlave Bilgiler">
-                  <dxi-item dataField="taskCompany" [isRequired]="true"></dxi-item>
-                  <dxi-item dataField="taskCustomer" [isRequired]="true"></dxi-item>
+                  <dxi-item
+                    dataField="taskCompany"
+                    [isRequired]="true"
+                  ></dxi-item>
+                  <dxi-item
+                    dataField="taskCustomer"
+                    [isRequired]="true"
+                  ></dxi-item>
                 </dxi-tab>
                 <dxi-tab title="Not">
                   <dxi-item dataField="taskNotes" editorType="dxTextArea">
