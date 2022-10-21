@@ -13,11 +13,14 @@ import {
   Resource,
   ResourceAssignment,
 } from './model/gantt-data';
+
 import { GanttDataService } from './services/gantt-data.service';
 
 import { exportGantt as exportGanttToPdf } from 'devextreme/pdf_exporter';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
+import { Observable, take } from 'rxjs';
+import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
@@ -90,12 +93,15 @@ export class ProjelerGanttComponent implements OnInit {
   customTaskDetailsForm: any;
 
   submitButtonOptions = {
-    text: 'Submit the Form',
+    text: 'Görev Detaylarını Kaydet',
     useSubmitBehavior: true,
   };
 
   isPopupVisible!: boolean;
 
+  // Obs
+  data$!: Observable<any>;
+  dataLoading$!: Observable<any>;
   constructor(
     private ganttDataService: GanttDataService,
     private ref: ChangeDetectorRef,
@@ -107,16 +113,31 @@ export class ProjelerGanttComponent implements OnInit {
   gantt!: DxGanttComponent;
 
   ngOnInit(): void {
-    this.tasks = this.ganttDataService.getTasks();
-    this.dependencies = this.ganttDataService.getDependencies();
-    this.resources = this.ganttDataService.getResources();
-    this.resourceAssignments = this.ganttDataService.getResourceAssignments();
+    this.ganttDataService.getData();
+    this.data$ = this.ganttDataService.data$;
+    this.dataLoading$ = this.ganttDataService.dataLoading$;
+    this.data$.subscribe((data) => {
+      if (data) {
+        // dataSources
+        this.tasks = data?.tasks;
+        this.dependencies = data?.dependencies;
+        this.resources = data?.resources;
+        this.resourceAssignments = data?.resourceAssignments;
+        // Export Options
+        this.startDate = data.tasks[0]?.start;
+        this.endDate = data.tasks[0]?.end;
+      }
+    });
+    // this.tasks = this.ganttDataService.getTasks();
+    // this.dependencies = this.ganttDataService.getDependencies();
+    // this.resources = this.ganttDataService.getResources();
+    // this.resourceAssignments = this.ganttDataService.getResourceAssignments();
     this.scaleType = 'months';
     this.titlePosition = 'outside';
     this.showResources = true;
-    this.showDependencies = true;
+    this.showDependencies = false;
     this.showDifferentTaskContent = true;
-    this.showCustomTaskTooltip = true;
+    this.showCustomTaskTooltip = false;
     this.startDateRange = new Date(2018, 11, 1);
     this.endDateRange = new Date(2019, 11, 1);
     this.infoPopupVisible = false;
@@ -128,8 +149,7 @@ export class ProjelerGanttComponent implements OnInit {
     this.dateRangeBoxValue = this.dateRanges[1];
     this.startTaskIndex = 0;
     this.endTaskIndex = 3;
-    this.startDate = this.tasks[0].start;
-    this.endDate = this.tasks[0].end;
+
     this.customRangeDisabled = true;
 
     // sorting
@@ -271,7 +291,7 @@ export class ProjelerGanttComponent implements OnInit {
   }
 
   saveGanttModifications() {
-    confirm('Data Saved(Database)');
+    confirm('Data Will be Saved(Database)');
   }
 
   onTaskEditDialogShowing(e: any) {
@@ -285,10 +305,16 @@ export class ProjelerGanttComponent implements OnInit {
     // ...
   }
 
-  handleSubmit = function (e: any) {
-    e.preventDefault();
-  };
+  // handleSubmit = function (e: any) {
+  //   e.preventDefault();
 
+  // };
+  onSave(e: any) {
+    e.preventDefault();
+    // gantt save buttonuna basıldıktan sonra güncel data komple gidecek
+    if (confirm('Save Data!') === true) {
+    }
+  }
   // onContentReady(e: any) {
   //   let taskListRows =
   //     e.element.children[1].children[0].children[0].children[0].children[5]
@@ -309,121 +335,22 @@ export class ProjelerGanttComponent implements OnInit {
   // }
 
   // Custom Task Content Template
-  getTaskContentTemplate(item: any) {
-    var parentContainer = document.createElement('div');
-
-    this.appendPlannedTask(
-      item.taskData,
-      item.taskResources[0],
-      item.taskSize.width,
-      parentContainer
-    );
-    this.appendActualTask(item.taskData, item.taskSize.width, parentContainer);
-
-    return parentContainer;
+  plannedTaskProgressWidthDefiner(item: any) {
+    let progressWidth = `${parseFloat(item.taskData.progress) + '%'}`;
+    return progressWidth;
   }
-  appendPlannedTask(
-    taskData: any,
-    resource: any,
-    taskWidth: any,
-    container: any
-  ) {
-    const plannedTaskContainer = this.renderer.createElement('div');
-    // plannedTaskContainer.addClass('planned-task');
-    this.renderer.addClass(plannedTaskContainer, 'planned-task');
-    this.renderer.setAttribute(
-      plannedTaskContainer,
-      'width',
-      `${taskWidth + 'px'}`
-    );
-    this.renderer.appendChild(container, plannedTaskContainer);
-    // var plannedTaskContainer = document
-    //   .createElement('div')
-    //   .addClass('planned-task')
-    //   .attr('style', 'width:' + taskWidth + 'px;')
-    //   .appendTo(container);
+  actualTaskWidthDefiner(item: any) {
+    var taskRange = item.taskData.end - item.taskData.start;
+    var tickSize = item.taskSize.width / taskRange;
+    var actualTaskOffset = item.taskData.start - item.taskData.plannedStart;
+    var actualTaskRange = item.taskData.end - item.taskData.start;
 
-    const wrapper = this.renderer.createElement('div');
-    this.renderer.addClass(wrapper, 'planned-task-wrapper');
-    this.renderer.appendChild(plannedTaskContainer, wrapper);
+    var actualTaskWidth = Math.round(actualTaskRange * tickSize);
+    var actualTaskLeftPosition = Math.round(actualTaskOffset * tickSize);
 
-    // var wrapper = document
-    //   .createElement('div')
-    //   .addClass('planned-task-wrapper')
-    //   .appendTo(plannedTaskContainer);
-
-    const wrapperChild1 = this.renderer.createElement('div');
-    this.renderer.addClass(wrapperChild1, 'planned-task-title');
-    const wrapperChild1Text = this.renderer.createText(taskData.Title);
-    this.renderer.appendChild(wrapperChild1, wrapperChild1Text);
-    this.renderer.appendChild(wrapper, wrapperChild1);
-    // document
-    //   .createElement('div')
-    //   .addClass('planned-task-title')
-    //   .text(taskData.Title)
-    //   .appendTo(wrapper);
-
-    const wrapperChild2 = this.renderer.createElement('div');
-    this.renderer.addClass(wrapperChild2, 'planned-task-resource');
-    const wrapperChild2Text = this.renderer.createText(
-      resource ? resource.text : ''
-    );
-    this.renderer.appendChild(wrapperChild2, wrapperChild2Text);
-    this.renderer.appendChild(wrapper, wrapperChild2);
-    // document
-    //   .createElement('div')
-    //   .addClass('planned-task-resource')
-    //   .text(resource ? resource.text : '')
-    //   .appendTo(wrapper);
-
-    const plannedTaskContainerChild1 = this.renderer.createElement('div');
-    this.renderer.addClass(plannedTaskContainerChild1, 'planned-task-progress');
-    this.renderer.setAttribute(
-      plannedTaskContainerChild1,
-      'width',
-      `${parseFloat(taskData.Progress) + '%;'}`
-    );
-    this.renderer.appendChild(plannedTaskContainer, plannedTaskContainerChild1);
-    // document
-    //   .createElement('div')
-    //   .addClass('planned-task-progress')
-    //   .attr('style', 'width:' + parseFloat(taskData.Progress) + '%;')
-    //   .appendTo(plannedTaskContainer);
-  }
-
-  appendActualTask(taskData: any, taskWidth: any, container: any) {
-    var taskRange = taskData.EndDate - taskData.StartDate;
-    var tickSize = taskWidth / taskRange;
-    var actualTaskOffset = 5;
-    // new Date(taskData.start) - taskData.taskPlannedStartDate;
-    var actualTaskRange =
-      // new Date(taskData.end) - new Date(taskData.start);
-      10;
-
-    var actualTaskWidth = Math.round(actualTaskRange * tickSize) + 'px';
-    var actualTaskLeftPosition = Math.round(actualTaskOffset * tickSize) + 'px';
-
-    const actualTaskContainer = this.renderer.createElement('div');
-    this.renderer.addClass(actualTaskContainer, 'actual-task');
-    this.renderer.setAttribute(
-      actualTaskContainer,
-      'width',
-      `${actualTaskWidth + 'px'}`
-    );
-    this.renderer.setAttribute(
-      actualTaskContainer,
-      'left',
-      actualTaskLeftPosition
-    );
-    this.renderer.appendChild(container, actualTaskContainer);
-    // document
-    //   .createElement('div')
-    //   .addClass('actual-task')
-    //   .attr(
-    //     'style',
-    //     'width:' + actualTaskWidth + '; left:' + actualTaskLeftPosition
-    //   )
-    //   .appendTo(container);
+    return {
+      'width.px': actualTaskWidth,
+      'left.px': 55,
+    };
   }
 }
-// dx-gantt.dx-widget.dx-visibility-change-handler.dx-gantt

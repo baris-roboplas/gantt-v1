@@ -15,7 +15,7 @@ export class Task {
 
   progress!: number;
 
-  taskDuration?: number
+  // taskDuration?: number
 
   taskPlannedStartDate!: Date;
 
@@ -28,8 +28,6 @@ export class Task {
   taskCustomer!: string;
 
   taskStatus!: string;
-
-  taskColor!: string;
 
   taskNotes!: string;
 
