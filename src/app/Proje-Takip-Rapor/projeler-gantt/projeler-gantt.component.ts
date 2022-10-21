@@ -291,7 +291,18 @@ export class ProjelerGanttComponent implements OnInit {
   }
 
   saveGanttModifications() {
-    confirm('Data Will be Saved(Database)');
+    if (confirm('Data Will be Saved(Database)')) {
+      // const { fieldF, ...everythingExceptF } = a;
+      // const b = everythingExceptF;
+      // this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
+      //   id: this.customTaskDetailsForm.id,
+      //   parentId: this.customTaskDetailsForm.parentId,
+      //   title: this.customTaskDetailsForm.title,
+      //   start: this.customTaskDetailsForm.start,
+      //   end: this.customTaskDetailsForm.end,
+      //   progress: this.customTaskDetailsForm.progress,
+      // });
+    }
   }
 
   onTaskEditDialogShowing(e: any) {
@@ -314,6 +325,7 @@ export class ProjelerGanttComponent implements OnInit {
     // gantt save buttonuna basıldıktan sonra güncel data komple gidecek
     if (confirm('Save Data!') === true) {
     }
+    this.isPopupVisible = false;
   }
   // onContentReady(e: any) {
   //   let taskListRows =
