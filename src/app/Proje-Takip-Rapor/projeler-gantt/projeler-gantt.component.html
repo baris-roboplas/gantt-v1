@@ -70,19 +70,6 @@
                 </dx-date-box>
               </div>
             </div>
-            <div class="option">
-              <div class="label">Customize Task Tooltip:</div>
-              <div class="value">
-                <dx-check-box [(value)]="showCustomTaskTooltip"></dx-check-box>
-              </div>
-            </div>
-            <div class="option">
-              <dx-check-box
-                text="Customize Context Menu"
-                [value]="true"
-                (onValueChanged)="onCustomizeContextMenu($event)"
-              ></dx-check-box>
-            </div>
           </div>
         </div>
       </div>
@@ -104,18 +91,17 @@
           "
           [startDateRange]="startDateRange"
           [endDateRange]="endDateRange"
-          (onCustomCommand)="onCustomCommandClick($event)"
-          (onContextMenuPreparing)="onContextMenuPreparing($event)"
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
         >
-          <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu>
+        <!-- DataSources -->
+          <!-- <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu> customize etmek için -->
           <dxo-tasks [dataSource]="tasks"></dxo-tasks>
           <dxo-dependencies [dataSource]="dependencies"></dxo-dependencies>
           <dxo-resources [dataSource]="resources"></dxo-resources>
           <dxo-resource-assignments
             [dataSource]="resourceAssignments"
           ></dxo-resource-assignments>
-
+          <!-- Columns -->
           <dxi-column
             dataField="title"
             caption="Title"
@@ -177,7 +163,7 @@
             caption="Notlar"
             dataType="string"
           ></dxi-column>
-
+          <!-- Toolbar -->
           <dxo-toolbar>
             <dxi-item name="undo"></dxi-item>
             <dxi-item name="redo"></dxi-item>
@@ -194,8 +180,6 @@
             <dxi-item name="showResources"></dxi-item>
             <dxi-item name="showDependencies"></dxi-item>
             <dxi-item name="separator"></dxi-item>
-            <dxi-item widget="dxButton" [options]="infoPopupButtonOptions">
-            </dxi-item>
             <dxi-item widget="dxButton" [options]="saveDataButtonOptions">
             </dxi-item>
             <dxi-item name="separator"></dxi-item>
@@ -207,12 +191,13 @@
             </dxi-item>
           </dxo-toolbar>
 
+          <!-- Setting -->
           <dxo-validation
             [autoUpdateParentTasks]="true"
             [validateDependencies]="true"
             [enablePredecessorGap]="true"
           ></dxo-validation>
-          <dxo-editing [enabled]="false"></dxo-editing>
+          <dxo-editing [enabled]="true"></dxo-editing>
           <dxo-sorting
             [mode]="sortingMode"
             [showSortIndexes]="showSortIndexes"
@@ -248,6 +233,7 @@
       </div>
     </div>
     <!-- Export Options -->
+    <!-- Popup yapılabilir -->
     <div class="row">
       <div class="col-12">
         <div class="options">
@@ -352,16 +338,16 @@
     <!-- Task Details Popup/Form -->
     <dx-popup
       id="popup"
-      [(visible)]="isPopupVisible"
+      [(visible)]="isTaskDetailsFormPopupVisible"
       [hideOnOutsideClick]="true"
     >
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
-          <form (submit)="onSave($event)">
+          <form (submit)="onSaveForm($event)">
             <dx-form
               id="form"
-              [(formData)]="customTaskDetailsForm"
-              labelLocation="top"
+              [formData]="customTaskDetailsForm"
+              labelLocation="left"
               [showColonAfterLabel]="false"
             >
               <!-- Ana Grup-1 -->
@@ -392,6 +378,17 @@
                     [isRequired]="true"
                     ><dxo-label [text]="'Planlanan Bitiş'"> </dxo-label
                   ></dxi-item>
+                  <!-- Planlanan Süre -->
+                  <dxi-item
+                    dataField="plannedDuration"
+                    editorType="dxNumberBox"
+                    [editorOptions]="{
+                      showSpinButtons: false,
+                      readOnly: true
+                    }"
+                    [isRequired]="false"
+                    ><dxo-label [text]="'Planlanan Süre'"> </dxo-label
+                  ></dxi-item>
                   <!-- Gerçekleşen Başlangıç -->
                   <dxi-item
                     dataField="start"
@@ -408,9 +405,21 @@
                     [isRequired]="true"
                     ><dxo-label [text]="'Gerçekleşen Bitiş'"> </dxo-label
                   ></dxi-item>
+                  <!-- Gerçekleşen Süre -->
+                  <dxi-item
+                    dataField="actualDuration"
+                    editorType="dxNumberBox"
+                    [editorOptions]="{
+                      showSpinButtons: false,
+                      readOnly: true
+                    }"
+                    [isRequired]="false"
+                    ><dxo-label [text]="'Gerçekleşen Süre'"> </dxo-label
+                  ></dxi-item>
                 </dxi-item>
                 <!-- Sütun-2 -->
                 <dxi-item itemType="group" caption="Görev Detayları-2">
+                  <!-- Durum Bilgisi -->
                   <dxi-item
                     dataField="taskStatus"
                     editorType="dxSelectBox"
@@ -425,6 +434,7 @@
                     [isRequired]="true"
                     ><dxo-label [text]="'Durum Bilgisi'"> </dxo-label
                   ></dxi-item>
+                  <!-- İlerleme Oranı -->
                   <dxi-item
                     dataField="progress"
                     editorType="dxNumberBox"
@@ -437,6 +447,7 @@
                     [isRequired]="false"
                     ><dxo-label [text]="'Gerçekleşen İlerleme'"> </dxo-label
                   ></dxi-item>
+                  <!-- Revizyon Mu? -->
                   <dxi-item
                     dataField="taskIsRevision"
                     editorType="dxSwitch"
@@ -448,6 +459,7 @@
                     }"
                     ><dxo-label [text]="'Revizyon Mu?'"> </dxo-label>
                   </dxi-item>
+                  <!-- Kaynaklar -->
                   <dxi-item
                     dataField="resourceId"
                     editorType="dxSelectBox"
@@ -468,8 +480,10 @@
                 </dxi-item>
                 <!-- Sütun-3 -->
                 <dxi-item itemType="group" caption="Görev Detayları-3">
+                  <!-- Tabs -->
                   <dxi-item itemType="tabbed">
                     <dxo-tab-panel-options> </dxo-tab-panel-options>
+                    <!-- Tab-1 -->
                     <dxi-tab title="İlave Bilgiler-1">
                       <!-- Firma -->
                       <dxi-item
@@ -519,6 +533,8 @@
                         </dxo-label>
                       </dxi-item>
                     </dxi-tab>
+                    <!-- Tab-2 -->
+                    <!-- Notlar -->
                     <dxi-tab title="Notlar">
                       <!-- Notlar -->
                       <dxi-item dataField="taskNotes" editorType="dxTextArea">

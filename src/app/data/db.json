@@ -15,7 +15,10 @@
           "taskIsRevision": true,
           "taskCustomer": "Aselsan",
           "taskStatus": "Hazırlık",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 2,
@@ -30,7 +33,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 3,
@@ -45,7 +51,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 4,
@@ -60,7 +69,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 5,
@@ -75,7 +87,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 6,
@@ -90,7 +105,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 7,
@@ -105,7 +123,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 8,
@@ -120,7 +141,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 9,
@@ -135,7 +159,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 10,
@@ -150,7 +177,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 11,
@@ -165,7 +195,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 12,
@@ -180,7 +213,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 13,
@@ -195,7 +231,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 14,
@@ -210,7 +249,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 15,
@@ -225,7 +267,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 16,
@@ -240,7 +285,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 17,
@@ -255,7 +303,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 18,
@@ -270,7 +321,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 19,
@@ -285,7 +339,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 20,
@@ -300,7 +357,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 21,
@@ -315,7 +375,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 22,
@@ -330,7 +393,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 23,
@@ -345,7 +411,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 24,
@@ -360,7 +429,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 25,
@@ -375,7 +447,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 26,
@@ -390,7 +465,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 27,
@@ -405,7 +483,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 28,
@@ -420,7 +501,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 29,
@@ -435,7 +519,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 30,
@@ -450,7 +537,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 31,
@@ -465,7 +555,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 32,
@@ -480,7 +573,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 33,
@@ -495,7 +591,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 34,
@@ -510,7 +609,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 35,
@@ -525,7 +627,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 36,
@@ -540,7 +645,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 37,
@@ -555,7 +663,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 38,
@@ -570,7 +681,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 39,
@@ -585,7 +699,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 40,
@@ -600,7 +717,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 41,
@@ -615,7 +735,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 42,
@@ -630,7 +753,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 43,
@@ -645,7 +771,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 44,
@@ -660,7 +789,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 45,
@@ -675,7 +807,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 46,
@@ -690,7 +825,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 47,
@@ -705,7 +843,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 48,
@@ -720,7 +861,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 49,
@@ -735,7 +879,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 50,
@@ -750,7 +897,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 51,
@@ -765,7 +915,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 52,
@@ -780,7 +933,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 53,
@@ -795,7 +951,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 54,
@@ -810,7 +969,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 55,
@@ -825,7 +987,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 56,
@@ -840,7 +1005,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 57,
@@ -855,7 +1023,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 58,
@@ -870,7 +1041,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 59,
@@ -885,7 +1059,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 60,
@@ -900,7 +1077,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 61,
@@ -915,7 +1095,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 62,
@@ -930,7 +1113,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 63,
@@ -945,7 +1131,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 64,
@@ -960,7 +1149,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 65,
@@ -975,7 +1167,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 66,
@@ -990,7 +1185,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 67,
@@ -1005,7 +1203,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 68,
@@ -1020,7 +1221,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 69,
@@ -1035,7 +1239,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 70,
@@ -1050,7 +1257,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 71,
@@ -1065,7 +1275,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 72,
@@ -1080,7 +1293,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 73,
@@ -1095,7 +1311,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 74,
@@ -1110,7 +1329,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 75,
@@ -1125,7 +1347,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 76,
@@ -1140,7 +1365,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 77,
@@ -1155,7 +1383,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 78,
@@ -1170,7 +1401,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 79,
@@ -1185,7 +1419,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 80,
@@ -1200,7 +1437,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 81,
@@ -1215,7 +1455,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 82,
@@ -1230,7 +1473,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 83,
@@ -1245,7 +1491,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 84,
@@ -1260,7 +1509,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 85,
@@ -1275,7 +1527,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 86,
@@ -1290,7 +1545,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 15
         },
         {
           "id": 87,
@@ -1305,7 +1563,10 @@
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
           "taskStatus": "Tasarımda Olan Projeler",
-          "taskNotes": "Examples Task Notes"
+          "taskNotes": "Examples Task Notes",
+          "imalatResmiHazirlayan": "Barış",
+          "actualDuration": 10,
+          "plannedDuration": 0
         }
       ],
       "dependencies": [
@@ -1716,7 +1977,7 @@
           "text": "Deployment Team"
         },
         {
-          "id":9,
+          "id": 9,
           "text": "Belirlenmedi"
         }
       ],
@@ -2040,6 +2301,314 @@
           "id": 63,
           "taskId": 85,
           "resourceId": 2
+        }
+      ]
+    }
+  ],
+  "taskStatusList": [
+    {
+      "statusId": 1,
+      "statusName": "TASARIMDAYKEN BAŞKA PROJEYE GEÇİLDİ",
+      "statusColor": "Açık Mavi",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 2,
+      "statusName": "TASARIM BİTTİ",
+      "statusColor": "Açık Yeşil",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 3,
+      "statusName": "TASARIM İPTAL",
+      "statusColor": "Açık Sarı",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 4,
+      "statusName": "TASARIM BEKLEMEDE",
+      "statusColor": "Turuncu",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 5,
+      "statusName": "TASARIM AŞAMASINDA",
+      "statusColor": "Açık Gri",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 6,
+      "statusName": "SİPARİŞ VEYA REVİZYON FORMU REVİZYONA UĞRAMIŞTIR",
+      "statusColor": "Siyah",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 7,
+      "statusName": "MÜŞTERİDEN BİLGİ BEKLENİYOR",
+      "statusColor": "Açık Mor",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 8,
+      "statusName": "MÜŞTERİDEN ONAYI BEKLENİYOR",
+      "statusColor": "Koyu Pembe",
+      "statusGroup": "tasarimİşListesi"
+    },
+    {
+      "statusId": 9,
+      "statusName": "TESTİ YAPILAN(HAZIR) PROJELER",
+      "statusColor": "Koyu Gri",
+      "statusGroup": "robotSüreçleri"
+    },
+    {
+      "statusId": 10,
+      "statusName": "TESTTE OLAN PROJELER",
+      "statusColor": "Koyu Mavi",
+      "statusGroup": "robotSüreçleri"
+    },
+    {
+      "statusId": 11,
+      "statusName": "YÜKLEME YAPILAN PROJELER",
+      "statusColor": "Kırmızı",
+      "statusGroup": "robotSüreçleri"
+    },
+    {
+      "statusId": 12,
+      "statusName": "TASARIMDA OLAN PROJELER",
+      "statusColor": "Koyu Mor",
+      "statusGroup": "robotSüreçleri"
+    },
+    {
+      "statusId": 13,
+      "statusName": "İMALATTA OLAN PROJELER",
+      "statusColor": "Koyu Gri",
+      "statusGroup": "robotSüreçleri"
+    },
+    {
+      "statusId": 14,
+      "statusName": "KAMERADA OLAN PROJELER",
+      "statusColor": "Koyu Sarı",
+      "statusGroup": "robotSüreçleri"
+    },
+    {
+      "statusId": 15,
+      "statusName": "İşleme Alındı",
+      "statusColor": "Çok Açık Yeşil",
+      "statusGroup": "işlemSüreçleri"
+    },
+    {
+      "statusId": 16,
+      "statusName": "İşlem Tamamlandı",
+      "statusColor": "Koyu Yeşil",
+      "statusGroup": "işlemSüreçleri"
+    },
+    {
+      "statusId": 17,
+      "statusName": "İşlem Durdu",
+      "statusColor": "Sarı",
+      "statusGroup": "işlemSüreçleri"
+    },
+    {
+      "statusId": 18,
+      "statusName": "İşlem İptal",
+      "statusColor": "Kırmızı",
+      "statusGroup": "işlemSüreçleri"
+    }
+  ],
+  "taskOperationsList": [
+    {
+      "operationId": 1,
+      "operationName": "SİPARİŞ",
+      "operationColor": "Çok Açık Mavi",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "SİPARİŞ ALINIŞI"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "SİPARİŞ BİLGİ TOPLAMA"
+        }
+      ]
+    },
+    {
+      "operationId": 3,
+      "operationName": "Tasarım",
+      "operationColor": "Bej",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "Tasarım İşlemleri"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "İmalat Resminin Hazırlanması"
+        }
+      ]
+    },
+    {
+      "operationId": 4,
+      "operationName": "ŞASE",
+      "operationColor": "Açık Mavi",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "Dış İmalat"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "Lazer Kesim"
+        },
+        {
+          "subOperationId": 3,
+          "subOperationName": "Kaynak"
+        },
+        {
+          "subOperationId": 4,
+          "subOperationName": "Teslim"
+        }
+      ]
+    },
+    {
+      "operationId": 5,
+      "operationName": "DİZME",
+      "operationColor": "Açık Turuncu",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "İç İmalat"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "Dış İmalat"
+        },
+        {
+          "subOperationId": 3,
+          "subOperationName": "Satın Alma / Depo"
+        },
+        {
+          "subOperationId": 4,
+          "subOperationName": "Montaj"
+        },
+        {
+          "subOperationId": 5,
+          "subOperationName": "Tesisat"
+        }
+      ]
+    },
+    {
+      "operationId": 6,
+      "operationName": "ANA AKS KOL",
+      "operationColor": "Açık Mor",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "İç İmalat"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "Dış İmalat"
+        },
+        {
+          "subOperationId": 3,
+          "subOperationName": "Satın Alma / Depo"
+        },
+        {
+          "subOperationId": 4,
+          "subOperationName": "Montaj"
+        },
+        {
+          "subOperationId": 5,
+          "subOperationName": "Tesisat"
+        }
+      ]
+    },
+    {
+      "operationId": 7,
+      "operationName": "SEPERATÖR",
+      "operationColor": "Açık Yeşil",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "İç İmalat"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "Dış İmalat"
+        },
+        {
+          "subOperationId": 3,
+          "subOperationName": "Satın Alma / Depo"
+        },
+        {
+          "subOperationId": 4,
+          "subOperationName": "Montaj"
+        },
+        {
+          "subOperationId": 5,
+          "subOperationName": "Tesisat"
+        }
+      ]
+    },
+    {
+      "operationId": 8,
+      "operationName": "TEST",
+      "operationColor": "Gri",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "Mekanik Ayar"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "Elektrik Test"
+        },
+        {
+          "subOperationId": 3,
+          "subOperationName": "Yazılım Testi"
+        },
+        {
+          "subOperationId": 4,
+          "subOperationName": "Proje Kontrol"
+        }
+      ]
+    },
+    {
+      "operationId": 9,
+      "operationName": "YÜKLEME FORMU HAZIRLANMASI",
+      "operationColor": "Açık Kahverengi",
+      "subOperations": []
+    },
+    {
+      "operationId": 10,
+      "operationName": "Yüklemenin Gerçekleştirilmesi",
+      "operationColor": "Koyu Kahverengi",
+      "subOperations": []
+    },
+    {
+      "operationId": 11,
+      "operationName": "ETİKET TRANSFER",
+      "operationColor": "Açık Yeşil",
+      "subOperations": [
+        {
+          "subOperationId": 1,
+          "subOperationName": "İç İmalat"
+        },
+        {
+          "subOperationId": 2,
+          "subOperationName": "Dış İmalat"
+        },
+        {
+          "subOperationId": 3,
+          "subOperationName": "Satın Alma / Depo"
+        },
+        {
+          "subOperationId": 4,
+          "subOperationName": "Montaj"
+        },
+        {
+          "subOperationId": 5,
+          "subOperationName": "Tesisat"
         }
       ]
     }

@@ -15,11 +15,13 @@ export class Task {
 
   progress!: number;
 
-  // taskDuration?: number
-
   taskPlannedStartDate!: Date;
 
   taskPlannedEndDate!: Date;
+
+  actualDuration!: number;
+
+  plannedDuration!: number;
 
   taskCompany!: string;
 
@@ -30,6 +32,9 @@ export class Task {
   taskStatus!: string;
 
   taskNotes!: string;
+
+  imalatResmiHazirlayan!: string;
+
 
 }
 

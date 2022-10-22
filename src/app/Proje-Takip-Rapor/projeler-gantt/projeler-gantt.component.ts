@@ -19,85 +19,62 @@ import { GanttDataService } from './services/gantt-data.service';
 import { exportGantt as exportGanttToPdf } from 'devextreme/pdf_exporter';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
-import { Observable, take } from 'rxjs';
-import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import dxTreeList from 'devextreme/ui/tree_list';
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
   styleUrls: ['./projeler-gantt.component.css'],
 })
 export class ProjelerGanttComponent implements OnInit {
+  // default gantt dataSource
   tasks!: Task[];
-
   dependencies!: Dependency[];
-
   resources!: Resource[];
-
   resourceAssignments!: ResourceAssignment[];
 
+  // gantt properties
   scaleType!: string;
 
+  //custom gantt settings
   titlePosition!: string;
-
   showResources!: any;
-
   showDependencies!: any;
-
   showDifferentTaskContent!: any;
-
-  showCustomTaskTooltip!: boolean | null | undefined;
-
   startDateRange!: any;
-
   endDateRange!: any;
 
+  // custom toolbar settings
   infoPopupButtonOptions: any;
   saveDataButtonOptions: any;
   exportButtonOptions: any;
 
-  infoPopupVisible!: boolean;
-
-  contextMenuItems!: any;
-
   // export options/filters definitions
   formats: string[] = ['A0', 'A1', 'A2', 'A3', 'A4', 'Auto'];
-
   exportModes: string[] = ['All', 'Chart', 'Tree List'];
-
   dateRanges: string[] = ['All', 'Visible', 'Custom'];
-
   formatBoxValue!: string;
-
   exportModeBoxValue!: string;
-
   dateRangeBoxValue!: string;
-
   landscapeCheckBoxValue!: any;
-
   startTaskIndex!: number;
-
   endTaskIndex!: number;
-
   startDate!: any;
-
   endDate!: any;
-
   customRangeDisabled!: boolean;
 
   // sorting
   sortingMode!: 'single' | 'multiple' | 'none';
-
   showSortIndexes!: boolean;
 
-  // Task Details Form
+  // Task Details Form/Popup
   customTaskDetailsForm: any;
-
+  oldCustomTaskDetailsForm: any;
   submitButtonOptions = {
     text: 'Görev Detaylarını Kaydet',
     useSubmitBehavior: true,
   };
-
-  isPopupVisible!: boolean;
+  isTaskDetailsFormPopupVisible = false;
 
   // Obs
   data$!: Observable<any>;
@@ -109,10 +86,12 @@ export class ProjelerGanttComponent implements OnInit {
     private el: ElementRef
   ) {}
 
+  // Dom
   @ViewChild(DxGanttComponent, { static: false })
   gantt!: DxGanttComponent;
 
   ngOnInit(): void {
+    // obs & data
     this.ganttDataService.getData();
     this.data$ = this.ganttDataService.data$;
     this.dataLoading$ = this.ganttDataService.dataLoading$;
@@ -128,52 +107,26 @@ export class ProjelerGanttComponent implements OnInit {
         this.endDate = data.tasks[0]?.end;
       }
     });
-    // this.tasks = this.ganttDataService.getTasks();
-    // this.dependencies = this.ganttDataService.getDependencies();
-    // this.resources = this.ganttDataService.getResources();
-    // this.resourceAssignments = this.ganttDataService.getResourceAssignments();
+
+    // gantt properties
     this.scaleType = 'months';
+
+    //custom gantt settings
     this.titlePosition = 'outside';
     this.showResources = true;
     this.showDependencies = false;
     this.showDifferentTaskContent = true;
-    this.showCustomTaskTooltip = false;
     this.startDateRange = new Date(2018, 11, 1);
     this.endDateRange = new Date(2019, 11, 1);
-    this.infoPopupVisible = false;
 
-    // export options/filters definitions
+    // export options/filters
     this.formatBoxValue = this.formats[0];
     this.landscapeCheckBoxValue = true;
     this.exportModeBoxValue = this.exportModes[0];
     this.dateRangeBoxValue = this.dateRanges[1];
     this.startTaskIndex = 0;
     this.endTaskIndex = 3;
-
     this.customRangeDisabled = true;
-
-    // sorting
-    this.sortingMode = 'multiple';
-    this.showSortIndexes = true;
-
-    this.infoPopupButtonOptions = {
-      text: 'About',
-      icon: 'info',
-      stylingMode: 'text',
-      onClick: () => {
-        this.infoPopupVisible = true;
-      },
-    };
-
-    this.saveDataButtonOptions = {
-      text: 'Save Data',
-      icon: 'save',
-      stylingMode: 'text',
-      onClick: () => {
-        this.saveGanttModifications();
-      },
-    };
-
     this.exportButtonOptions = {
       hint: 'Export to PDF',
       icon: 'exportpdf',
@@ -181,66 +134,25 @@ export class ProjelerGanttComponent implements OnInit {
       onClick: () => this.exportButtonClick(),
     };
 
-    this.contextMenuItems = this.getContextMenuItems();
+    // sorting
+    this.sortingMode = 'multiple';
+    this.showSortIndexes = true;
 
-    // Task Details Form/Popup
-    this.isPopupVisible = false;
-  }
-
-  getTimeEstimate(task: any) {
-    return Math.abs(task.start - task.end) / 36e5;
-  }
-
-  getTimeLeft(task: any) {
-    const timeEstimate = Math.abs(task.start - task.end) / 36e5;
-    return Math.floor(((100 - task.progress) / 100) * timeEstimate);
-  }
-
-  getTime(date: any) {
-    return date.toLocaleString();
-  }
-
-  getImagePath(taskId: any) {
-    const imgPath =
-      'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees';
-    let img = taskId < 10 ? `0${taskId}` : taskId;
-    img = `${imgPath}/${img}.png`;
-    return img;
-  }
-
-  getTaskColor(taskId: any) {
-    const color = taskId % 6;
-    return `custom-task-color-${color}`;
-  }
-
-  repaint() {
-    this.gantt.instance.repaint();
-  }
-
-  onContextMenuPreparing(e: any) {
-    // alert('Context menu is openning');
+    // toolbar
+    this.saveDataButtonOptions = {
+      text: 'Tüm Verileri Kaydet',
+      icon: 'save',
+      stylingMode: 'text',
+      onClick: () => {
+        this.saveGantt();
+      },
+    };
   }
 
   onCustomCommandClick(e: any) {
     if (e.name == 'ToggleDisplayOfResources') {
       this.showResources = !this.showResources;
     }
-  }
-
-  getContextMenuItems() {
-    return [
-      'addTask',
-      'taskdetails',
-      'deleteTask',
-      {
-        name: 'ToggleDisplayOfResources',
-        text: 'Toggle Display of Resources',
-      },
-    ];
-  }
-
-  onCustomizeContextMenu(e: any) {
-    this.contextMenuItems = e.value ? this.getContextMenuItems() : undefined;
   }
 
   // Export Options/Filters
@@ -290,43 +202,109 @@ export class ProjelerGanttComponent implements OnInit {
     this.ref.detectChanges();
   }
 
-  saveGanttModifications() {
-    if (confirm('Data Will be Saved(Database)')) {
-      // const { fieldF, ...everythingExceptF } = a;
-      // const b = everythingExceptF;
-      // this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
-      //   id: this.customTaskDetailsForm.id,
-      //   parentId: this.customTaskDetailsForm.parentId,
-      //   title: this.customTaskDetailsForm.title,
-      //   start: this.customTaskDetailsForm.start,
-      //   end: this.customTaskDetailsForm.end,
-      //   progress: this.customTaskDetailsForm.progress,
-      // });
+  // toolbar
+  saveGantt() {
+    if (confirm('Tüm Veriler Kaydedilsin Mi?)')) {
     }
   }
 
+  // Forms/Popups
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
     this.customTaskDetailsForm = this.tasks.find((t) => t.id === Number(e.key));
-    this.showTaskDetailsCustomForm(e);
+    // this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
+    this.isTaskDetailsFormPopupVisible = true;
   }
 
-  showTaskDetailsCustomForm(e: any) {
-    this.isPopupVisible = true;
-    // ...
-  }
-
-  // handleSubmit = function (e: any) {
-  //   e.preventDefault();
-
-  // };
-  onSave(e: any) {
+  onSaveForm(e: any) {
     e.preventDefault();
-    // gantt save buttonuna basıldıktan sonra güncel data komple gidecek
-    if (confirm('Save Data!') === true) {
+    if (confirm('Görev / İş Detayını Kaydet!') === true) {
+      // const { resourceId, ...everythingExceptresourceId } =
+      //   this.customTaskDetailsForm;
+      // const b = everythingExceptresourceId;
+      // this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
+      //   ...everythingExceptresourceId,
+      // });
     }
-    this.isPopupVisible = false;
+    // else {
+    //   this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
+    // }
+    this.isTaskDetailsFormPopupVisible = false;
   }
+
+  // Custom Task Content Template
+  plannedTaskProgressWidthDefiner(item: any) {
+    let progressWidth = `${parseFloat(item.taskData.progress) + '%'}`;
+    return progressWidth;
+  }
+  actualTaskWidthDefiner(item: any) {
+    var taskRange = item.taskData.end - item.taskData.start;
+    var tickSize = item.taskSize.width / taskRange;
+    var actualTaskOffset = item.taskData.start - item.taskData.plannedStart;
+    var actualTaskRange = item.taskData.end - item.taskData.start;
+
+    var actualTaskWidth = Math.round(actualTaskRange * tickSize);
+    var actualTaskLeftPosition = Math.round(actualTaskOffset * tickSize);
+    return {
+      'width.px': actualTaskWidth,
+      'left.px': 55,
+    };
+  }
+
+  repaint() {
+    this.gantt.instance.repaint();
+    // this.treeColor();
+  }
+
+  //tree list
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.treeColor();
+  //   }, 100);
+  // }
+  //tree list
+
+  // ccc() {
+  //   let rows = document.getElementsByClassName('dx-row');
+  //   if (rows.length > 0) {
+  //     for (let i = 0; i < rows.length; i++) {
+  //       let row = rows[i];
+  //       if (row.innerHTML.includes('Tasarımda22')) {
+  //         console.log(row);
+  //         row.setAttribute('style', 'background-color: red;');
+  //       }
+  //     }
+  //   }
+  // }
+
+  //tree list
+  // treeColor() {
+  //   let gant: any = this.gantt.instance;
+  //   let tree = gant['_treeList'] as dxTreeList;
+  // tree.on('rowPrepared', (e: any) => {
+  //   if (e.rowType == 'data') {
+  //     console.log(e);
+  //     e.rowElement.cells[0].style['background-color'] = 'red';
+  //     e.rowElement.cells[0].style['color'] = 'white';
+  //   }
+  // });
+
+  // tree.option('onSelectionChanged', () => {
+  //   this.ccc();
+  // });
+  // tree.on('contentReady', () => {
+  //   this.ccc();
+  // });
+  // cellTemplate: function(element, info) {
+  //              element.append("<div>" + info.text + "</div>")
+  //                     .css("color", "blue");
+  // tree._templateManager.addDefaultTemplates({
+  //   cellTemplate: function (element: any, info: any) {
+  //     element.append('<div>' + info.text + '</div>').css('color', 'blue');
+  //   },
+  // });
+
+  //treelist
   // onContentReady(e: any) {
   //   let taskListRows =
   //     e.element.children[1].children[0].children[0].children[0].children[5]
@@ -346,23 +324,5 @@ export class ProjelerGanttComponent implements OnInit {
   //   }
   // }
 
-  // Custom Task Content Template
-  plannedTaskProgressWidthDefiner(item: any) {
-    let progressWidth = `${parseFloat(item.taskData.progress) + '%'}`;
-    return progressWidth;
-  }
-  actualTaskWidthDefiner(item: any) {
-    var taskRange = item.taskData.end - item.taskData.start;
-    var tickSize = item.taskSize.width / taskRange;
-    var actualTaskOffset = item.taskData.start - item.taskData.plannedStart;
-    var actualTaskRange = item.taskData.end - item.taskData.start;
-
-    var actualTaskWidth = Math.round(actualTaskRange * tickSize);
-    var actualTaskLeftPosition = Math.round(actualTaskOffset * tickSize);
-
-    return {
-      'width.px': actualTaskWidth,
-      'left.px': 55,
-    };
-  }
+  // class } end
 }
