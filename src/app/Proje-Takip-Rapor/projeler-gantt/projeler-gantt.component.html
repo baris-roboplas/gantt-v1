@@ -14,6 +14,7 @@
                     'auto',
                     'minutes',
                     'hours',
+                    'sixHours',
                     'days',
                     'weeks',
                     'months',
@@ -79,7 +80,9 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
-        (onTaskUpdated)="onTaskUpdated($event)">
+        (onTaskUpdated)="onTaskUpdated($event)"
+        (onScaleCellPrepared)="onScaleCellPrepared($event)"
+        [firstDayOfWeek]="1"
           [taskListWidth]="1000"
           scaleType="weeks"
           height="700"
@@ -341,12 +344,13 @@
       id="popup"
       [(visible)]="isTaskDetailsFormPopupVisible"
       [hideOnOutsideClick]="true"
-      (onHidden)="resetForm($event)"
+      (onHidden)="byHiddenPopup($event)"
     >
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
           <form (submit)="onSaveForm($event)">
             <dx-form
+            (onFieldDataChanged)="onFieldDataChanged($event)"
               id="form"
               [formData]="customTaskDetailsForm"
               labelLocation="left"
@@ -522,7 +526,7 @@
                         dataField="imalatResmiHazirlayan"
                         editorType="dxSelectBox"
                         [editorOptions]="{
-                          items: resources,
+                          dataSource: resources,
                           displayExpr: 'text',
                           valueExpr: 'id',
                           placeholder: 'Seçiniz',

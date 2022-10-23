@@ -21,6 +21,7 @@ import 'jspdf-autotable';
 import jsPDF from 'jspdf';
 import { Observable } from 'rxjs';
 import dxTreeList from 'devextreme/ui/tree_list';
+import * as moment from 'moment';
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
@@ -109,7 +110,7 @@ export class ProjelerGanttComponent implements OnInit {
     });
 
     // gantt properties
-    this.scaleType = 'months';
+    this.scaleType = 'weeks';
 
     //custom gantt settings
     this.titlePosition = 'outside';
@@ -211,13 +212,19 @@ export class ProjelerGanttComponent implements OnInit {
   // Forms/Popups
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
-    this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
     this.customTaskDetailsForm = this.tasks.find((t) => t.id === Number(e.key));
+    this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
     this.isTaskDetailsFormPopupVisible = true;
   }
-  resetForm(e: any) {
-    this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
+  byHiddenPopup(e: any) {
+    // this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
+    // for (let index = 0; index < this.tasks.length; index++) {
+    //   if (this.tasks[index].id === this.customTaskDetailsForm.id) {
+    //     this.tasks[index] = this.customTaskDetailsForm;
+    //   }
+    // }
   }
+  onFieldDataChanged(e: any) {}
   onTaskUpdated(e: any) {
     if (e.key != 0) {
       // your code
@@ -239,7 +246,13 @@ export class ProjelerGanttComponent implements OnInit {
     // }
     this.isTaskDetailsFormPopupVisible = false;
   }
-
+  // scale display formatter
+  onScaleCellPrepared(e: any) {
+    var scaleElement = e.scaleElement;
+    if (scaleElement === 'weeks') {
+      e.scaleElement.innerText = moment(e.startDate).format('w');
+    }
+  }
   // Custom Task Content Template
   plannedTaskProgressWidthDefiner(item: any) {
     let progressWidth = `${parseFloat(item.taskData.progress) + '%'}`;

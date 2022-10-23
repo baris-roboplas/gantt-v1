@@ -2301,6 +2301,11 @@
           "id": 63,
           "taskId": 85,
           "resourceId": 2
+        },
+        {
+          "id": 64,
+          "taskId": 1,
+          "resourceId": 1
         }
       ]
     },
