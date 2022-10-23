@@ -15,7 +15,7 @@ export class GanttDataService {
   dummyApi = 'http://localhost:3000';
 
   // Data
-  dataLoading$ = new BehaviorSubject<boolean>(true);
+  dataLoading$ = new BehaviorSubject<boolean>(false);
 
   private _dataSubject = new BehaviorSubject<any>(null);
   data$: Observable<any> = this._dataSubject;

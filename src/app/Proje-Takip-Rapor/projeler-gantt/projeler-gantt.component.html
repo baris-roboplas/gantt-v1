@@ -79,6 +79,7 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
+        (onTaskUpdated)="onTaskUpdated($event)">
           [taskListWidth]="1000"
           scaleType="weeks"
           height="700"
@@ -340,6 +341,7 @@
       id="popup"
       [(visible)]="isTaskDetailsFormPopupVisible"
       [hideOnOutsideClick]="true"
+      (onHidden)="resetForm($event)"
     >
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">

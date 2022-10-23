@@ -2303,312 +2303,316 @@
           "resourceId": 2
         }
       ]
-    }
-  ],
-  "taskStatusList": [
-    {
-      "statusId": 1,
-      "statusName": "TASARIMDAYKEN BAŞKA PROJEYE GEÇİLDİ",
-      "statusColor": "Açık Mavi",
-      "statusGroup": "tasarimİşListesi"
     },
     {
-      "statusId": 2,
-      "statusName": "TASARIM BİTTİ",
-      "statusColor": "Açık Yeşil",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 3,
-      "statusName": "TASARIM İPTAL",
-      "statusColor": "Açık Sarı",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 4,
-      "statusName": "TASARIM BEKLEMEDE",
-      "statusColor": "Turuncu",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 5,
-      "statusName": "TASARIM AŞAMASINDA",
-      "statusColor": "Açık Gri",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 6,
-      "statusName": "SİPARİŞ VEYA REVİZYON FORMU REVİZYONA UĞRAMIŞTIR",
-      "statusColor": "Siyah",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 7,
-      "statusName": "MÜŞTERİDEN BİLGİ BEKLENİYOR",
-      "statusColor": "Açık Mor",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 8,
-      "statusName": "MÜŞTERİDEN ONAYI BEKLENİYOR",
-      "statusColor": "Koyu Pembe",
-      "statusGroup": "tasarimİşListesi"
-    },
-    {
-      "statusId": 9,
-      "statusName": "TESTİ YAPILAN(HAZIR) PROJELER",
-      "statusColor": "Koyu Gri",
-      "statusGroup": "robotSüreçleri"
-    },
-    {
-      "statusId": 10,
-      "statusName": "TESTTE OLAN PROJELER",
-      "statusColor": "Koyu Mavi",
-      "statusGroup": "robotSüreçleri"
-    },
-    {
-      "statusId": 11,
-      "statusName": "YÜKLEME YAPILAN PROJELER",
-      "statusColor": "Kırmızı",
-      "statusGroup": "robotSüreçleri"
-    },
-    {
-      "statusId": 12,
-      "statusName": "TASARIMDA OLAN PROJELER",
-      "statusColor": "Koyu Mor",
-      "statusGroup": "robotSüreçleri"
-    },
-    {
-      "statusId": 13,
-      "statusName": "İMALATTA OLAN PROJELER",
-      "statusColor": "Koyu Gri",
-      "statusGroup": "robotSüreçleri"
-    },
-    {
-      "statusId": 14,
-      "statusName": "KAMERADA OLAN PROJELER",
-      "statusColor": "Koyu Sarı",
-      "statusGroup": "robotSüreçleri"
-    },
-    {
-      "statusId": 15,
-      "statusName": "İşleme Alındı",
-      "statusColor": "Çok Açık Yeşil",
-      "statusGroup": "işlemSüreçleri"
-    },
-    {
-      "statusId": 16,
-      "statusName": "İşlem Tamamlandı",
-      "statusColor": "Koyu Yeşil",
-      "statusGroup": "işlemSüreçleri"
-    },
-    {
-      "statusId": 17,
-      "statusName": "İşlem Durdu",
-      "statusColor": "Sarı",
-      "statusGroup": "işlemSüreçleri"
-    },
-    {
-      "statusId": 18,
-      "statusName": "İşlem İptal",
-      "statusColor": "Kırmızı",
-      "statusGroup": "işlemSüreçleri"
-    }
-  ],
-  "taskOperationsList": [
-    {
-      "operationId": 1,
-      "operationName": "SİPARİŞ",
-      "operationColor": "Çok Açık Mavi",
-      "subOperations": [
+      "taskStatusList": [
         {
-          "subOperationId": 1,
-          "subOperationName": "SİPARİŞ ALINIŞI"
+          "statusId": 1,
+          "statusName": "TASARIMDAYKEN BAŞKA PROJEYE GEÇİLDİ",
+          "statusColor": "Açık Mavi",
+          "statusGroup": "tasarimİşListesi"
         },
         {
-          "subOperationId": 2,
-          "subOperationName": "SİPARİŞ BİLGİ TOPLAMA"
+          "statusId": 2,
+          "statusName": "TASARIM BİTTİ",
+          "statusColor": "Açık Yeşil",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 3,
+          "statusName": "TASARIM İPTAL",
+          "statusColor": "Açık Sarı",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 4,
+          "statusName": "TASARIM BEKLEMEDE",
+          "statusColor": "Turuncu",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 5,
+          "statusName": "TASARIM AŞAMASINDA",
+          "statusColor": "Açık Gri",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 6,
+          "statusName": "SİPARİŞ VEYA REVİZYON FORMU REVİZYONA UĞRAMIŞTIR",
+          "statusColor": "Siyah",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 7,
+          "statusName": "MÜŞTERİDEN BİLGİ BEKLENİYOR",
+          "statusColor": "Açık Mor",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 8,
+          "statusName": "MÜŞTERİDEN ONAYI BEKLENİYOR",
+          "statusColor": "Koyu Pembe",
+          "statusGroup": "tasarimİşListesi"
+        },
+        {
+          "statusId": 9,
+          "statusName": "TESTİ YAPILAN(HAZIR) PROJELER",
+          "statusColor": "Koyu Gri",
+          "statusGroup": "robotSüreçleri"
+        },
+        {
+          "statusId": 10,
+          "statusName": "TESTTE OLAN PROJELER",
+          "statusColor": "Koyu Mavi",
+          "statusGroup": "robotSüreçleri"
+        },
+        {
+          "statusId": 11,
+          "statusName": "YÜKLEME YAPILAN PROJELER",
+          "statusColor": "Kırmızı",
+          "statusGroup": "robotSüreçleri"
+        },
+        {
+          "statusId": 12,
+          "statusName": "TASARIMDA OLAN PROJELER",
+          "statusColor": "Koyu Mor",
+          "statusGroup": "robotSüreçleri"
+        },
+        {
+          "statusId": 13,
+          "statusName": "İMALATTA OLAN PROJELER",
+          "statusColor": "Koyu Gri",
+          "statusGroup": "robotSüreçleri"
+        },
+        {
+          "statusId": 14,
+          "statusName": "KAMERADA OLAN PROJELER",
+          "statusColor": "Koyu Sarı",
+          "statusGroup": "robotSüreçleri"
+        },
+        {
+          "statusId": 15,
+          "statusName": "İşleme Alındı",
+          "statusColor": "Çok Açık Yeşil",
+          "statusGroup": "işlemSüreçleri"
+        },
+        {
+          "statusId": 16,
+          "statusName": "İşlem Tamamlandı",
+          "statusColor": "Koyu Yeşil",
+          "statusGroup": "işlemSüreçleri"
+        },
+        {
+          "statusId": 17,
+          "statusName": "İşlem Durdu",
+          "statusColor": "Sarı",
+          "statusGroup": "işlemSüreçleri"
+        },
+        {
+          "statusId": 18,
+          "statusName": "İşlem İptal",
+          "statusColor": "Kırmızı",
+          "statusGroup": "işlemSüreçleri"
         }
       ]
     },
     {
-      "operationId": 3,
-      "operationName": "Tasarım",
-      "operationColor": "Bej",
-      "subOperations": [
+      "taskOperationsList": [
         {
-          "subOperationId": 1,
-          "subOperationName": "Tasarım İşlemleri"
+          "operationId": 1,
+          "operationName": "SİPARİŞ",
+          "operationColor": "Çok Açık Mavi",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "SİPARİŞ ALINIŞI"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "SİPARİŞ BİLGİ TOPLAMA"
+            }
+          ]
         },
         {
-          "subOperationId": 2,
-          "subOperationName": "İmalat Resminin Hazırlanması"
-        }
-      ]
-    },
-    {
-      "operationId": 4,
-      "operationName": "ŞASE",
-      "operationColor": "Açık Mavi",
-      "subOperations": [
-        {
-          "subOperationId": 1,
-          "subOperationName": "Dış İmalat"
+          "operationId": 3,
+          "operationName": "Tasarım",
+          "operationColor": "Bej",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "Tasarım İşlemleri"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "İmalat Resminin Hazırlanması"
+            }
+          ]
         },
         {
-          "subOperationId": 2,
-          "subOperationName": "Lazer Kesim"
+          "operationId": 4,
+          "operationName": "ŞASE",
+          "operationColor": "Açık Mavi",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "Dış İmalat"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "Lazer Kesim"
+            },
+            {
+              "subOperationId": 3,
+              "subOperationName": "Kaynak"
+            },
+            {
+              "subOperationId": 4,
+              "subOperationName": "Teslim"
+            }
+          ]
         },
         {
-          "subOperationId": 3,
-          "subOperationName": "Kaynak"
+          "operationId": 5,
+          "operationName": "DİZME",
+          "operationColor": "Açık Turuncu",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "İç İmalat"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "Dış İmalat"
+            },
+            {
+              "subOperationId": 3,
+              "subOperationName": "Satın Alma / Depo"
+            },
+            {
+              "subOperationId": 4,
+              "subOperationName": "Montaj"
+            },
+            {
+              "subOperationId": 5,
+              "subOperationName": "Tesisat"
+            }
+          ]
         },
         {
-          "subOperationId": 4,
-          "subOperationName": "Teslim"
-        }
-      ]
-    },
-    {
-      "operationId": 5,
-      "operationName": "DİZME",
-      "operationColor": "Açık Turuncu",
-      "subOperations": [
-        {
-          "subOperationId": 1,
-          "subOperationName": "İç İmalat"
+          "operationId": 6,
+          "operationName": "ANA AKS KOL",
+          "operationColor": "Açık Mor",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "İç İmalat"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "Dış İmalat"
+            },
+            {
+              "subOperationId": 3,
+              "subOperationName": "Satın Alma / Depo"
+            },
+            {
+              "subOperationId": 4,
+              "subOperationName": "Montaj"
+            },
+            {
+              "subOperationId": 5,
+              "subOperationName": "Tesisat"
+            }
+          ]
         },
         {
-          "subOperationId": 2,
-          "subOperationName": "Dış İmalat"
+          "operationId": 7,
+          "operationName": "SEPERATÖR",
+          "operationColor": "Açık Yeşil",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "İç İmalat"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "Dış İmalat"
+            },
+            {
+              "subOperationId": 3,
+              "subOperationName": "Satın Alma / Depo"
+            },
+            {
+              "subOperationId": 4,
+              "subOperationName": "Montaj"
+            },
+            {
+              "subOperationId": 5,
+              "subOperationName": "Tesisat"
+            }
+          ]
         },
         {
-          "subOperationId": 3,
-          "subOperationName": "Satın Alma / Depo"
+          "operationId": 8,
+          "operationName": "TEST",
+          "operationColor": "Gri",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "Mekanik Ayar"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "Elektrik Test"
+            },
+            {
+              "subOperationId": 3,
+              "subOperationName": "Yazılım Testi"
+            },
+            {
+              "subOperationId": 4,
+              "subOperationName": "Proje Kontrol"
+            }
+          ]
         },
         {
-          "subOperationId": 4,
-          "subOperationName": "Montaj"
+          "operationId": 9,
+          "operationName": "YÜKLEME FORMU HAZIRLANMASI",
+          "operationColor": "Açık Kahverengi",
+          "subOperations": []
         },
         {
-          "subOperationId": 5,
-          "subOperationName": "Tesisat"
-        }
-      ]
-    },
-    {
-      "operationId": 6,
-      "operationName": "ANA AKS KOL",
-      "operationColor": "Açık Mor",
-      "subOperations": [
-        {
-          "subOperationId": 1,
-          "subOperationName": "İç İmalat"
+          "operationId": 10,
+          "operationName": "Yüklemenin Gerçekleştirilmesi",
+          "operationColor": "Koyu Kahverengi",
+          "subOperations": []
         },
         {
-          "subOperationId": 2,
-          "subOperationName": "Dış İmalat"
-        },
-        {
-          "subOperationId": 3,
-          "subOperationName": "Satın Alma / Depo"
-        },
-        {
-          "subOperationId": 4,
-          "subOperationName": "Montaj"
-        },
-        {
-          "subOperationId": 5,
-          "subOperationName": "Tesisat"
-        }
-      ]
-    },
-    {
-      "operationId": 7,
-      "operationName": "SEPERATÖR",
-      "operationColor": "Açık Yeşil",
-      "subOperations": [
-        {
-          "subOperationId": 1,
-          "subOperationName": "İç İmalat"
-        },
-        {
-          "subOperationId": 2,
-          "subOperationName": "Dış İmalat"
-        },
-        {
-          "subOperationId": 3,
-          "subOperationName": "Satın Alma / Depo"
-        },
-        {
-          "subOperationId": 4,
-          "subOperationName": "Montaj"
-        },
-        {
-          "subOperationId": 5,
-          "subOperationName": "Tesisat"
-        }
-      ]
-    },
-    {
-      "operationId": 8,
-      "operationName": "TEST",
-      "operationColor": "Gri",
-      "subOperations": [
-        {
-          "subOperationId": 1,
-          "subOperationName": "Mekanik Ayar"
-        },
-        {
-          "subOperationId": 2,
-          "subOperationName": "Elektrik Test"
-        },
-        {
-          "subOperationId": 3,
-          "subOperationName": "Yazılım Testi"
-        },
-        {
-          "subOperationId": 4,
-          "subOperationName": "Proje Kontrol"
-        }
-      ]
-    },
-    {
-      "operationId": 9,
-      "operationName": "YÜKLEME FORMU HAZIRLANMASI",
-      "operationColor": "Açık Kahverengi",
-      "subOperations": []
-    },
-    {
-      "operationId": 10,
-      "operationName": "Yüklemenin Gerçekleştirilmesi",
-      "operationColor": "Koyu Kahverengi",
-      "subOperations": []
-    },
-    {
-      "operationId": 11,
-      "operationName": "ETİKET TRANSFER",
-      "operationColor": "Açık Yeşil",
-      "subOperations": [
-        {
-          "subOperationId": 1,
-          "subOperationName": "İç İmalat"
-        },
-        {
-          "subOperationId": 2,
-          "subOperationName": "Dış İmalat"
-        },
-        {
-          "subOperationId": 3,
-          "subOperationName": "Satın Alma / Depo"
-        },
-        {
-          "subOperationId": 4,
-          "subOperationName": "Montaj"
-        },
-        {
-          "subOperationId": 5,
-          "subOperationName": "Tesisat"
+          "operationId": 11,
+          "operationName": "ETİKET TRANSFER",
+          "operationColor": "Açık Yeşil",
+          "subOperations": [
+            {
+              "subOperationId": 1,
+              "subOperationName": "İç İmalat"
+            },
+            {
+              "subOperationId": 2,
+              "subOperationName": "Dış İmalat"
+            },
+            {
+              "subOperationId": 3,
+              "subOperationName": "Satın Alma / Depo"
+            },
+            {
+              "subOperationId": 4,
+              "subOperationName": "Montaj"
+            },
+            {
+              "subOperationId": 5,
+              "subOperationName": "Tesisat"
+            }
+          ]
         }
       ]
     }

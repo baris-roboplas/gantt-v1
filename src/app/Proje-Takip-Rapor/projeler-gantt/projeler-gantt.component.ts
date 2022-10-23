@@ -211,9 +211,17 @@ export class ProjelerGanttComponent implements OnInit {
   // Forms/Popups
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
+    this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
     this.customTaskDetailsForm = this.tasks.find((t) => t.id === Number(e.key));
-    // this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
     this.isTaskDetailsFormPopupVisible = true;
+  }
+  resetForm(e: any) {
+    this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
+  }
+  onTaskUpdated(e: any) {
+    if (e.key != 0) {
+      // your code
+    }
   }
 
   onSaveForm(e: any) {
