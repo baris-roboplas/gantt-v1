@@ -56,22 +56,22 @@
               </div>
             </div>
           </div>
-          <div class="column">
+          <!-- <div class="column">
             <div class="option">
               <div class="label">Start Date Range:</div>
               <div class="value">
-                <dx-date-box [(value)]="startDateRange" type="date">
+                <dx-date-box [(value)]="startDateRange"  >
                 </dx-date-box>
               </div>
             </div>
             <div class="option">
               <div class="label">End Date Range:</div>
               <div class="value">
-                <dx-date-box [(value)]="endDateRange" type="date">
+                <dx-date-box [(value)]="endDateRange" >
                 </dx-date-box>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -80,9 +80,10 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
-        (onTaskUpdated)="onTaskUpdated($event)"
-        (onScaleCellPrepared)="onScaleCellPrepared($event)"
-        [firstDayOfWeek]="1"
+
+          (onTaskUpdated)="onTaskUpdated($event)"
+          (onScaleCellPrepared)="onScaleCellPrepared($event)"
+          [firstDayOfWeek]="1"
           [taskListWidth]="1000"
           scaleType="weeks"
           height="700"
@@ -93,11 +94,12 @@
           [taskContentTemplate]="
             showDifferentTaskContent ? 'myTaskContentTemplate' : undefined
           "
-          [startDateRange]="startDateRange"
-          [endDateRange]="endDateRange"
+
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
         >
-        <!-- DataSources -->
+        <!-- [startDateRange]="startDateRange"
+        [endDateRange]="endDateRange" -->
+          <!-- DataSources -->
           <!-- <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu> customize etmek için -->
           <dxo-tasks [dataSource]="tasks"></dxo-tasks>
           <dxo-dependencies [dataSource]="dependencies"></dxo-dependencies>
@@ -114,21 +116,28 @@
           <dxi-column
             dataField="taskPlannedStartDate"
             caption="Planlanmış Başlangıç"
+            format="shortDate"
             dataType="date"
+
           ></dxi-column>
           <dxi-column
             dataField="taskPlannedEndDate"
             caption="Planlanmış Bitiş"
+            format="shortDate"
             dataType="date"
+
           ></dxi-column>
           <dxi-column
             dataField="start"
             caption="Güncel Başlangıç"
+            format="shortDate"
             dataType="date"
+
           ></dxi-column>
           <dxi-column
             dataField="end"
             caption="Güncel Bitiş"
+            format="shortDate"
             dataType="date"
           ></dxi-column>
           <dxi-column
@@ -141,7 +150,10 @@
             dataField="progress"
             caption="Tamamlanma %"
             dataType="number"
-          ></dxi-column>
+          ><dxo-format
+          type="percent"
+          [precision]="0">
+      </dxo-format></dxi-column>
           <dxi-column
             dataField="taskCompany"
             caption="Firma"
@@ -238,7 +250,7 @@
     </div>
     <!-- Export Options -->
     <!-- Popup yapılabilir -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
         <div class="options">
           <div class="column">
@@ -337,24 +349,27 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Task Details Popup/Form -->
     <dx-popup
       id="popup"
       [(visible)]="isTaskDetailsFormPopupVisible"
-      [hideOnOutsideClick]="true"
+      [hideOnOutsideClick]="false"
       (onHidden)="byHiddenPopup($event)"
+
     >
+    <!-- 1. title hazır liste veya custom olacak parent id varsa diye 3. progress düzeltilecek 4.resimhaizrlayan boolean olarak ngif* olacak 5. -->
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
-          <form (submit)="onSaveForm($event)">
+          <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm">
             <dx-form
-            (onFieldDataChanged)="onFieldDataChanged($event)"
+              (onFieldDataChanged)="onFieldDataChanged($event)"
               id="form"
               [formData]="customTaskDetailsForm"
               labelLocation="left"
               [showColonAfterLabel]="false"
+
             >
               <!-- Ana Grup-1 -->
               <dxi-item itemType="group" [colCount]="3">
@@ -372,7 +387,6 @@
                   <dxi-item
                     dataField="taskPlannedStartDate"
                     editorType="dxDateBox"
-                    editorOptions="{ type: 'date' }"
                     [isRequired]="true"
                     ><dxo-label [text]="'Planlanan Başlangıç'"> </dxo-label
                   ></dxi-item>
@@ -380,7 +394,6 @@
                   <dxi-item
                     dataField="taskPlannedEndDate"
                     editorType="dxDateBox"
-                    editorOptions="{ type: 'date' }"
                     [isRequired]="true"
                     ><dxo-label [text]="'Planlanan Bitiş'"> </dxo-label
                   ></dxi-item>
@@ -399,7 +412,6 @@
                   <dxi-item
                     dataField="start"
                     editorType="dxDateBox"
-                    editorOptions="{ type: 'date' }"
                     [isRequired]="true"
                     ><dxo-label [text]="'Gerçekleşen Başlangıç'"> </dxo-label
                   ></dxi-item>
@@ -407,7 +419,6 @@
                   <dxi-item
                     dataField="end"
                     editorType="dxDateBox"
-                    editorOptions="{ type: 'date' }"
                     [isRequired]="true"
                     ><dxo-label [text]="'Gerçekleşen Bitiş'"> </dxo-label
                   ></dxi-item>
@@ -441,6 +452,7 @@
                     ><dxo-label [text]="'Durum Bilgisi'"> </dxo-label
                   ></dxi-item>
                   <!-- İlerleme Oranı -->
+                  <!-- format: 'percent' -->
                   <dxi-item
                     dataField="progress"
                     editorType="dxNumberBox"
@@ -448,7 +460,7 @@
                       min: 0,
                       max: 1,
                       showSpinButtons: true,
-                      format: 'percent'
+                      format: customProgressFormat(customTaskDetailsForm.progress)
                     }"
                     [isRequired]="false"
                     ><dxo-label [text]="'Gerçekleşen İlerleme'"> </dxo-label
@@ -461,18 +473,18 @@
                     [editorOptions]="{
                       switchedOnText: 'Evet',
                       switchedOffText: 'Hayır',
-                      width: '20%'
+                      width: '30%'
                     }"
                     ><dxo-label [text]="'Revizyon Mu?'"> </dxo-label>
                   </dxi-item>
                   <!-- Kaynaklar -->
                   <dxi-item
-                    dataField="resourceId"
+                    dataField="resource"
                     editorType="dxSelectBox"
                     [editorOptions]="{
                       dataSource: resources,
                       displayExpr: 'text',
-                      valueExpr: 'id',
+                      valueExpr: 'text',
                       placeholder: 'Seçiniz',
                       searchEnabled: true,
                       searchTimeout: 200
@@ -523,17 +535,18 @@
                       ></dxi-item>
                       <!-- İmalat Resmi Hazırlayan -->
                       <dxi-item
+                      *ngIf="this.customTaskDetailsForm.parentId"
                         dataField="imalatResmiHazirlayan"
                         editorType="dxSelectBox"
                         [editorOptions]="{
                           dataSource: resources,
                           displayExpr: 'text',
-                          valueExpr: 'id',
+                          valueExpr: 'text',
                           placeholder: 'Seçiniz',
                           searchEnabled: true,
                           searchTimeout: 200
                         }"
-                        [isRequired]="true"
+                        [isRequired]="false"
                       >
                         <dxo-label [text]="'İmalat Resmi Hazırlayan'">
                         </dxo-label>

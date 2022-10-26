@@ -74,6 +74,7 @@ export class ProjelerGanttComponent implements OnInit {
   submitButtonOptions = {
     text: 'Görev Detaylarını Kaydet',
     useSubmitBehavior: true,
+    type: 'default',
   };
   isTaskDetailsFormPopupVisible = false;
 
@@ -117,8 +118,8 @@ export class ProjelerGanttComponent implements OnInit {
     this.showResources = true;
     this.showDependencies = false;
     this.showDifferentTaskContent = true;
-    this.startDateRange = new Date(2018, 11, 1);
-    this.endDateRange = new Date(2019, 11, 1);
+    this.startDateRange = new Date(2022, 1, 1);
+    this.endDateRange = new Date(2023, 1, 1);
 
     // export options/filters
     this.formatBoxValue = this.formats[0];
@@ -210,9 +211,43 @@ export class ProjelerGanttComponent implements OnInit {
   }
 
   // Forms/Popups
+  dateDaysDiffCalculator(start: any, end: any) {
+    // To calculate the time difference of two dates
+    var Difference_In_Time = end.getTime() - start.getTime();
+
+    // To calculate the no. of days between two dates
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    return Difference_In_Days;
+  }
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
     this.customTaskDetailsForm = this.tasks.find((t) => t.id === Number(e.key));
+    this.customTaskDetailsForm = {
+      ...this.customTaskDetailsForm,
+      start: new Date(this.customTaskDetailsForm.start),
+      end: new Date(this.customTaskDetailsForm.end),
+      taskPlannedStartDate: new Date(
+        this.customTaskDetailsForm.taskPlannedStartDate
+      ),
+      taskPlannedEndDate: new Date(
+        this.customTaskDetailsForm.taskPlannedEndDate
+      ),
+      plannedDuration: this.dateDaysDiffCalculator(
+        new Date(this.customTaskDetailsForm.taskPlannedStartDate),
+        new Date(this.customTaskDetailsForm.taskPlannedEndDate)
+      ),
+      actualDuration: this.dateDaysDiffCalculator(
+        new Date(this.customTaskDetailsForm.start),
+        new Date(this.customTaskDetailsForm.end)
+      ),
+      resource: this.resources.find(
+        (resource) =>
+          resource.id ==
+          this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
+            ?.resourceId
+      )?.text,
+    };
     this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
     this.isTaskDetailsFormPopupVisible = true;
   }
@@ -224,7 +259,32 @@ export class ProjelerGanttComponent implements OnInit {
     //   }
     // }
   }
-  onFieldDataChanged(e: any) {}
+  onFieldDataChanged(e: any) {
+    if (e.dataField === 'start') {
+      this.customTaskDetailsForm.actualDuration = this.dateDaysDiffCalculator(
+        e.value,
+        this.customTaskDetailsForm.end
+      );
+    }
+    if (e.dataField === 'end') {
+      this.customTaskDetailsForm.actualDuration = this.dateDaysDiffCalculator(
+        this.customTaskDetailsForm.start,
+        e.value
+      );
+    }
+    if (e.dataField === 'taskPlannedStartDate') {
+      this.customTaskDetailsForm.plannedDuration = this.dateDaysDiffCalculator(
+        e.value,
+        this.customTaskDetailsForm.taskPlannedEndDate
+      );
+    }
+    if (e.dataField === 'taskPlannedEndDate') {
+      this.customTaskDetailsForm.plannedDuration = this.dateDaysDiffCalculator(
+        this.customTaskDetailsForm.taskPlannedStartDate,
+        e.value
+      );
+    }
+  }
   onTaskUpdated(e: any) {
     if (e.key != 0) {
       // your code
@@ -234,16 +294,15 @@ export class ProjelerGanttComponent implements OnInit {
   onSaveForm(e: any) {
     e.preventDefault();
     if (confirm('Görev / İş Detayını Kaydet!') === true) {
-      // const { resourceId, ...everythingExceptresourceId } =
-      //   this.customTaskDetailsForm;
-      // const b = everythingExceptresourceId;
-      // this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
-      //   ...everythingExceptresourceId,
-      // });
+      const { resource, ...everythingExceptresourceId } =
+        this.customTaskDetailsForm;
+      const b = everythingExceptresourceId;
+      this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
+        ...everythingExceptresourceId,
+      });
+    } else {
+      this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
     }
-    // else {
-    //   this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
-    // }
     this.isTaskDetailsFormPopupVisible = false;
   }
   // scale display formatter
@@ -255,8 +314,12 @@ export class ProjelerGanttComponent implements OnInit {
   }
   // Custom Task Content Template
   plannedTaskProgressWidthDefiner(item: any) {
-    let progressWidth = `${parseFloat(item.taskData.progress) + '%'}`;
+    let progressWidth = `${parseFloat(item.taskData.progress) * 100 + '%'}`;
     return progressWidth;
+  }
+
+  customProgressFormat(value: number) {
+    return value * 100 + '%';
   }
   actualTaskWidthDefiner(item: any) {
     var taskRange = item.taskData.end - item.taskData.start;
