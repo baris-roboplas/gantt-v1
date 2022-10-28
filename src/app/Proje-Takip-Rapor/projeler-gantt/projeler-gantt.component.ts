@@ -22,6 +22,8 @@ import jsPDF from 'jspdf';
 import { Observable } from 'rxjs';
 import dxTreeList from 'devextreme/ui/tree_list';
 import * as moment from 'moment';
+import DataSource from 'devextreme/data/data_source';
+import ArrayStore from 'devextreme/data/array_store';
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
@@ -34,9 +36,25 @@ export class ProjelerGanttComponent implements OnInit {
   resources!: Resource[];
   resourceAssignments!: ResourceAssignment[];
   // B.D: Modelleri yapılacak
-  taskStatusList!: any[];
-  taskOperationsList!: any[];
-
+  taskStatusList!: any;
+  taskOperationsList!: any;
+  dataSourceFromtaskOperationsList!: any; // B.D: tip datasource olabilir
+  dataSourceFromtaskStatusListOrder!: any;
+  dataSourceFromresources!: any;
+  companies: any = ['Roboplas', 'Roboter', 'Roboplas NA'];
+  customers: any = [
+    'Henüz Belirlenmedi',
+    'Customer-1',
+    'Customer-2',
+    'Customer-3',
+    'Customer-4',
+    'Customer-5',
+    'Customer-6',
+    'Customer-7',
+    'Customer-8',
+    'Customer-9',
+    'Customer-10',
+  ];
   // gantt properties
   scaleType!: string;
 
@@ -72,7 +90,7 @@ export class ProjelerGanttComponent implements OnInit {
   showSortIndexes!: boolean;
 
   // Task Details Form/Popup
-  customTaskDetailsForm: any;
+  customTaskDetailsForm: any; // model yapılabilir
   oldCustomTaskDetailsForm: any;
   submitButtonOptions = {
     text: 'Görev Detaylarını Kaydet',
@@ -109,6 +127,31 @@ export class ProjelerGanttComponent implements OnInit {
         this.resourceAssignments = data?.resourceAssignments;
         this.taskStatusList = data?.taskStatusList;
         this.taskOperationsList = data?.taskOperationsList;
+
+        this.dataSourceFromtaskOperationsList = new DataSource(
+          {
+          store: new ArrayStore({
+            data: data.taskOperationList,
+            key: 'id',
+          }),
+          group: 'routeLevelName',
+         }
+        );
+        this.dataSourceFromtaskStatusListOrder = new DataSource({
+          store: new ArrayStore({
+            data: data.taskStatusListOrder,
+            key: 'id',
+          }),
+          group: 'statusGroup',
+        });
+        this.dataSourceFromresources = new DataSource({
+          store: new ArrayStore({
+            data: data.resources,
+            key: 'id',
+          }),
+          group: 'resourceType',
+        });
+
         // Export Options
         this.startDate = data.tasks[0]?.start;
         this.endDate = data.tasks[0]?.end;

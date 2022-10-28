@@ -153,11 +153,6 @@
             dataType="string"
           ></dxi-column>
           <dxi-column
-            dataField="taskIsRevision"
-            caption="Revizyon?"
-            dataType="boolean"
-          ></dxi-column>
-          <dxi-column
             dataField="taskCustomer"
             caption="Müşteri"
             dataType="string"
@@ -171,6 +166,11 @@
             dataField="taskNotes"
             caption="Notlar"
             dataType="string"
+          ></dxi-column>
+          <dxi-column
+            dataField="taskIsRevision"
+            caption="Revizyon?"
+            dataType="boolean"
           ></dxi-column>
           <!-- Toolbar -->
           <dxo-toolbar>
@@ -367,38 +367,89 @@
                 <!-- Sütun-1 -->
                 <dxi-item itemType="group" caption="Görev Detayları-1">
                   <!-- id -->
-                  <dxi-item dataField="id" [visible]="false"></dxi-item>
+                  <dxi-item
+                    dataField="id"
+                    [visible]="false"
+                    [editorOptions]="{ disabled: true }"
+                  ></dxi-item>
                   <!-- parentId -->
                   <dxi-item dataField="parentId" [visible]="false"></dxi-item>
-                  <!-- Görev / İş -->
-                 <!-- If Project, then show -->
-                 <dxi-item *ngIf="customTaskDetailsForm.parentId === 0" dataField="title" [isRequired]="true" ></dxi-item>
+                  <!-- Proje/Görev/Operasyon -->
+                  <!-- If Project Row, then show -->
                   <dxi-item
-                  *ngIf="customTaskDetailsForm.parentId !== 0"
+                    *ngIf="customTaskDetailsForm.parentId === 0"
+                    dataField="title"
+                    [isRequired]="true"
+                    ><dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label
+                  ></dxi-item>
+                  <!-- If Project Row, then show -->
+                  <!-- Start: If Not Project Row, then show -->
+                  <dxi-item
+                    *ngIf="customTaskDetailsForm.parentId !== 0"
+                    [isRequired]="true"
+                  >
+                    <dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label>
+                    <div *dxTemplate>
+                      <dx-select-box
+                        [(value)]="customTaskDetailsForm.title"
+                        [dataSource]="dataSourceFromtaskOperationsList"
+                        valueExpr="name"
+                        [grouped]="true"
+                        displayExpr="name"
+                        [searchEnabled]="true"
+                        groupTemplate="taskGroup"
+                      >
+                        <div *dxTemplate="let data of 'taskGroup'">
+                          <!-- Proje Süreçleri / Seviye1 Rota -->
+                          <div
+                            *ngIf="'Proje Süreçleri' === data.key"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-menu icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Alt Süreçler / Seviye2 Rota -->
+                          <div
+                            *ngIf="'Proje Süreçleri' !== data.key"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-rowfield icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                        </div>
+                      </dx-select-box>
+                    </div>
+                  </dxi-item>
+
+                  <!-- <dxi-item
+                    *ngIf="customTaskDetailsForm.parentId !== 0"
                     dataField="title"
                     editorType="dxSelectBox"
                     [editorOptions]="{
-                      dataSource: taskOperationsList,
-                      displayExpr: 'title',
-                      valueExpr: 'title',
+                      dataSource: dataSourceFromtaskOperationsList,
+                      displayExpr: 'name',
+                      valueExpr: 'name',
+                      grouped: true,
+                      groupTemplate: 'titleGroup',
                       placeholder: 'Seçiniz',
                       searchEnabled: true,
                       searchTimeout: 200
                     }"
                     [isRequired]="true"
-                    ><dxo-label [text]="'Görev / İş'"> </dxo-label
-                  ></dxi-item>
-                  <!-- dxi-item
-                    dataField="taskStatus"
-                    editorType="dxSelectBox"
-                    [editorOptions]="{
-                      dataSource: tasks,
-                      displayExpr: 'taskStatus',
-                      valueExpr: 'taskStatus',
-                      placeholder: 'Durum Belirtiniz',
-                      searchEnabled: true,
-                      searchTimeout: 200
-                    }" -->
+                  >
+                    <dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label>
+                  </dxi-item> -->
+                  <!-- <div *dxTemplate="let data of 'titleGroup'">
+                    <div class="custom-icon">
+                      <span class="dx-icon-box icon"></span>
+                      {{ data.key }}
+                    </div>
+                  </div> -->
+                  <!-- End: If Not Project Row, then show -->
                   <!-- Planlanan Başlangıç -->
                   <dxi-item
                     dataField="taskPlannedStartDate"
@@ -453,22 +504,57 @@
                 <!-- Sütun-2 -->
                 <dxi-item itemType="group" caption="Görev Detayları-2">
                   <!-- Durum Bilgisi -->
-                  <dxi-item
-                    dataField="taskStatus"
-                    editorType="dxSelectBox"
-                    [editorOptions]="{
-                      dataSource: tasks,
-                      displayExpr: 'taskStatus',
-                      valueExpr: 'taskStatus',
-                      placeholder: 'Durum Belirtiniz',
-                      searchEnabled: true,
-                      searchTimeout: 200
-                    }"
-                    [isRequired]="true"
-                    ><dxo-label [text]="'Durum Bilgisi'"> </dxo-label
-                  ></dxi-item>
+                  <dxi-item [isRequired]="true">
+                    <dxo-label [text]="'Durum Bilgisi'"></dxo-label>
+                    <div *dxTemplate>
+                      <dx-select-box
+                        [(value)]="customTaskDetailsForm.taskStatus"
+                        [dataSource]="dataSourceFromtaskStatusListOrder"
+                        valueExpr="statusName"
+                        [grouped]="true"
+                        displayExpr="statusName"
+                        [searchEnabled]="true"
+                        groupTemplate="statusGroup"
+                      >
+                        <div
+                          [ngSwitch]="data.key"
+                          *dxTemplate="let data of 'statusGroup'"
+                        >
+                          <!-- Tasarım Iş Listesi -->
+                          <div
+                            *ngSwitchCase="'Tasarım Iş Listesi'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-background icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Robot Süreçleri -->
+                          <div
+                            *ngSwitchCase="'Robot Süreçleri'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-share icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Operasyon Süreçleri -->
+                          <div
+                            *ngSwitchCase="'Operasyon Süreçleri'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-clock icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                        </div>
+                      </dx-select-box>
+                    </div>
+                  </dxi-item>
                   <!-- İlerleme Oranı -->
-                  <!-- format: 'percent' -->
                   <dxi-item
                     dataField="progress"
                     editorType="dxNumberBox"
@@ -496,7 +582,104 @@
                     ><dxo-label [text]="'Revizyon Mu?'"> </dxo-label>
                   </dxi-item>
                   <!-- Kaynaklar -->
-                  <dxi-item
+                  <dxi-item [isRequired]="true">
+                    <dxo-label [text]="'Kaynak'"></dxo-label>
+                    <div *dxTemplate>
+                      <dx-select-box
+                        [(value)]="customTaskDetailsForm.resource"
+                        [dataSource]="dataSourceFromresources"
+                        valueExpr="text"
+                        [grouped]="true"
+                        displayExpr="text"
+                        [searchEnabled]="true"
+                        groupTemplate="resourceGroup"
+                      >
+                        <div
+                          [ngSwitch]="data.key"
+                          *dxTemplate="let data of 'resourceGroup'"
+                        >
+                          <!-- Tasarım Ekibi -->
+                          <div
+                            *ngSwitchCase="'Tasarım Ekibi'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-background icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Proje Yöneticileri -->
+                          <div
+                            *ngSwitchCase="'Proje Yöneticileri'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-hierarchy icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Teknik Servis Ekibi -->
+                          <div
+                            *ngSwitchCase="'Teknik Servis Ekibi'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-tel icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Daha Sonra Güncellenecek -->
+                          <div
+                            *ngSwitchCase="'Daha Sonra Güncellenecek'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-warning icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Üretım Kaynakları -->
+                          <div
+                            *ngSwitchCase="'Üretım Kaynakları'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-preferences icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Dış Kaynaklar -->
+                          <div
+                            *ngSwitchCase="'Dış Kaynaklar'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-cart icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Satış Pazarlama Ekibi -->
+                          <div
+                            *ngSwitchCase="'Satış Pazarlama Ekibi'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-globe icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- Test Ekibi -->
+                          <div *ngSwitchCase="'Test Ekibi'" class="custom-icon">
+                            <span
+                              class="dx-icon-checklist icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                        </div>
+                      </dx-select-box>
+                    </div>
+                  </dxi-item>
+                  <!-- <dxi-item
                     dataField="resource"
                     editorType="dxSelectBox"
                     [editorOptions]="{
@@ -512,7 +695,7 @@
                       type="required"
                       message="Kaynak Belirtilmedi"
                     ></dxi-validation-rule>
-                  </dxi-item>
+                  </dxi-item> -->
                 </dxi-item>
                 <!-- Sütun-3 -->
                 <dxi-item itemType="group" caption="Görev Detayları-3">
@@ -526,9 +709,7 @@
                         dataField="taskCompany"
                         editorType="dxSelectBox"
                         [editorOptions]="{
-                          dataSource: tasks,
-                          displayExpr: 'taskCompany',
-                          valueExpr: 'taskCompany',
+                          items: companies,
                           placeholder: 'Firma Seçiniz',
                           searchEnabled: true,
                           searchTimeout: 200
@@ -541,9 +722,7 @@
                         dataField="taskCustomer"
                         editorType="dxSelectBox"
                         [editorOptions]="{
-                          dataSource: tasks,
-                          displayExpr: 'taskCustomer',
-                          valueExpr: 'taskCustomer',
+                          items: customers,
                           placeholder: 'Müşteri Seçiniz',
                           searchEnabled: true,
                           searchTimeout: 200
@@ -551,24 +730,6 @@
                         [isRequired]="true"
                         ><dxo-label [text]="'Müşteri'"> </dxo-label
                       ></dxi-item>
-                      <!-- İmalat Resmi Hazırlayan -->
-                      <dxi-item
-                        *ngIf="this.customTaskDetailsForm.parentId"
-                        dataField="imalatResmiHazirlayan"
-                        editorType="dxSelectBox"
-                        [editorOptions]="{
-                          dataSource: resources,
-                          displayExpr: 'text',
-                          valueExpr: 'text',
-                          placeholder: 'Seçiniz',
-                          searchEnabled: true,
-                          searchTimeout: 200
-                        }"
-                        [isRequired]="false"
-                      >
-                        <dxo-label [text]="'İmalat Resmi Hazırlayan'">
-                        </dxo-label>
-                      </dxi-item>
                     </dxi-tab>
                     <!-- Tab-2 -->
                     <!-- Notlar -->

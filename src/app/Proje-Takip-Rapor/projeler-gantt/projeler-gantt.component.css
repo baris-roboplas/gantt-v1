@@ -110,7 +110,7 @@
   font-size: 12px;
   color: white;
   padding-left: 0.5rem;
-  padding-bottom:0.5rem;
+  padding-bottom: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -129,3 +129,8 @@
   height: 4rem !important;
 }
 
+::ng-deep .custom-icon .icon.ganttSelectBoxIcons {
+  font-size: 17px;
+  color: #f05b41;
+  margin-right: 2px;
+}

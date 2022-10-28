@@ -13,9 +13,9 @@
           "taskPlannedEndDate": "Wed Mar 30 2022 02:00:00 GMT+0200",
           "taskCompany": "Roboplas",
           "taskIsRevision": true,
-          "taskCustomer": "Aselsan",
-          "taskStatus": "Hazırlık",
+          "taskCustomer": "Customer-1",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Analyst",
           "actualDuration": 2,
           "plannedDuration": 3
@@ -23,7 +23,7 @@
         {
           "id": 2,
           "parentId": 1,
-          "title": "Scope",
+          "title": "Sipariş Süreci",
           "start": "Wed Mar 13 2022 02:00:00 GMT+0200",
           "end": "Wed Mar 23 2022 02:00:00 GMT+0200",
           "progress": 0.5,
@@ -31,9 +31,9 @@
           "taskPlannedEndDate": "Wed Mar 30 2022 02:00:00 GMT+0200",
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
-          "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
+          "taskCustomer": "Customer-2",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "Tasarımdayken Başka Projeye Geçildi",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -41,7 +41,7 @@
         {
           "id": 3,
           "parentId": 2,
-          "title": "SİPARİŞ",
+          "title": "SIPARIŞ",
           "start": "Wed Mar 13 2022 02:00:00 GMT+0200",
           "end": "Wed Mar 23 2022 02:00:00 GMT+0200",
           "progress": 0.5,
@@ -50,8 +50,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -68,8 +68,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -86,8 +86,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -104,8 +104,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -122,8 +122,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -140,8 +140,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -158,8 +158,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -176,8 +176,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -194,8 +194,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -212,8 +212,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -230,8 +230,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -248,8 +248,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -266,8 +266,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -284,8 +284,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -302,8 +302,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -320,8 +320,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -338,8 +338,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -356,8 +356,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -374,8 +374,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -392,8 +392,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -410,8 +410,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -428,8 +428,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -446,8 +446,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -464,8 +464,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -482,8 +482,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -500,8 +500,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -518,8 +518,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -536,8 +536,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -554,8 +554,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -572,8 +572,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -590,8 +590,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -608,8 +608,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -626,8 +626,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -644,8 +644,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -662,8 +662,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -680,8 +680,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -698,8 +698,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -716,8 +716,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -734,8 +734,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -752,8 +752,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -770,8 +770,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -788,8 +788,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -806,8 +806,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -824,8 +824,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -842,8 +842,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -860,8 +860,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -878,8 +878,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -896,8 +896,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -914,8 +914,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -932,8 +932,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -950,8 +950,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -968,8 +968,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -986,8 +986,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1004,8 +1004,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1022,8 +1022,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1040,8 +1040,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1058,8 +1058,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1076,8 +1076,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1094,8 +1094,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1112,8 +1112,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1130,8 +1130,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1148,8 +1148,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1166,8 +1166,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1184,8 +1184,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1202,8 +1202,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1220,8 +1220,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1238,8 +1238,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1256,8 +1256,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1274,8 +1274,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1292,8 +1292,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1310,8 +1310,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1328,8 +1328,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1346,8 +1346,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1364,8 +1364,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1382,8 +1382,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1400,8 +1400,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1418,8 +1418,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1436,8 +1436,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1454,8 +1454,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1472,8 +1472,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1490,8 +1490,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1508,8 +1508,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1526,8 +1526,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1544,8 +1544,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 15
@@ -1562,8 +1562,8 @@
           "taskCompany": "Roboplas",
           "taskIsRevision": false,
           "taskCustomer": "Aselsan",
-          "taskStatus": "Tasarımda Olan Projeler",
           "taskNotes": "Examples Task Notes",
+          "taskStatus": "SIPARIŞ SÜRECI",
           "imalatResmiHazirlayan": "Barış",
           "actualDuration": 10,
           "plannedDuration": 0
@@ -1941,44 +1941,129 @@
           "predecessorId": 86,
           "successorId": 87,
           "type": 0
+        },
+        {
+          "id": 63,
+          "predecessorId": 1,
+          "successorId": 2,
+          "type": 0
         }
       ],
       "resources": [
         {
           "id": 1,
-          "text": "Management"
+          "text": "TAS; Tasarımcı-1",
+          "resourceType": "Tasarım Ekibi"
         },
         {
           "id": 2,
-          "text": "Project Manager"
+          "text": "TAS; Tasarımcı-2",
+          "resourceType": "Tasarım Ekibi"
         },
         {
           "id": 3,
-          "text": "Analyst"
+          "text": "TAS; Tasarımcı-3",
+          "resourceType": "Tasarım Ekibi"
         },
         {
           "id": 4,
-          "text": "Developer"
+          "text": "PRO; Proje Yöneticisi-1",
+          "resourceType": "Proje Yöneticileri"
         },
         {
           "id": 5,
-          "text": "Testers"
+          "text": "PRO; Proje Yöneticisi-2",
+          "resourceType": "Proje Yöneticileri"
         },
         {
           "id": 6,
-          "text": "Trainers"
+          "text": "PRO; Proje Yöneticisi-3",
+          "resourceType": "Proje Yöneticileri"
         },
         {
           "id": 7,
-          "text": "Technical Communicators"
+          "text": "TEK; Çalışan-1",
+          "resourceType": "Teknik Servis Ekibi"
         },
         {
           "id": 8,
-          "text": "Deployment Team"
+          "text": "TEK; Çalışan-2",
+          "resourceType": "Teknik Servis Ekibi"
         },
         {
           "id": 9,
-          "text": "Belirlenmedi"
+          "text": "TEK; Çalışan-3",
+          "resourceType": "Teknik Servis Ekibi"
+        },
+        {
+          "id": 10,
+          "text": "Henüz Belirlenmedi",
+          "resourceType": "Daha Sonra Güncellenecek"
+        },
+        {
+          "id": 11,
+          "text": "ÜRE; Iş Merkezi-1",
+          "resourceType": "Üretım Kaynakları"
+        },
+        {
+          "id": 12,
+          "text": "ÜRE; Iş Merkezi-2",
+          "resourceType": "Üretım Kaynakları"
+        },
+        {
+          "id": 13,
+          "text": "ÜRE; Iş Merkezi-3",
+          "resourceType": "Üretım Kaynakları"
+        },
+        {
+          "id": 14,
+          "text": "DIŞ; Fason-1",
+          "resourceType": "Dış Kaynaklar"
+        },
+        {
+          "id": 15,
+          "text": "DIŞ; Fason-2",
+          "resourceType": "Dış Kaynaklar"
+        },
+        {
+          "id": 16,
+          "text": "DIŞ; Fason-3",
+          "resourceType": "Dış Kaynaklar"
+        },
+        {
+          "id": 18,
+          "text": "SAT; Satış Elemanı-1",
+          "resourceType": "Satış Pazarlama Ekibi"
+        },
+        {
+          "id": 19,
+          "text": "SAT; Satış Elemanı-2",
+          "resourceType": "Satış Pazarlama Ekibi"
+        },
+        {
+          "id": 20,
+          "text": "SAT; Satış Elemanı-3",
+          "resourceType": "Satış Pazarlama Ekibi"
+        },
+        {
+          "id": 21,
+          "text": "TES; Tester-1",
+          "resourceType": "Test Ekibi"
+        },
+        {
+          "id": 22,
+          "text": "TES; Tester-2",
+          "resourceType": "Test Ekibi"
+        },
+        {
+          "id": 23,
+          "text": "TES; Tester-3",
+          "resourceType": "Test Ekibi"
+        },
+        {
+          "id": 24,
+          "text": "Erp'de Yok",
+          "resourceType": "Daha Sonra Güncellenecek"
         }
       ],
       "resourceAssignments": [
@@ -2306,364 +2391,585 @@
           "id": 64,
           "taskId": 1,
           "resourceId": 1
+        },
+        {
+          "id": 65,
+          "taskId": 2,
+          "resourceId": 18
         }
       ],
-      "taskStatusList": [
+      "taskStatusListOrder": [
         {
           "statusId": 1,
-          "statusName": "TASARIMDAYKEN BAŞKA PROJEYE GEÇİLDİ",
-          "statusColor": "Açık Mavi",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Tasarımdayken Başka Projeye Geçildi",
+          "statusdisplayColor": "Açık Mavi",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 2,
-          "statusName": "TASARIM BİTTİ",
-          "statusColor": "Açık Yeşil",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Tasarım Bitti",
+          "statusdisplayColor": "Açık Yeşil",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 3,
-          "statusName": "TASARIM İPTAL",
-          "statusColor": "Açık Sarı",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Tasarım İptal",
+          "statusdisplayColor": "Açık Sarı",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 4,
-          "statusName": "TASARIM BEKLEMEDE",
-          "statusColor": "Turuncu",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Tasarım Beklemede",
+          "statusdisplayColor": "Turuncu",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 5,
-          "statusName": "TASARIM AŞAMASINDA",
-          "statusColor": "Açık Gri",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Tasarım Aşamasında",
+          "statusdisplayColor": "Açık Gri",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 6,
-          "statusName": "SİPARİŞ VEYA REVİZYON FORMU REVİZYONA UĞRAMIŞTIR",
-          "statusColor": "Siyah",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Sipariş veya Revizyon Formu Revizyona Uğramıştır",
+          "statusdisplayColor": "Siyah",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 7,
-          "statusName": "MÜŞTERİDEN BİLGİ BEKLENİYOR",
-          "statusColor": "Açık Mor",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Müşteriden Bilgi Bekleniyor",
+          "statusdisplayColor": "Açık Mor",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 8,
-          "statusName": "MÜŞTERİDEN ONAYI BEKLENİYOR",
-          "statusColor": "Koyu Pembe",
-          "statusGroup": "tasarimİşListesi"
+          "statusName": "Müşteri Onayı Bekleniyor",
+          "statusdisplayColor": "Koyu Pembe",
+          "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "statusId": 9,
-          "statusName": "TESTİ YAPILAN(HAZIR) PROJELER",
-          "statusColor": "Koyu Gri",
-          "statusGroup": "robotSüreçleri"
+          "statusName": "Testi Yapılan(Hazır) Projeler",
+          "statusdisplayColor": "Koyu Gri",
+          "statusGroup": "Robot Süreçleri"
         },
         {
           "statusId": 10,
-          "statusName": "TESTTE OLAN PROJELER",
-          "statusColor": "Koyu Mavi",
-          "statusGroup": "robotSüreçleri"
+          "statusName": "Testte Olan Projeler",
+          "statusdisplayColor": "Koyu Mavi",
+          "statusGroup": "Robot Süreçleri"
         },
         {
           "statusId": 11,
-          "statusName": "YÜKLEME YAPILAN PROJELER",
-          "statusColor": "Kırmızı",
-          "statusGroup": "robotSüreçleri"
+          "statusName": "Yükleme Yapılan Projeler",
+          "statusdisplayColor": "Kırmızı",
+          "statusGroup": "Robot Süreçleri"
         },
         {
           "statusId": 12,
-          "statusName": "TASARIMDA OLAN PROJELER",
-          "statusColor": "Koyu Mor",
-          "statusGroup": "robotSüreçleri"
+          "statusName": "Tasarımda Olan Projeler",
+          "statusdisplayColor": "Koyu Mor",
+          "statusGroup": "Robot Süreçleri"
         },
         {
           "statusId": 13,
-          "statusName": "İMALATTA OLAN PROJELER",
-          "statusColor": "Koyu Gri",
-          "statusGroup": "robotSüreçleri"
+          "statusName": "İmalatta Olan Projeler",
+          "statusdisplayColor": "Koyu Gri",
+          "statusGroup": "Robot Süreçleri"
         },
         {
           "statusId": 14,
-          "statusName": "KAMERADA OLAN PROJELER",
-          "statusColor": "Koyu Sarı",
-          "statusGroup": "robotSüreçleri"
+          "statusName": "Kamerada Olan Projeler",
+          "statusdisplayColor": "Koyu Sarı",
+          "statusGroup": "Robot Süreçleri"
         },
         {
           "statusId": 15,
-          "statusName": "İşleme Alındı",
-          "statusColor": "Çok Açık Yeşil",
-          "statusGroup": "işlemSüreçleri"
+          "statusName": "Operasyon Başladı",
+          "statusdisplayColor": "Çok Açık Yeşil",
+          "statusGroup": "Operasyon Süreçleri"
         },
         {
           "statusId": 16,
-          "statusName": "İşlem Tamamlandı",
-          "statusColor": "Koyu Yeşil",
-          "statusGroup": "işlemSüreçleri"
+          "statusName": "Operasyon Tamamlandı",
+          "statusdisplayColor": "Koyu Yeşil",
+          "statusGroup": "Operasyon Süreçleri"
         },
         {
           "statusId": 17,
-          "statusName": "İşlem Durdu",
-          "statusColor": "Sarı",
-          "statusGroup": "işlemSüreçleri"
+          "statusName": "Operasyon Durdu",
+          "statusdisplayColor": "Sarı",
+          "statusGroup": "Operasyon Süreçleri"
         },
         {
           "statusId": 18,
-          "statusName": "İşlem İptal",
-          "statusColor": "Kırmızı",
-          "statusGroup": "işlemSüreçleri"
+          "statusName": "Operasyon Iptal",
+          "statusdisplayColor": "Kırmızı",
+          "statusGroup": "Operasyon Süreçleri"
         }
       ],
-      "taskOperationsList": [
+      "taskOperationList": [
         {
-          "operationId": 1,
-          "title": "SİPARİŞ SÜRECİ",
-          "operationColor": "Çok Açık Mavi",
+          "id": 1,
+          "name": "Sipariş Süreci",
+          "displayColor": "Çok Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "SİPARİŞ ALINIŞI"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "SİPARİŞ BİLGİ TOPLAMA"
-            }
-          ]
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
         },
         {
-          "operationId": 3,
-          "title": "Tasarım",
-          "operationColor": "Bej",
+          "id": 2,
+          "name": "Siparişin Alınması",
+          "displayColor": "Çok Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "Tasarım İşlemleri"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "İmalat Resminin Hazırlanması"
-            }
-          ]
+          "routeLevelNumber": 2,
+          "routeLevelName": "Sipariş Süreci",
+          "preRouteId": 1
         },
         {
-          "operationId": 4,
-          "title": "ŞASE",
-          "operationColor": "Açık Mavi",
+          "id": 3,
+          "name": "Sipariş Bilgi Toplama",
+          "displayColor": "Çok Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "Dış İmalat"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "Lazer Kesim"
-            },
-            {
-              "subOperationId": 3,
-              "subtitle": "Kaynak"
-            },
-            {
-              "subOperationId": 4,
-              "subtitle": "Teslim"
-            }
-          ]
+          "routeLevelNumber": 2,
+          "routeLevelName": "Sipariş Süreci",
+          "preRouteId": 1
         },
         {
-          "operationId": 5,
-          "title": "DİZME",
-          "operationColor": "Açık Turuncu",
+          "id": 4,
+          "name": "Tasarım Süreci",
+          "displayColor": "Bej",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "İç İmalat"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "Dış İmalat"
-            },
-            {
-              "subOperationId": 3,
-              "subtitle": "Satın Alma / Depo"
-            },
-            {
-              "subOperationId": 4,
-              "subtitle": "Montaj"
-            },
-            {
-              "subOperationId": 5,
-              "subtitle": "Tesisat"
-            }
-          ]
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
         },
         {
-          "operationId": 6,
-          "title": "ANA AKS KOL",
-          "operationColor": "Açık Mor",
+          "id": 5,
+          "name": "Tasarım Işlemleri",
+          "displayColor": "Bej",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "İç İmalat"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "Dış İmalat"
-            },
-            {
-              "subOperationId": 3,
-              "subtitle": "Satın Alma / Depo"
-            },
-            {
-              "subOperationId": 4,
-              "subtitle": "Montaj"
-            },
-            {
-              "subOperationId": 5,
-              "subtitle": "Tesisat"
-            }
-          ]
+          "routeLevelNumber": 2,
+          "routeLevelName": "Tasarım Süreci",
+          "preRouteId": 4
         },
         {
-          "operationId": 7,
-          "title": "SEPERATÖR",
-          "operationColor": "Açık Yeşil",
+          "id": 6,
+          "name": "Imalat Resminin Hazırlanması",
+          "displayColor": "Bej",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "İç İmalat"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "Dış İmalat"
-            },
-            {
-              "subOperationId": 3,
-              "subtitle": "Satın Alma / Depo"
-            },
-            {
-              "subOperationId": 4,
-              "subtitle": "Montaj"
-            },
-            {
-              "subOperationId": 5,
-              "subtitle": "Tesisat"
-            }
-          ]
+          "routeLevelNumber": 1,
+          "routeLevelName": "Tasarım Süreci",
+          "preRouteId": 0
         },
         {
-          "operationId": 8,
-          "title": "TEST",
-          "operationColor": "Gri",
+          "id": 7,
+          "name": "Şase Üretim Süreci",
+          "displayColor": "Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "Mekanik Ayar"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "Elektrik Test"
-            },
-            {
-              "subOperationId": 3,
-              "subtitle": "Yazılım Testi"
-            },
-            {
-              "subOperationId": 4,
-              "subtitle": "Proje Kontrol"
-            }
-          ]
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
         },
         {
-          "operationId": 9,
-          "title": "YÜKLEME FORMU HAZIRLANMASI",
-          "operationColor": "Açık Kahverengi",
+          "id": 8,
+          "name": "Şase; Dış Imalat",
+          "displayColor": "Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": []
+          "routeLevelNumber": 2,
+          "routeLevelName": "Şase Üretim Süreci",
+          "preRouteId": 7
         },
         {
-          "operationId": 10,
-          "title": "Yüklemenin Gerçekleştirilmesi",
-          "operationColor": "Koyu Kahverengi",
+          "id": 9,
+          "name": "Şase; Lazer Kesim",
+          "displayColor": "Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": []
+          "routeLevelNumber": 2,
+          "routeLevelName": "Şase Üretim Süreci",
+          "preRouteId": 7
         },
         {
-          "operationId": 11,
-          "title": "ETİKET TRANSFER",
-          "operationColor": "Açık Yeşil",
+          "id": 10,
+          "name": "Şase; Kaynak",
+          "displayColor": "Açık Mavi",
           "variousInfoRelations": [
-            {
-              "productionDrawing": false
-            }
+            {}
           ],
-          "subOperations": [
-            {
-              "subOperationId": 1,
-              "subtitle": "İç İmalat"
-            },
-            {
-              "subOperationId": 2,
-              "subtitle": "Dış İmalat"
-            },
-            {
-              "subOperationId": 3,
-              "subtitle": "Satın Alma / Depo"
-            },
-            {
-              "subOperationId": 4,
-              "subtitle": "Montaj"
-            },
-            {
-              "subOperationId": 5,
-              "subtitle": "Tesisat"
-            }
-          ]
+          "routeLevelNumber": 2,
+          "routeLevelName": "Şase Üretim Süreci",
+          "preRouteId": 7
+        },
+        {
+          "id": 11,
+          "name": "Şase; Teslim",
+          "displayColor": "Açık Mavi",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Şase Üretim Süreci",
+          "preRouteId": 7
+        },
+        {
+          "id": 12,
+          "name": "Dizme Üretim Süreci",
+          "displayColor": "Açık Turuncu",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 13,
+          "name": "Dizme; Iç Imalat",
+          "displayColor": "Açık Turuncu",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Dizme Üretim Süreci",
+          "preRouteId": 12
+        },
+        {
+          "id": 14,
+          "name": "Dizme; Dış Imalat",
+          "displayColor": "Açık Turuncu",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Dizme Üretim Süreci",
+          "preRouteId": 12
+        },
+        {
+          "id": 15,
+          "name": "Dizme; Satın Alma / Depo",
+          "displayColor": "Açık Turuncu",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Dizme Üretim Süreci",
+          "preRouteId": 12
+        },
+        {
+          "id": 16,
+          "name": "Dizme; Montaj",
+          "displayColor": "Açık Turuncu",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Dizme Üretim Süreci",
+          "preRouteId": 12
+        },
+        {
+          "id": 17,
+          "name": "Dizme; Tesisat",
+          "displayColor": "Açık Turuncu",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Dizme Üretim Süreci",
+          "preRouteId": 12
+        },
+        {
+          "id": 18,
+          "name": "Ana Aks Kol Üretim Süreci",
+          "displayColor": "Açık Mor",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 19,
+          "name": "Ana Aks Kol; Iç Imalat",
+          "displayColor": "Açık Mor",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Ana Aks Kol Üretim Süreci",
+          "preRouteId": 18
+        },
+        {
+          "id": 20,
+          "name": "Ana Aks Kol; Dış Imalat ",
+          "displayColor": "Açık Mor",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Ana Aks Kol Üretim Süreci",
+          "preRouteId": 18
+        },
+        {
+          "id": 21,
+          "name": "Ana Aks Kol; Satın Alma / Depo ",
+          "displayColor": "Açık Mor",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Ana Aks Kol Üretim Süreci",
+          "preRouteId": 18
+        },
+        {
+          "id": 22,
+          "name": "Ana Aks Kol; Montaj ",
+          "displayColor": "Açık Mor",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Ana Aks Kol Üretim Süreci",
+          "preRouteId": 18
+        },
+        {
+          "id": 23,
+          "name": "Ana Aks Kol; Tesisat ",
+          "displayColor": "Açık Mor",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Ana Aks Kol Üretim Süreci",
+          "preRouteId": 18
+        },
+        {
+          "id": 24,
+          "name": "Seperatör Üretim Süreci",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 25,
+          "name": "Seperatör; Iç Imalat",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Seperatör Üretim Süreci",
+          "preRouteId": 24
+        },
+        {
+          "id": 26,
+          "name": "Seperatör; Dış Imalat",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Seperatör Üretim Süreci",
+          "preRouteId": 24
+        },
+        {
+          "id": 27,
+          "name": "Seperatör; Satın Alma / Depo",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Seperatör Üretim Süreci",
+          "preRouteId": 24
+        },
+        {
+          "id": 28,
+          "name": "Seperatör; Montaj",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Seperatör Üretim Süreci",
+          "preRouteId": 24
+        },
+        {
+          "id": 29,
+          "name": "Seperatör; Tesisat",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Seperatör Üretim Süreci",
+          "preRouteId": 24
+        },
+        {
+          "id": 30,
+          "name": "Test",
+          "displayColor": "Gri",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 31,
+          "name": "Test; Mekanik Ayar",
+          "displayColor": "Gri",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Test",
+          "preRouteId": 30
+        },
+        {
+          "id": 32,
+          "name": "Test; Elektrik Testi",
+          "displayColor": "Gri",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Test",
+          "preRouteId": 30
+        },
+        {
+          "id": 33,
+          "name": "Test; Yazılım Testi",
+          "displayColor": "Gri",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Test",
+          "preRouteId": 30
+        },
+        {
+          "id": 34,
+          "name": "Test; Proje Kontrol",
+          "displayColor": "Gri",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Test",
+          "preRouteId": 30
+        },
+        {
+          "id": 35,
+          "name": "Yükleme Formunun Hazırlanması",
+          "displayColor": "Açık Kahverengi",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 36,
+          "name": "Yüklemenin Gerçekleştirilmesi",
+          "displayColor": "Koyu Kahverengi",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 37,
+          "name": "Etiket Transfer Üretim Süreci",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 1,
+          "routeLevelName": "Proje Süreçleri",
+          "preRouteId": 0
+        },
+        {
+          "id": 38,
+          "name": "Etiket Transfer; Iç Imalat",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Etiket Transfer Üretim Süreci",
+          "preRouteId": 37
+        },
+        {
+          "id": 39,
+          "name": "Etiket Transfer; Dış Imalat",
+          "displayColOrderor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Etiket Transfer Üretim Süreci",
+          "preRouteId": 37
+        },
+        {
+          "id": 40,
+          "name": "Etiket Transfer; Satın Alma / Depo",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Etiket Transfer Üretim Süreci",
+          "preRouteId": 37
+        },
+        {
+          "id": 41,
+          "name": "Etiket Transfer; Montaj",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Etiket Transfer Üretim Süreci",
+          "preRouteId": 37
+        },
+        {
+          "id": 42,
+          "name": "Etiket Transfer; Tesisat",
+          "displayColor": "Açık Yeşil",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Etiket Transfer Üretim Süreci",
+          "preRouteId": 37
         }
       ]
     }
