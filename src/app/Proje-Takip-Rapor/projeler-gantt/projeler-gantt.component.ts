@@ -128,15 +128,13 @@ export class ProjelerGanttComponent implements OnInit {
         this.taskStatusList = data?.taskStatusList;
         this.taskOperationsList = data?.taskOperationsList;
 
-        this.dataSourceFromtaskOperationsList = new DataSource(
-          {
+        this.dataSourceFromtaskOperationsList = new DataSource({
           store: new ArrayStore({
             data: data.taskOperationList,
             key: 'id',
           }),
           group: 'routeLevelName',
-         }
-        );
+        });
         this.dataSourceFromtaskStatusListOrder = new DataSource({
           store: new ArrayStore({
             data: data.taskStatusListOrder,
@@ -289,7 +287,13 @@ export class ProjelerGanttComponent implements OnInit {
         new Date(this.customTaskDetailsForm.start),
         new Date(this.customTaskDetailsForm.end)
       ),
-      resource: this.resources.find(
+      resourceId: this.resources.find(
+        (resource) =>
+          resource.id ==
+          this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
+            ?.resourceId
+      )?.id,
+      resourceText: this.resources.find(
         (resource) =>
           resource.id ==
           this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
@@ -341,13 +345,19 @@ export class ProjelerGanttComponent implements OnInit {
 
   onSaveForm(e: any) {
     e.preventDefault();
-    if (confirm('Görev / İş Detayını Kaydet!') === true) {
-      const { resource, ...everythingExceptresourceId } =
+    if (confirm('Proje/Görev/Operasyon Kaydet!') === true) {
+      const { resourceId,resourceText, ...everythingExceptresourceId } =
         this.customTaskDetailsForm;
       const b = everythingExceptresourceId;
       this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
-        ...everythingExceptresourceId,
+        ...b,
       });
+      this.resourceAssignments.push({
+        id: this.resourceAssignments.length + 1,
+        taskId: this.customTaskDetailsForm.id,
+        resourceId: resourceId,
+      });
+      this.gantt.instance.refresh();
     } else {
       this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
     }
@@ -355,9 +365,8 @@ export class ProjelerGanttComponent implements OnInit {
   }
   // scale display formatter
   onScaleCellPrepared(e: any) {
-    var scaleElement = e.scaleElement;
-    if (scaleElement === 'weeks') {
-      e.scaleElement.innerText = moment(e.startDate).format('w');
+    if (e.scaleType === 'weeks') {
+      e.scaleElement.innerText = 'CW' + moment(e.startDate).format('w');
     }
   }
   // Custom Task Content Template

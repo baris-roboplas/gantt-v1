@@ -98,7 +98,6 @@
           <!-- [startDateRange]="startDateRange"
         [endDateRange]="endDateRange" -->
           <!-- DataSources -->
-          <!-- <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu> customize etmek için -->
           <dxo-tasks [dataSource]="tasks"></dxo-tasks>
           <dxo-dependencies [dataSource]="dependencies"></dxo-dependencies>
           <dxo-resources [dataSource]="resources"></dxo-resources>
@@ -106,6 +105,11 @@
             [dataSource]="resourceAssignments"
           ></dxo-resource-assignments>
           <!-- Columns -->
+          <dxi-column
+            dataField="id"
+            caption="id"
+            [width]="100"
+          ></dxi-column>
           <dxi-column
             dataField="title"
             caption="Proje/Görev/Operasyon"
@@ -586,9 +590,9 @@
                     <dxo-label [text]="'Kaynak'"></dxo-label>
                     <div *dxTemplate>
                       <dx-select-box
-                        [(value)]="customTaskDetailsForm.resource"
+                        [(value)]="customTaskDetailsForm.resourceId"
                         [dataSource]="dataSourceFromresources"
-                        valueExpr="text"
+                        valueExpr="id"
                         [grouped]="true"
                         displayExpr="text"
                         [searchEnabled]="true"
