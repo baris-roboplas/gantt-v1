@@ -41,7 +41,7 @@
         {
           "id": 3,
           "parentId": 2,
-          "title": "Determine project scope",
+          "title": "SİPARİŞ",
           "start": "Wed Mar 13 2022 02:00:00 GMT+0200",
           "end": "Wed Mar 23 2022 02:00:00 GMT+0200",
           "progress": 0.5,
@@ -2307,9 +2307,7 @@
           "taskId": 1,
           "resourceId": 1
         }
-      ]
-    },
-    {
+      ],
       "taskStatusList": [
         {
           "statusId": 1,
@@ -2419,13 +2417,11 @@
           "statusColor": "Kırmızı",
           "statusGroup": "işlemSüreçleri"
         }
-      ]
-    },
-    {
+      ],
       "taskOperationsList": [
         {
           "operationId": 1,
-          "operationName": "SİPARİŞ",
+          "title": "SİPARİŞ SÜRECİ",
           "operationColor": "Çok Açık Mavi",
           "variousInfoRelations": [
             {
@@ -2435,17 +2431,17 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "SİPARİŞ ALINIŞI"
+              "subtitle": "SİPARİŞ ALINIŞI"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "SİPARİŞ BİLGİ TOPLAMA"
+              "subtitle": "SİPARİŞ BİLGİ TOPLAMA"
             }
           ]
         },
         {
           "operationId": 3,
-          "operationName": "Tasarım",
+          "title": "Tasarım",
           "operationColor": "Bej",
           "variousInfoRelations": [
             {
@@ -2455,17 +2451,17 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "Tasarım İşlemleri"
+              "subtitle": "Tasarım İşlemleri"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "İmalat Resminin Hazırlanması"
+              "subtitle": "İmalat Resminin Hazırlanması"
             }
           ]
         },
         {
           "operationId": 4,
-          "operationName": "ŞASE",
+          "title": "ŞASE",
           "operationColor": "Açık Mavi",
           "variousInfoRelations": [
             {
@@ -2475,25 +2471,25 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "Dış İmalat"
+              "subtitle": "Dış İmalat"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "Lazer Kesim"
+              "subtitle": "Lazer Kesim"
             },
             {
               "subOperationId": 3,
-              "subOperationName": "Kaynak"
+              "subtitle": "Kaynak"
             },
             {
               "subOperationId": 4,
-              "subOperationName": "Teslim"
+              "subtitle": "Teslim"
             }
           ]
         },
         {
           "operationId": 5,
-          "operationName": "DİZME",
+          "title": "DİZME",
           "operationColor": "Açık Turuncu",
           "variousInfoRelations": [
             {
@@ -2503,29 +2499,29 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "İç İmalat"
+              "subtitle": "İç İmalat"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "Dış İmalat"
+              "subtitle": "Dış İmalat"
             },
             {
               "subOperationId": 3,
-              "subOperationName": "Satın Alma / Depo"
+              "subtitle": "Satın Alma / Depo"
             },
             {
               "subOperationId": 4,
-              "subOperationName": "Montaj"
+              "subtitle": "Montaj"
             },
             {
               "subOperationId": 5,
-              "subOperationName": "Tesisat"
+              "subtitle": "Tesisat"
             }
           ]
         },
         {
           "operationId": 6,
-          "operationName": "ANA AKS KOL",
+          "title": "ANA AKS KOL",
           "operationColor": "Açık Mor",
           "variousInfoRelations": [
             {
@@ -2535,29 +2531,29 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "İç İmalat"
+              "subtitle": "İç İmalat"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "Dış İmalat"
+              "subtitle": "Dış İmalat"
             },
             {
               "subOperationId": 3,
-              "subOperationName": "Satın Alma / Depo"
+              "subtitle": "Satın Alma / Depo"
             },
             {
               "subOperationId": 4,
-              "subOperationName": "Montaj"
+              "subtitle": "Montaj"
             },
             {
               "subOperationId": 5,
-              "subOperationName": "Tesisat"
+              "subtitle": "Tesisat"
             }
           ]
         },
         {
           "operationId": 7,
-          "operationName": "SEPERATÖR",
+          "title": "SEPERATÖR",
           "operationColor": "Açık Yeşil",
           "variousInfoRelations": [
             {
@@ -2567,29 +2563,29 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "İç İmalat"
+              "subtitle": "İç İmalat"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "Dış İmalat"
+              "subtitle": "Dış İmalat"
             },
             {
               "subOperationId": 3,
-              "subOperationName": "Satın Alma / Depo"
+              "subtitle": "Satın Alma / Depo"
             },
             {
               "subOperationId": 4,
-              "subOperationName": "Montaj"
+              "subtitle": "Montaj"
             },
             {
               "subOperationId": 5,
-              "subOperationName": "Tesisat"
+              "subtitle": "Tesisat"
             }
           ]
         },
         {
           "operationId": 8,
-          "operationName": "TEST",
+          "title": "TEST",
           "operationColor": "Gri",
           "variousInfoRelations": [
             {
@@ -2599,25 +2595,25 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "Mekanik Ayar"
+              "subtitle": "Mekanik Ayar"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "Elektrik Test"
+              "subtitle": "Elektrik Test"
             },
             {
               "subOperationId": 3,
-              "subOperationName": "Yazılım Testi"
+              "subtitle": "Yazılım Testi"
             },
             {
               "subOperationId": 4,
-              "subOperationName": "Proje Kontrol"
+              "subtitle": "Proje Kontrol"
             }
           ]
         },
         {
           "operationId": 9,
-          "operationName": "YÜKLEME FORMU HAZIRLANMASI",
+          "title": "YÜKLEME FORMU HAZIRLANMASI",
           "operationColor": "Açık Kahverengi",
           "variousInfoRelations": [
             {
@@ -2628,7 +2624,7 @@
         },
         {
           "operationId": 10,
-          "operationName": "Yüklemenin Gerçekleştirilmesi",
+          "title": "Yüklemenin Gerçekleştirilmesi",
           "operationColor": "Koyu Kahverengi",
           "variousInfoRelations": [
             {
@@ -2639,7 +2635,7 @@
         },
         {
           "operationId": 11,
-          "operationName": "ETİKET TRANSFER",
+          "title": "ETİKET TRANSFER",
           "operationColor": "Açık Yeşil",
           "variousInfoRelations": [
             {
@@ -2649,23 +2645,23 @@
           "subOperations": [
             {
               "subOperationId": 1,
-              "subOperationName": "İç İmalat"
+              "subtitle": "İç İmalat"
             },
             {
               "subOperationId": 2,
-              "subOperationName": "Dış İmalat"
+              "subtitle": "Dış İmalat"
             },
             {
               "subOperationId": 3,
-              "subOperationName": "Satın Alma / Depo"
+              "subtitle": "Satın Alma / Depo"
             },
             {
               "subOperationId": 4,
-              "subOperationName": "Montaj"
+              "subtitle": "Montaj"
             },
             {
               "subOperationId": 5,
-              "subOperationName": "Tesisat"
+              "subtitle": "Tesisat"
             }
           ]
         }

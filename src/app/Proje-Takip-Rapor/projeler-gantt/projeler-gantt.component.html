@@ -80,7 +80,6 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
-
           (onTaskUpdated)="onTaskUpdated($event)"
           (onScaleCellPrepared)="onScaleCellPrepared($event)"
           [firstDayOfWeek]="1"
@@ -94,10 +93,9 @@
           [taskContentTemplate]="
             showDifferentTaskContent ? 'myTaskContentTemplate' : undefined
           "
-
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
         >
-        <!-- [startDateRange]="startDateRange"
+          <!-- [startDateRange]="startDateRange"
         [endDateRange]="endDateRange" -->
           <!-- DataSources -->
           <!-- <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu> customize etmek için -->
@@ -110,7 +108,7 @@
           <!-- Columns -->
           <dxi-column
             dataField="title"
-            caption="Title"
+            caption="Proje/Görev/Operasyon"
             [width]="200"
           ></dxi-column>
           <dxi-column
@@ -118,21 +116,18 @@
             caption="Planlanmış Başlangıç"
             format="shortDate"
             dataType="date"
-
           ></dxi-column>
           <dxi-column
             dataField="taskPlannedEndDate"
             caption="Planlanmış Bitiş"
             format="shortDate"
             dataType="date"
-
           ></dxi-column>
           <dxi-column
             dataField="start"
             caption="Güncel Başlangıç"
             format="shortDate"
             dataType="date"
-
           ></dxi-column>
           <dxi-column
             dataField="end"
@@ -150,10 +145,8 @@
             dataField="progress"
             caption="Tamamlanma %"
             dataType="number"
-          ><dxo-format
-          type="percent"
-          [precision]="0">
-      </dxo-format></dxi-column>
+            ><dxo-format type="percent" [precision]="0"> </dxo-format
+          ></dxi-column>
           <dxi-column
             dataField="taskCompany"
             caption="Firma"
@@ -357,9 +350,8 @@
       [(visible)]="isTaskDetailsFormPopupVisible"
       [hideOnOutsideClick]="false"
       (onHidden)="byHiddenPopup($event)"
-
     >
-    <!-- 1. title hazır liste veya custom olacak parent id varsa diye 3. progress düzeltilecek 4.resimhaizrlayan boolean olarak ngif* olacak 5. -->
+      <!-- 1. title hazır liste veya custom olacak parent id varsa diye 4.resimhaizrlayan boolean olarak ngif* olacak 5. -->
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
           <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm">
@@ -369,7 +361,6 @@
               [formData]="customTaskDetailsForm"
               labelLocation="left"
               [showColonAfterLabel]="false"
-
             >
               <!-- Ana Grup-1 -->
               <dxi-item itemType="group" [colCount]="3">
@@ -380,9 +371,34 @@
                   <!-- parentId -->
                   <dxi-item dataField="parentId" [visible]="false"></dxi-item>
                   <!-- Görev / İş -->
-                  <dxi-item dataField="title" [isRequired]="true"
+                 <!-- If Project, then show -->
+                 <dxi-item *ngIf="customTaskDetailsForm.parentId === 0" dataField="title" [isRequired]="true" ></dxi-item>
+                  <dxi-item
+                  *ngIf="customTaskDetailsForm.parentId !== 0"
+                    dataField="title"
+                    editorType="dxSelectBox"
+                    [editorOptions]="{
+                      dataSource: taskOperationsList,
+                      displayExpr: 'title',
+                      valueExpr: 'title',
+                      placeholder: 'Seçiniz',
+                      searchEnabled: true,
+                      searchTimeout: 200
+                    }"
+                    [isRequired]="true"
                     ><dxo-label [text]="'Görev / İş'"> </dxo-label
                   ></dxi-item>
+                  <!-- dxi-item
+                    dataField="taskStatus"
+                    editorType="dxSelectBox"
+                    [editorOptions]="{
+                      dataSource: tasks,
+                      displayExpr: 'taskStatus',
+                      valueExpr: 'taskStatus',
+                      placeholder: 'Durum Belirtiniz',
+                      searchEnabled: true,
+                      searchTimeout: 200
+                    }" -->
                   <!-- Planlanan Başlangıç -->
                   <dxi-item
                     dataField="taskPlannedStartDate"
@@ -460,7 +476,9 @@
                       min: 0,
                       max: 1,
                       showSpinButtons: true,
-                      format: customProgressFormat(customTaskDetailsForm.progress)
+                      format: customProgressFormat(
+                        customTaskDetailsForm.progress
+                      )
                     }"
                     [isRequired]="false"
                     ><dxo-label [text]="'Gerçekleşen İlerleme'"> </dxo-label
@@ -535,7 +553,7 @@
                       ></dxi-item>
                       <!-- İmalat Resmi Hazırlayan -->
                       <dxi-item
-                      *ngIf="this.customTaskDetailsForm.parentId"
+                        *ngIf="this.customTaskDetailsForm.parentId"
                         dataField="imalatResmiHazirlayan"
                         editorType="dxSelectBox"
                         [editorOptions]="{

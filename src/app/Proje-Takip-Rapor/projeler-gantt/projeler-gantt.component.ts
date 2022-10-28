@@ -33,6 +33,9 @@ export class ProjelerGanttComponent implements OnInit {
   dependencies!: Dependency[];
   resources!: Resource[];
   resourceAssignments!: ResourceAssignment[];
+  // B.D: Modelleri yapılacak
+  taskStatusList!: any[];
+  taskOperationsList!: any[];
 
   // gantt properties
   scaleType!: string;
@@ -104,6 +107,8 @@ export class ProjelerGanttComponent implements OnInit {
         this.dependencies = data?.dependencies;
         this.resources = data?.resources;
         this.resourceAssignments = data?.resourceAssignments;
+        this.taskStatusList = data?.taskStatusList;
+        this.taskOperationsList = data?.taskOperationsList;
         // Export Options
         this.startDate = data.tasks[0]?.start;
         this.endDate = data.tasks[0]?.end;
