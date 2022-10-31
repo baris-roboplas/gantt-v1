@@ -70,6 +70,10 @@
 }
 
 /* Custom Task Content */
+::ng-deep .dx-gantt .dx-row {
+  height: 63px!important;
+}
+
 .actual-task {
   height: 100%;
   display: inline-block;
@@ -81,7 +85,7 @@
 }
 
 .planned-task {
-  /* max-height: 48px; */
+  max-height: 48px;
   height: 100%;
   display: inline-block;
   overflow: hidden;
@@ -126,7 +130,7 @@
 }
 
 ::ng-deep .dx-row.dx-data-row.dx-row-lines.dx-column-lines {
-  height: 4rem !important;
+  /* height: 4rem !important; */
 }
 
 ::ng-deep .custom-icon .icon.ganttSelectBoxIcons {
