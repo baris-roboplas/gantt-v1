@@ -4,10 +4,21 @@
     <div class="row mt-3 mb-3">
       <div class="col-12">
         <div class="options">
+          <!-- Sütun-1 -->
           <div class="column">
-            <div class="caption">Options</div>
+            <div class="caption">Genel Ayarlar</div>
             <div class="option">
-              <div class="label">Scale Type:</div>
+              <div class="label">Görünüm Tipi:</div>
+              <div class="value">
+                <dx-select-box
+                  [items]="['Orijinal', 'Özelleştirilmiş-1']"
+                  [(value)]="showDifferentTaskContent"
+                  (valueChange)="repaint()"
+                ></dx-select-box>
+              </div>
+            </div>
+            <div class="option">
+              <div class="label">Zaman Dilimi Görünümü:</div>
               <div class="value">
                 <dx-select-box
                   [items]="[
@@ -25,8 +36,8 @@
                 ></dx-select-box>
               </div>
             </div>
-            <div class="option">
-              <div class="label">Title Position:</div>
+            <div *ngIf="showDifferentTaskContent === 'Orijinal'" class="option">
+              <div class="label">İsimlendirme Pozisyonu</div>
               <div class="value">
                 <dx-select-box
                   [items]="['inside', 'outside', 'none']"
@@ -34,44 +45,65 @@
                 ></dx-select-box>
               </div>
             </div>
-            <div class="option">
-              <div class="label">Show Resources:</div>
+            <div *ngIf="showDifferentTaskContent === 'Orijinal'" class="option">
+              <div class="label">Kaynakları Göster</div>
               <div class="value">
                 <dx-check-box [(value)]="showResources"></dx-check-box>
               </div>
             </div>
             <div class="option">
-              <div class="label">Show Dependencies:</div>
+              <div class="label">Bağımlılıkları Göster</div>
               <div class="value">
                 <dx-check-box [(value)]="showDependencies"></dx-check-box>
               </div>
             </div>
+          </div>
+          <!-- Sütun-2 -->
+          <div class="column">
+            <div class="caption">Görünüme Bağlı Ayarlar</div>
+            <!-- TreeView Sütun Seçme TagBox -->
             <div class="option">
-              <div class="label">Show Different Task Content:</div>
+              <div class="label">Gösterilecek Sütunlar</div>
               <div class="value">
-                <dx-check-box
-                  [(value)]="showDifferentTaskContent"
-                  (valueChange)="repaint()"
-                ></dx-check-box>
+                <dx-tag-box
+                  [dataSource]="columnListDataSource"
+                  valueExpr="id"
+                  displayExpr="caption"
+                  [(value)]="columnListTagBoxListValue"
+                  [searchEnabled]="false"
+                  (onContentReady)="onColumListTagBoxContentReady($event)"
+                  (onValueChanged)="onColumnListTagboxValueChanged($event)"
+                  (onMultiTagPreparing)="
+                    onColumListTagBoxMultiTagPreparing($event)
+                  "
+                  [showSelectionControls]="true"
+                  [applyValueMode]="'useButtons'"
+                  [acceptCustomValue]="false"
+                  [multiline]="true"
+                  selectAllMode="allPages"
+                  [maxDisplayedTags]="2"
+                  [showMultiTagOnly]="false"
+                ></dx-tag-box>
               </div>
             </div>
-          </div>
-          <!-- <div class="column">
+            <!-- Gantt Start Date Range -->
             <div class="option">
-              <div class="label">Start Date Range:</div>
+              <div class="label">Başlangıç Tarihi Aralığı:</div>
               <div class="value">
                 <dx-date-box [(value)]="startDateRange"  >
                 </dx-date-box>
               </div>
             </div>
+            <!-- Gantt End Date Range -->
             <div class="option">
-              <div class="label">End Date Range:</div>
+              <div class="label">Bitiş Tarihi Aralığı:</div>
               <div class="value">
                 <dx-date-box [(value)]="endDateRange" >
                 </dx-date-box>
               </div>
             </div>
-          </div> -->
+          </div>
+
         </div>
       </div>
     </div>
@@ -80,6 +112,9 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
+        (onTaskInserting)="onGanttTaskInserting($event)"
+        (onTaskInserted)="onGanttTaskInserted($event)"
+          (onContentReady)="onGanttContentReady($event)"
           (onTaskUpdated)="onTaskUpdated($event)"
           (onScaleCellPrepared)="onScaleCellPrepared($event)"
           [firstDayOfWeek]="1"
@@ -91,7 +126,9 @@
           [showResources]="showResources"
           [showDependencies]="showDependencies"
           [taskContentTemplate]="
-            showDifferentTaskContent ? 'myTaskContentTemplate' : undefined
+            showDifferentTaskContent == 'Orijinal'
+              ? undefined
+              : showDifferentTaskContent
           "
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
         >
@@ -105,76 +142,100 @@
             [dataSource]="resourceAssignments"
           ></dxo-resource-assignments>
           <!-- Columns -->
+          <!-- Burası for loop ile yapılabilir -->
           <dxi-column
             dataField="id"
-            caption="id"
+            caption="ID"
             [width]="100"
+            [(visible)]="columnList[0].isVisible"
+          ></dxi-column>
+          <dxi-column
+            dataField="parentId"
+            caption="Üst ID"
+            [(visible)]="columnList[1].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="title"
             caption="Proje/Görev/Operasyon"
             [width]="200"
+            [(visible)]="columnList[2].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="taskPlannedStartDate"
             caption="Planlanmış Başlangıç"
             format="shortDate"
+            [(visible)]="columnList[3].isVisible"
             dataType="date"
           ></dxi-column>
           <dxi-column
             dataField="taskPlannedEndDate"
             caption="Planlanmış Bitiş"
             format="shortDate"
+            [(visible)]="columnList[4].isVisible"
             dataType="date"
+          ></dxi-column>
+          <dxi-column
+            dataField="plannedDuration"
+            caption="Planlanan Süre"
+            dataType="number"
+            [(visible)]="columnList[5].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="start"
             caption="Güncel Başlangıç"
             format="shortDate"
+            [(visible)]="columnList[6].isVisible"
             dataType="date"
           ></dxi-column>
           <dxi-column
             dataField="end"
             caption="Güncel Bitiş"
             format="shortDate"
+            [(visible)]="columnList[7].isVisible"
             dataType="date"
           ></dxi-column>
           <dxi-column
-            dataField="taskDuration"
-            caption="Süre"
+            dataField="actualDuration"
+            caption="Güncel Süre"
             dataType="number"
-            [visible]="false"
+            [(visible)]="columnList[8].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="progress"
             caption="Tamamlanma %"
             dataType="number"
+            [(visible)]="columnList[9].isVisible"
             ><dxo-format type="percent" [precision]="0"> </dxo-format
           ></dxi-column>
           <dxi-column
             dataField="taskCompany"
             caption="Firma"
             dataType="string"
+            [(visible)]="columnList[10].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="taskCustomer"
             caption="Müşteri"
             dataType="string"
+            [(visible)]="columnList[11].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="taskStatus"
             caption="Durum"
             dataType="string"
+            [(visible)]="columnList[12].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="taskNotes"
             caption="Notlar"
             dataType="string"
+            [(visible)]="columnList[13].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="taskIsRevision"
             caption="Revizyon?"
             dataType="boolean"
+            [(visible)]="columnList[14].isVisible"
           ></dxi-column>
           <!-- Toolbar -->
           <dxo-toolbar>
@@ -190,7 +251,10 @@
             <dxi-item name="zoomIn"></dxi-item>
             <dxi-item name="zoomOut"></dxi-item>
             <dxi-item name="separator"></dxi-item>
-            <dxi-item name="showResources"></dxi-item>
+            <dxi-item
+              *ngIf="showDifferentTaskContent === 'Orijinal'"
+              name="showResources"
+            ></dxi-item>
             <dxi-item name="showDependencies"></dxi-item>
             <dxi-item name="separator"></dxi-item>
             <dxi-item widget="dxButton" [options]="saveDataButtonOptions">
@@ -219,11 +283,24 @@
           <dxo-filter-row [visible]="true"></dxo-filter-row>
 
           <!-- Custom TaskContentTemplate -->
-          <div *dxTemplate="let item of 'myTaskContentTemplate'">
+          <div *dxTemplate="let item of 'Özelleştirilmiş-1'">
             <!-- Planned Task Status Bar -->
+            <!-- 'width.px': item.taskSize.width, -->
             <div
               class="planned-task"
-              [ngStyle]="{ 'width.px': item.taskSize.width }"
+              [ngStyle]="
+                item.taskData.routeLevelNumber == 1
+                  ? {
+                      'width.px': item.taskSize.width,
+                      'background-color': '#5cb85c',
+                      'border-top-color:': '#5cb85c',
+                      'border-left-color:': '#5cb85c',
+                      'border-right-color:': '#5cb85c'
+                    }
+                  : {
+                      'width.px': item.taskSize.width
+                    }
+              "
             >
               <div class="planned-task-wrapper">
                 <div class="planned-task-title">{{ item.taskData.title }}</div>
@@ -365,6 +442,7 @@
               [formData]="customTaskDetailsForm"
               labelLocation="left"
               [showColonAfterLabel]="false"
+              [showValidationSummary]="true"
             >
               <!-- Ana Grup-1 -->
               <dxi-item itemType="group" [colCount]="3">
@@ -381,7 +459,7 @@
                   <!-- Proje/Görev/Operasyon -->
                   <!-- If Project Row, then show -->
                   <dxi-item
-                    *ngIf="customTaskDetailsForm.parentId === 0"
+                    *ngIf="customTaskDetailsForm.parentId === 0 ||customTaskDetailsForm.parentId === null"
                     dataField="title"
                     [isRequired]="true"
                     ><dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label
@@ -389,7 +467,7 @@
                   <!-- If Project Row, then show -->
                   <!-- Start: If Not Project Row, then show -->
                   <dxi-item
-                    *ngIf="customTaskDetailsForm.parentId !== 0"
+                    *ngIf="customTaskDetailsForm.parentId !== 0 && customTaskDetailsForm.parentId !== null"
                     [isRequired]="true"
                   >
                     <dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label>
@@ -428,31 +506,6 @@
                       </dx-select-box>
                     </div>
                   </dxi-item>
-
-                  <!-- <dxi-item
-                    *ngIf="customTaskDetailsForm.parentId !== 0"
-                    dataField="title"
-                    editorType="dxSelectBox"
-                    [editorOptions]="{
-                      dataSource: dataSourceFromtaskOperationsList,
-                      displayExpr: 'name',
-                      valueExpr: 'name',
-                      grouped: true,
-                      groupTemplate: 'titleGroup',
-                      placeholder: 'Seçiniz',
-                      searchEnabled: true,
-                      searchTimeout: 200
-                    }"
-                    [isRequired]="true"
-                  >
-                    <dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label>
-                  </dxi-item> -->
-                  <!-- <div *dxTemplate="let data of 'titleGroup'">
-                    <div class="custom-icon">
-                      <span class="dx-icon-box icon"></span>
-                      {{ data.key }}
-                    </div>
-                  </div> -->
                   <!-- End: If Not Project Row, then show -->
                   <!-- Planlanan Başlangıç -->
                   <dxi-item
@@ -551,6 +604,16 @@
                           >
                             <span
                               class="dx-icon-clock icon ganttSelectBoxIcons"
+                            ></span>
+                            {{ data.key }}
+                          </div>
+                          <!-- ERP -->
+                          <div
+                            *ngSwitchCase="'ERP'"
+                            class="custom-icon"
+                          >
+                            <span
+                              class="dx-icon-box icon ganttSelectBoxIcons"
                             ></span>
                             {{ data.key }}
                           </div>
@@ -683,23 +746,6 @@
                       </dx-select-box>
                     </div>
                   </dxi-item>
-                  <!-- <dxi-item
-                    dataField="resource"
-                    editorType="dxSelectBox"
-                    [editorOptions]="{
-                      dataSource: resources,
-                      displayExpr: 'text',
-                      valueExpr: 'text',
-                      placeholder: 'Seçiniz',
-                      searchEnabled: true,
-                      searchTimeout: 200
-                    }"
-                    ><dxo-label [text]="'Kaynaklar'"> </dxo-label>
-                    <dxi-validation-rule
-                      type="required"
-                      message="Kaynak Belirtilmedi"
-                    ></dxi-validation-rule>
-                  </dxi-item> -->
                 </dxi-item>
                 <!-- Sütun-3 -->
                 <dxi-item itemType="group" caption="Görev Detayları-3">

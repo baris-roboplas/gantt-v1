@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DxCheckBoxModule, DxSelectBoxModule, DxDateBoxModule, DxPopupModule, DxNumberBoxModule, DxFormModule, DxTextAreaModule, DxSwitchModule, DxScrollViewModule } from 'devextreme-angular';
+import { DxCheckBoxModule, DxSelectBoxModule, DxDateBoxModule, DxPopupModule, DxNumberBoxModule, DxFormModule, DxTextAreaModule, DxSwitchModule, DxScrollViewModule, DxTagBoxModule } from 'devextreme-angular';
 import { DxGanttModule } from 'devextreme-angular/ui/gantt';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DxTextAreaModule,
     DxSwitchModule,
     DxScrollViewModule,
-    HttpClientModule
+    HttpClientModule,
+    DxTagBoxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

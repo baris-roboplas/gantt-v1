@@ -5,6 +5,7 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { DxGanttComponent } from 'devextreme-angular';
 import {
@@ -35,7 +36,7 @@ export class ProjelerGanttComponent implements OnInit {
   dependencies!: Dependency[];
   resources!: Resource[];
   resourceAssignments!: ResourceAssignment[];
-  // B.D: Modelleri yapılacak
+  // B.D: Modelleri Yapılabilir Belki
   taskStatusList!: any;
   taskOperationsList!: any;
   dataSourceFromtaskOperationsList!: any; // B.D: tip datasource olabilir
@@ -44,6 +45,7 @@ export class ProjelerGanttComponent implements OnInit {
   companies: any = ['Roboplas', 'Roboter', 'Roboplas NA'];
   customers: any = [
     'Henüz Belirlenmedi',
+    '"Erp"de Yok',
     'Customer-1',
     'Customer-2',
     'Customer-3',
@@ -55,6 +57,111 @@ export class ProjelerGanttComponent implements OnInit {
     'Customer-9',
     'Customer-10',
   ];
+
+  // column settings
+  columnList: any[] = [
+    {
+      id: 1,
+      dataField: 'id',
+      caption: 'ID',
+      isVisible: true,
+    },
+    {
+      id: 2,
+      dataField: 'parentId',
+      caption: 'Üst ID',
+      isVisible: true,
+    },
+    {
+      id: 3,
+      dataField: 'title',
+      caption: 'Proje/Görev/Operasyon',
+      isVisible: true,
+    },
+    {
+      id: 4,
+      dataField: 'taskPlannedStartDate',
+      caption: 'Planlanmış Başlangıç',
+      isVisible: true,
+    },
+    {
+      id: 5,
+      dataField: 'taskPlannedEndDate',
+      caption: 'Planlanmış Bitiş',
+      isVisible: true,
+    },
+
+    {
+      id: 6,
+      dataField: 'plannedDuration',
+      caption: 'Planlanan Süre',
+      isVisible: false,
+    },
+    {
+      id: 7,
+      dataField: 'start',
+      caption: 'Güncel Başlangıç',
+      isVisible: true,
+    },
+    {
+      id: 8,
+      dataField: 'end',
+      caption: 'Güncel Bitiş',
+      isVisible: true,
+    },
+    {
+      id: 9,
+      dataField: 'actualDuration',
+      caption: 'Güncel Süre',
+      isVisible: false,
+    },
+    {
+      id: 10,
+      dataField: 'progress',
+      caption: 'Tamamlanma %',
+      isVisible: false,
+    },
+    {
+      id: 11,
+      dataField: 'taskCompany',
+      caption: 'Firma',
+      isVisible: false,
+    },
+    {
+      id: 12,
+      dataField: 'taskCustomer',
+      caption: 'Müşteri',
+      isVisible: false,
+    },
+    {
+      id: 13,
+      dataField: 'taskStatus',
+      caption: 'Durum',
+      isVisible: false,
+    },
+    {
+      id: 14,
+      dataField: 'taskNotes',
+      caption: 'Notlar',
+      isVisible: false,
+    },
+    {
+      id: 15,
+      dataField: 'taskIsRevision',
+      caption: 'Revizyon?',
+      isVisible: false,
+    },
+  ];
+  columnListDataSource: any = new DataSource({
+    store: new ArrayStore({
+      data: this.columnList,
+      key: 'id',
+    }),
+  });
+  columnListTagBoxListValue: any[] = this.columnList
+    .filter((column: any) => column.isVisible == true)
+    .map((column: any) => column.id);
+
   // gantt properties
   scaleType!: string;
 
@@ -163,9 +270,31 @@ export class ProjelerGanttComponent implements OnInit {
     this.titlePosition = 'outside';
     this.showResources = true;
     this.showDependencies = false;
-    this.showDifferentTaskContent = true;
+    this.showDifferentTaskContent = 'Orijinal';
     this.startDateRange = new Date(2022, 1, 1);
-    this.endDateRange = new Date(2023, 1, 1);
+    this.endDateRange = new Date(2024, 1, 1);
+
+    // gantt form
+    this.customTaskDetailsForm = {
+      id: null,
+      parentId: null,
+      title: null,
+      start: null,
+      end: null,
+      actualDuration: null,
+      progress: null,
+      taskPlannedStartDate: null,
+      taskPlannedEndDate: null,
+      plannedDuration: null,
+      taskCompany: null,
+      taskIsRevision: null,
+      taskCustomer: null,
+      taskNotes: null,
+      taskStatus: null,
+      routeLevelNumber: null,
+      resourceId: null,
+      resourceText: null,
+    };
 
     // export options/filters
     this.formatBoxValue = this.formats[0];
@@ -264,53 +393,62 @@ export class ProjelerGanttComponent implements OnInit {
     // To calculate the no. of days between two dates
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
-    return Difference_In_Days;
+    return Math.round(Difference_In_Days);
   }
   onTaskEditDialogShowing(e: any) {
+    // Update Current Task
+    // B.D: BURADA ADD KONTROL MECBUR GIBI CUNKU BIR ONCEKI DEBUGTAKI FORM ONGUNCELLEMEYI BURADA YAP
     e.cancel = true;
-    this.customTaskDetailsForm = this.tasks.find((t) => t.id === Number(e.key));
-    this.customTaskDetailsForm = {
-      ...this.customTaskDetailsForm,
-      start: new Date(this.customTaskDetailsForm.start),
-      end: new Date(this.customTaskDetailsForm.end),
-      taskPlannedStartDate: new Date(
-        this.customTaskDetailsForm.taskPlannedStartDate
-      ),
-      taskPlannedEndDate: new Date(
-        this.customTaskDetailsForm.taskPlannedEndDate
-      ),
-      plannedDuration: this.dateDaysDiffCalculator(
-        new Date(this.customTaskDetailsForm.taskPlannedStartDate),
-        new Date(this.customTaskDetailsForm.taskPlannedEndDate)
-      ),
-      actualDuration: this.dateDaysDiffCalculator(
-        new Date(this.customTaskDetailsForm.start),
-        new Date(this.customTaskDetailsForm.end)
-      ),
-      resourceId: this.resources.find(
-        (resource) =>
-          resource.id ==
-          this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
-            ?.resourceId
-      )?.id,
-      resourceText: this.resources.find(
-        (resource) =>
-          resource.id ==
-          this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
-            ?.resourceId
-      )?.text,
-    };
-    this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
-    this.isTaskDetailsFormPopupVisible = true;
+    if (
+      this.tasks.some((task) => {
+        return task.id === Number(e.key);
+      })
+    ) {
+      this.customTaskDetailsForm = this.tasks.find(
+        (t) => t.id === Number(e.key)
+      );
+      this.customTaskDetailsForm = {
+        ...this.customTaskDetailsForm,
+        start: new Date(this.customTaskDetailsForm.start),
+        end: new Date(this.customTaskDetailsForm.end),
+        taskPlannedStartDate: new Date(
+          this.customTaskDetailsForm.taskPlannedStartDate
+        ),
+        taskPlannedEndDate: new Date(
+          this.customTaskDetailsForm.taskPlannedEndDate
+        ),
+        plannedDuration: this.dateDaysDiffCalculator(
+          new Date(this.customTaskDetailsForm.taskPlannedStartDate),
+          new Date(this.customTaskDetailsForm.taskPlannedEndDate)
+        ),
+        actualDuration: this.dateDaysDiffCalculator(
+          new Date(this.customTaskDetailsForm.start),
+          new Date(this.customTaskDetailsForm.end)
+        ),
+        resourceId: this.resources.find(
+          (resource) =>
+            resource.id ==
+            this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
+              ?.resourceId
+        )?.id,
+        resourceText: this.resources.find(
+          (resource) =>
+            resource.id ==
+            this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
+              ?.resourceId
+        )?.text,
+      };
+      this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
+      this.isTaskDetailsFormPopupVisible = true;
+      let test2 = 'test';
+    } else {
+      this.customTaskDetailsForm.id = this.tasks.length;
+      this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
+      this.isTaskDetailsFormPopupVisible = true;
+      let test1 = 'test';
+    }
   }
-  byHiddenPopup(e: any) {
-    // this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
-    // for (let index = 0; index < this.tasks.length; index++) {
-    //   if (this.tasks[index].id === this.customTaskDetailsForm.id) {
-    //     this.tasks[index] = this.customTaskDetailsForm;
-    //   }
-    // }
-  }
+  byHiddenPopup(e: any) {}
   onFieldDataChanged(e: any) {
     if (e.dataField === 'start') {
       this.customTaskDetailsForm.actualDuration = this.dateDaysDiffCalculator(
@@ -346,18 +484,17 @@ export class ProjelerGanttComponent implements OnInit {
   onSaveForm(e: any) {
     e.preventDefault();
     if (confirm('Proje/Görev/Operasyon Kaydet!') === true) {
-      const { resourceId,resourceText, ...everythingExceptresourceId } =
+      const { resourceId, resourceText, ...everythingExceptresourceInfo } =
         this.customTaskDetailsForm;
-      const b = everythingExceptresourceId;
       this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
-        ...b,
+        ...everythingExceptresourceInfo,
       });
       this.resourceAssignments.push({
-        id: this.resourceAssignments.length + 1,
+        id: this.resourceAssignments.length,
         taskId: this.customTaskDetailsForm.id,
         resourceId: resourceId,
       });
-      this.gantt.instance.refresh();
+      // this.gantt.instance.refresh();
     } else {
       this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
     }
@@ -391,18 +528,102 @@ export class ProjelerGanttComponent implements OnInit {
       'left.px': 55,
     };
   }
+  // TreeList Rows
+  onGanttTaskInserting(e: any) {
+    e.values = {
+      ...e.values,
+      title: 'Yeni Proje/Görev/Operasyon',
+    };
+    let test = 'test';
+  }
+  onGanttTaskInserted(e: any) {
+    this.customTaskDetailsForm = {
+      ...this.customTaskDetailsForm,
+      // id dikkat, değişmeli mi yoksa devextremeden mi gelmeli sonra mı yani form kaydedince mi değişmeli
+      id: this.tasks.length,
+      title: 'Yeni Proje/Görev/Operasyon',
+      taskStatus: 'Henüz Belirlenmedi',
+      taskCompany: 'Roboplas',
+      taskCustomer: 'Henüz Belirlenmedi',
+      resourceId: 10,
+      resourceText: 'Henüz Belirlenmedi',
+      start: e.values.start,
+      end: e.values.end,
+      taskPlannedStartDate: e.values.start,
+      taskPlannedEndDate: e.values.end,
+      plannedDuration: 0,
+      actualDuration: 0,
+    };
+
+    let test = 'test';
+    // this.gantt.instance.refresh();
+  }
+  // TreeList Columns
+  onColumListTagBoxContentReady(e: any) {
+    // B.D: Gerek Kalmadı
+  }
+  onColumnListTagboxValueChanged(e: any) {
+    const newValue = e.value;
+    this.columnList.forEach((column, index) => {
+      if (newValue.includes(column.id)) {
+        this.columnList[index].isVisible = true;
+      } else {
+        this.columnList[index].isVisible = false;
+      }
+    });
+    this.columnListTagBoxListValue.length = 0;
+    this.columnList.forEach((column) => {
+      if (column.isVisible === true) {
+        this.columnListTagBoxListValue.push(column.id);
+      }
+    });
+  }
+  onColumListTagBoxMultiTagPreparing(args: any) {
+    if (args.text.includes('more')) {
+      let formattedText = args.text.replace('more', 'Daha');
+      args.text = formattedText;
+    }
+  }
 
   repaint() {
     this.gantt.instance.repaint();
     // this.treeColor();
   }
 
-  //tree list
-  // ngAfterViewInit() {
-  //   setTimeout(() => {
-  //     this.treeColor();
-  //   }, 100);
-  // }
+  ngAfterViewInit() {
+    setTimeout(() => {
+      // this.treeColor();
+      if (this.tasks) {
+        let dxGanttTaskWrappers = this.el.nativeElement.querySelectorAll(
+          '.dx-gantt-taskWrapper'
+        );
+
+        // B.D: Sanırım scroll veya responsive değiştikçe tekrar repaint ediyor, bu sebeple row positionları eski haline dönüyor!
+        for (
+          let index = 0, increase = 0;
+          index < dxGanttTaskWrappers.length;
+          index++, increase = increase + 58
+        ) {
+          // let el = this.renderer.selectRootElement(dxGanttTaskWrappers, true);
+          let toptest1 = 'test';
+          this.renderer.removeStyle(dxGanttTaskWrappers[index], 'top');
+          let toptest2 = 'test';
+          this.renderer.setStyle(
+            dxGanttTaskWrappers[index],
+            'top',
+            `${increase}px`
+          );
+          let toptest3 = 'test';
+          // if ((index === 5)) break;
+        }
+        let toptest4 = 'test';
+        // this.gantt.instance.repaint();
+        let toptest5 = 'test';
+      }
+    }, 1000);
+  }
+
+  onGanttContentReady(e: any) {}
   //tree list
 
   // ccc() {
