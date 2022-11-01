@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, finalize, Observable, shareReplay } from 'rxjs';
+import {
+  BehaviorSubject,
+  finalize,
+  forkJoin,
+  Observable,
+  shareReplay,
+} from 'rxjs';
 import {
   Task,
   Dependency,
@@ -17,10 +23,16 @@ export class GanttDataService {
   // Data
   dataLoading$ = new BehaviorSubject<boolean>(false);
 
-  private _dataSubject = new BehaviorSubject<any>(null);
-  data$: Observable<any> = this._dataSubject;
-  get data() {
-    return this._dataSubject.value;
+  private _ganttDataSubject = new BehaviorSubject<any>(null);
+  ganttData$: Observable<any> = this._ganttDataSubject;
+  get ganttData() {
+    return this._ganttDataSubject.value;
+  }
+
+  private _ERPbasicDataSubject = new BehaviorSubject<any>(null);
+  ERPbasicData$: Observable<any> = this._ERPbasicDataSubject;
+  get ERPbasicData() {
+    return this._ERPbasicDataSubject.value;
   }
 
   // // Tasks
@@ -50,31 +62,53 @@ export class GanttDataService {
   // }
 
   constructor(private http: HttpClient) {}
-  getData(): any {
-    if (this._dataSubject.value === null) {
+  getData() {
+    if (
+      this._ganttDataSubject === null ||
+      this._ERPbasicDataSubject.value === null
+    ) {
       this.dataLoading$.next(true);
     }
-    return this.http
-      .get<any>(this.dummyApi + '/dummyData')
+    forkJoin({
+      requestOne: this.http.get<any>(this.dummyApi + '/ganttData'),
+      requestTwo: this.http.get<any>(this.dummyApi + '/ERPbasicData'),
+    })
       .pipe(
         shareReplay(1),
         finalize(() => this.dataLoading$.next(false))
       )
-      .subscribe((response) => {
+      .subscribe(({ requestOne, requestTwo }) => {
         if (
-          JSON.stringify(this._dataSubject.value) !== JSON.stringify(response)
-        )
-          this._dataSubject.next(response[0]);
+          JSON.stringify(this._ganttDataSubject.value) !==
+          JSON.stringify(requestOne)
+        ) {
+          this._ganttDataSubject.next(requestOne);
+        }
+        if (
+          JSON.stringify(this._ERPbasicDataSubject.value) !==
+          JSON.stringify(requestTwo)
+        ) {
+          this._ERPbasicDataSubject.next(requestTwo);
+        }
       });
   }
 
-  updateData(newData: any): Observable<any> {
-    let obs$: Observable<any> = this.http
-      .put<any>(this.dummyApi + '/dummyData', newData)
-      .pipe(shareReplay(1));
-    obs$.subscribe(() => {
-      this._dataSubject.next(newData);
-    });
-    return obs$;
+  updateGanttData(newData: any) {
+    this.http
+      .patch<any>(this.dummyApi + '/ganttData/1/tasks', newData.tasks)
+      .pipe(shareReplay(1))
+      .subscribe();
+      this.http
+      .patch<any>(this.dummyApi + '/ganttData/1/dependencies', newData.dependencies)
+      .pipe(shareReplay(1))
+      .subscribe();
+      this.http
+      .patch<any>(this.dummyApi + '/ganttData/1/resources', newData.resources)
+      .pipe(shareReplay(1))
+      .subscribe();
+      this.http
+      .patch<any>(this.dummyApi + '/ganttData/1/resourceAssignments', newData.resourceAssignments)
+      .pipe(shareReplay(1))
+      .subscribe();
   }
 }

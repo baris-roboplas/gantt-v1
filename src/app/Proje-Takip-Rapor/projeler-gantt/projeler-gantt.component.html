@@ -90,20 +90,17 @@
             <div class="option">
               <div class="label">Başlangıç Tarihi Aralığı:</div>
               <div class="value">
-                <dx-date-box [(value)]="startDateRange"  >
-                </dx-date-box>
+                <dx-date-box [(value)]="startDateRange"> </dx-date-box>
               </div>
             </div>
             <!-- Gantt End Date Range -->
             <div class="option">
               <div class="label">Bitiş Tarihi Aralığı:</div>
               <div class="value">
-                <dx-date-box [(value)]="endDateRange" >
-                </dx-date-box>
+                <dx-date-box [(value)]="endDateRange"> </dx-date-box>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -112,8 +109,8 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
-        (onTaskInserting)="onGanttTaskInserting($event)"
-        (onTaskInserted)="onGanttTaskInserted($event)"
+          (onTaskInserting)="onGanttTaskInserting($event)"
+          (onTaskInserted)="onGanttTaskInserted($event)"
           (onContentReady)="onGanttContentReady($event)"
           (onTaskUpdated)="onTaskUpdated($event)"
           (onScaleCellPrepared)="onScaleCellPrepared($event)"
@@ -236,6 +233,24 @@
             caption="Revizyon?"
             dataType="boolean"
             [(visible)]="columnList[14].isVisible"
+          ></dxi-column>
+          <dxi-column
+            dataField="resourceId"
+            caption="Kaynak ID"
+            [width]="100"
+            dataType="number"
+            [(visible)]="columnList[15].isVisible"
+          ></dxi-column>
+          <dxi-column
+            dataField="resourceText"
+            caption="Kaynak Ismi"
+            [(visible)]="columnList[16].isVisible"
+          ></dxi-column>
+          <dxi-column
+            dataField="routeLevelNumber"
+            caption="Rota Seviyesi"
+            dataType="number"
+            [(visible)]="columnList[17].isVisible"
           ></dxi-column>
           <!-- Toolbar -->
           <dxo-toolbar>
@@ -459,7 +474,11 @@
                   <!-- Proje/Görev/Operasyon -->
                   <!-- If Project Row, then show -->
                   <dxi-item
-                    *ngIf="customTaskDetailsForm.parentId === 0 ||customTaskDetailsForm.parentId === null"
+                    *ngIf="
+                      customTaskDetailsForm.parentId === 0 ||
+                      customTaskDetailsForm.parentId === null ||
+                      customTaskDetailsForm.parentId === undefined
+                    "
                     dataField="title"
                     [isRequired]="true"
                     ><dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label
@@ -467,14 +486,18 @@
                   <!-- If Project Row, then show -->
                   <!-- Start: If Not Project Row, then show -->
                   <dxi-item
-                    *ngIf="customTaskDetailsForm.parentId !== 0 && customTaskDetailsForm.parentId !== null"
+                    *ngIf="
+                      customTaskDetailsForm.parentId !== 0 &&
+                      customTaskDetailsForm.parentId !== null &&
+                      customTaskDetailsForm.parentId !== undefined
+                    "
                     [isRequired]="true"
                   >
                     <dxo-label [text]="'Proje/Görev/Operasyon'"></dxo-label>
                     <div *dxTemplate>
                       <dx-select-box
                         [(value)]="customTaskDetailsForm.title"
-                        [dataSource]="dataSourceFromtaskOperationsList"
+                        [dataSource]="dataSourceFromtaskOperationList"
                         valueExpr="name"
                         [grouped]="true"
                         displayExpr="name"
@@ -566,7 +589,7 @@
                     <div *dxTemplate>
                       <dx-select-box
                         [(value)]="customTaskDetailsForm.taskStatus"
-                        [dataSource]="dataSourceFromtaskStatusListOrder"
+                        [dataSource]="dataSourceFromtaskStatusList"
                         valueExpr="statusName"
                         [grouped]="true"
                         displayExpr="statusName"
@@ -608,10 +631,7 @@
                             {{ data.key }}
                           </div>
                           <!-- ERP -->
-                          <div
-                            *ngSwitchCase="'ERP'"
-                            class="custom-icon"
-                          >
+                          <div *ngSwitchCase="'ERP'" class="custom-icon">
                             <span
                               class="dx-icon-box icon ganttSelectBoxIcons"
                             ></span>

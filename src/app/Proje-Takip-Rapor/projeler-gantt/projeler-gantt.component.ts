@@ -38,9 +38,9 @@ export class ProjelerGanttComponent implements OnInit {
   resourceAssignments!: ResourceAssignment[];
   // B.D: Modelleri Yapılabilir Belki
   taskStatusList!: any;
-  taskOperationsList!: any;
-  dataSourceFromtaskOperationsList!: any; // B.D: tip datasource olabilir
-  dataSourceFromtaskStatusListOrder!: any;
+  taskOperationList!: any;
+  dataSourceFromtaskOperationList!: any; // B.D: tip datasource olabilir
+  dataSourceFromtaskStatusList!: any;
   dataSourceFromresources!: any;
   companies: any = ['Roboplas', 'Roboter', 'Roboplas NA'];
   customers: any = [
@@ -61,94 +61,112 @@ export class ProjelerGanttComponent implements OnInit {
   // column settings
   columnList: any[] = [
     {
-      id: 1,
+      id: 0,
       dataField: 'id',
       caption: 'ID',
       isVisible: true,
     },
     {
-      id: 2,
+      id: 1,
       dataField: 'parentId',
       caption: 'Üst ID',
       isVisible: true,
     },
     {
-      id: 3,
+      id: 2,
       dataField: 'title',
       caption: 'Proje/Görev/Operasyon',
       isVisible: true,
     },
     {
-      id: 4,
+      id: 3,
       dataField: 'taskPlannedStartDate',
       caption: 'Planlanmış Başlangıç',
       isVisible: true,
     },
     {
-      id: 5,
+      id: 4,
       dataField: 'taskPlannedEndDate',
       caption: 'Planlanmış Bitiş',
       isVisible: true,
     },
 
     {
-      id: 6,
+      id: 5,
       dataField: 'plannedDuration',
       caption: 'Planlanan Süre',
       isVisible: false,
     },
     {
-      id: 7,
+      id: 6,
       dataField: 'start',
       caption: 'Güncel Başlangıç',
       isVisible: true,
     },
     {
-      id: 8,
+      id: 7,
       dataField: 'end',
       caption: 'Güncel Bitiş',
       isVisible: true,
     },
     {
-      id: 9,
+      id: 8,
       dataField: 'actualDuration',
       caption: 'Güncel Süre',
       isVisible: false,
     },
     {
-      id: 10,
+      id: 9,
       dataField: 'progress',
       caption: 'Tamamlanma %',
       isVisible: false,
     },
     {
-      id: 11,
+      id: 10,
       dataField: 'taskCompany',
       caption: 'Firma',
       isVisible: false,
     },
     {
-      id: 12,
+      id: 11,
       dataField: 'taskCustomer',
       caption: 'Müşteri',
       isVisible: false,
     },
     {
-      id: 13,
+      id: 12,
       dataField: 'taskStatus',
       caption: 'Durum',
       isVisible: false,
     },
     {
-      id: 14,
+      id: 13,
       dataField: 'taskNotes',
       caption: 'Notlar',
       isVisible: false,
     },
     {
-      id: 15,
+      id: 14,
       dataField: 'taskIsRevision',
       caption: 'Revizyon?',
+      isVisible: false,
+    },
+    {
+      id: 15,
+      dataField: 'resourceId',
+      caption: 'Kaynak ID',
+      isVisible: false,
+    },
+    {
+      id: 16,
+      dataField: 'resourceText',
+      caption: 'Kaynak Ismi',
+      isVisible: false,
+    },
+    {
+      id: 17,
+      dataField: 'routeLevelNumber',
+      caption: 'Rota Seviyesi?',
       isVisible: false,
     },
   ];
@@ -207,7 +225,8 @@ export class ProjelerGanttComponent implements OnInit {
   isTaskDetailsFormPopupVisible = false;
 
   // Obs
-  data$!: Observable<any>;
+  ganttData$!: Observable<any>;
+  ERPbasicData$!: Observable<any>;
   dataLoading$!: Observable<any>;
   constructor(
     private ganttDataService: GanttDataService,
@@ -223,43 +242,49 @@ export class ProjelerGanttComponent implements OnInit {
   ngOnInit(): void {
     // obs & data
     this.ganttDataService.getData();
-    this.data$ = this.ganttDataService.data$;
+    this.ganttData$ = this.ganttDataService.ganttData$;
+    this.ERPbasicData$ = this.ganttDataService.ERPbasicData$;
     this.dataLoading$ = this.ganttDataService.dataLoading$;
-    this.data$.subscribe((data) => {
-      if (data) {
-        // dataSources
-        this.tasks = data?.tasks;
-        this.dependencies = data?.dependencies;
-        this.resources = data?.resources;
-        this.resourceAssignments = data?.resourceAssignments;
-        this.taskStatusList = data?.taskStatusList;
-        this.taskOperationsList = data?.taskOperationsList;
 
-        this.dataSourceFromtaskOperationsList = new DataSource({
+    // dataSources
+    this.ERPbasicData$.subscribe((data) => {
+      if (data) {
+        this.taskStatusList = data[0]?.taskStatusList;
+        this.taskOperationList = data[0]?.taskOperationList;
+        this.dataSourceFromtaskOperationList = new DataSource({
           store: new ArrayStore({
-            data: data.taskOperationList,
+            data: data[0].taskOperationList,
             key: 'id',
           }),
           group: 'routeLevelName',
         });
-        this.dataSourceFromtaskStatusListOrder = new DataSource({
+        this.dataSourceFromtaskStatusList = new DataSource({
           store: new ArrayStore({
-            data: data.taskStatusListOrder,
+            data: data[0].taskStatusList,
             key: 'id',
           }),
           group: 'statusGroup',
         });
+      }
+    });
+    this.ganttData$.subscribe((data) => {
+      if (data) {
+        this.tasks = data[0]?.tasks;
+        this.dependencies = data[0]?.dependencies;
+        this.resources = data[0]?.resources;
+        this.resourceAssignments = data[0]?.resourceAssignments;
+
         this.dataSourceFromresources = new DataSource({
           store: new ArrayStore({
-            data: data.resources,
+            data: data[0].resources,
             key: 'id',
           }),
           group: 'resourceType',
         });
 
         // Export Options
-        this.startDate = data.tasks[0]?.start;
-        this.endDate = data.tasks[0]?.end;
+        // this.startDate = data.tasks[0]?.start;
+        // this.endDate = data.tasks[0]?.end;
       }
     });
 
@@ -382,6 +407,12 @@ export class ProjelerGanttComponent implements OnInit {
   // toolbar
   saveGantt() {
     if (confirm('Tüm Veriler Kaydedilsin Mi?)')) {
+      this.ganttDataService.updateGanttData({
+        tasks: this.tasks,
+        dependencies: this.dependencies,
+        resources: this.resources,
+        resourceAssignments: this.resourceAssignments,
+      })
     }
   }
 
@@ -399,54 +430,41 @@ export class ProjelerGanttComponent implements OnInit {
     // Update Current Task
     // B.D: BURADA ADD KONTROL MECBUR GIBI CUNKU BIR ONCEKI DEBUGTAKI FORM ONGUNCELLEMEYI BURADA YAP
     e.cancel = true;
-    if (
-      this.tasks.some((task) => {
-        return task.id === Number(e.key);
-      })
-    ) {
-      this.customTaskDetailsForm = this.tasks.find(
-        (t) => t.id === Number(e.key)
-      );
-      this.customTaskDetailsForm = {
-        ...this.customTaskDetailsForm,
-        start: new Date(this.customTaskDetailsForm.start),
-        end: new Date(this.customTaskDetailsForm.end),
-        taskPlannedStartDate: new Date(
-          this.customTaskDetailsForm.taskPlannedStartDate
-        ),
-        taskPlannedEndDate: new Date(
-          this.customTaskDetailsForm.taskPlannedEndDate
-        ),
-        plannedDuration: this.dateDaysDiffCalculator(
-          new Date(this.customTaskDetailsForm.taskPlannedStartDate),
-          new Date(this.customTaskDetailsForm.taskPlannedEndDate)
-        ),
-        actualDuration: this.dateDaysDiffCalculator(
-          new Date(this.customTaskDetailsForm.start),
-          new Date(this.customTaskDetailsForm.end)
-        ),
-        resourceId: this.resources.find(
-          (resource) =>
-            resource.id ==
-            this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
-              ?.resourceId
-        )?.id,
-        resourceText: this.resources.find(
-          (resource) =>
-            resource.id ==
-            this.resourceAssignments.find((ra) => ra.taskId == Number(e.key))
-              ?.resourceId
-        )?.text,
-      };
-      this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
-      this.isTaskDetailsFormPopupVisible = true;
-      let test2 = 'test';
-    } else {
-      this.customTaskDetailsForm.id = this.tasks.length;
-      this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
-      this.isTaskDetailsFormPopupVisible = true;
-      let test1 = 'test';
-    }
+
+    // this.customTaskDetailsForm = this.tasks.find((t) => t.id === e.key);
+    this.customTaskDetailsForm = {
+      ...this.customTaskDetailsForm,
+      id: e.key,
+      start: new Date(this.customTaskDetailsForm.start),
+      end: new Date(this.customTaskDetailsForm.end),
+      taskPlannedStartDate: new Date(
+        this.customTaskDetailsForm.taskPlannedStartDate
+      ),
+      taskPlannedEndDate: new Date(
+        this.customTaskDetailsForm.taskPlannedEndDate
+      ),
+      plannedDuration: this.dateDaysDiffCalculator(
+        new Date(this.customTaskDetailsForm.taskPlannedStartDate),
+        new Date(this.customTaskDetailsForm.taskPlannedEndDate)
+      ),
+      actualDuration: this.dateDaysDiffCalculator(
+        new Date(this.customTaskDetailsForm.start),
+        new Date(this.customTaskDetailsForm.end)
+      ),
+      resourceId: this.resources.find(
+        (resource) =>
+          resource.id ==
+          this.resourceAssignments.find((ra) => ra.taskId == e.key)?.resourceId
+      )?.id,
+      resourceText: this.resources.find(
+        (resource) =>
+          resource.id ==
+          this.resourceAssignments.find((ra) => ra.taskId == e.key)?.resourceId
+      )?.text,
+    };
+    this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
+    this.isTaskDetailsFormPopupVisible = true;
+    let test2 = 'test';
   }
   byHiddenPopup(e: any) {}
   onFieldDataChanged(e: any) {
@@ -489,11 +507,13 @@ export class ProjelerGanttComponent implements OnInit {
       this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
         ...everythingExceptresourceInfo,
       });
-      this.resourceAssignments.push({
-        id: this.resourceAssignments.length,
-        taskId: this.customTaskDetailsForm.id,
-        resourceId: resourceId,
-      });
+      for (let i = 0; i < this.resourceAssignments.length; i++) {
+        if (
+          this.resourceAssignments[i].taskId === this.customTaskDetailsForm.id
+        ) {
+          this.resourceAssignments[i].resourceId = resourceId;
+        }
+      }
       // this.gantt.instance.refresh();
     } else {
       this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
@@ -534,28 +554,47 @@ export class ProjelerGanttComponent implements OnInit {
       ...e.values,
       title: 'Yeni Proje/Görev/Operasyon',
     };
+
     let test = 'test';
   }
   onGanttTaskInserted(e: any) {
+    // for (let index = 0; index < this.tasks.length; index++) {
+    //   if (this.tasks[index].id === e.key) {
+    //     this.tasks[index].id = index;
+    //     break;
+    //   }
+    // }
+    // Yeni Task Oluşturulduktan sonra Varsayılan değerlere göre form oluşur...
+
     this.customTaskDetailsForm = {
-      ...this.customTaskDetailsForm,
-      // id dikkat, değişmeli mi yoksa devextremeden mi gelmeli sonra mı yani form kaydedince mi değişmeli
-      id: this.tasks.length,
-      title: 'Yeni Proje/Görev/Operasyon',
-      taskStatus: 'Henüz Belirlenmedi',
+      id: e.key,
+      parentId: e.values.parentId,
+      title: e.values.title,
+      taskPlannedStartDate: new Date(),
+      taskPlannedEndDate: new Date(),
+      plannedDuration: 0,
+      start: new Date(),
+      end: new Date(),
+      actualDuration: 0,
+      progress: e.values.progress,
       taskCompany: 'Roboplas',
       taskCustomer: 'Henüz Belirlenmedi',
+      taskStatus: 'Henüz Belirlenmedi',
+      taskNotes: 'Buraya Not Girebilirsiniz!',
+      taskIsRevision: false,
       resourceId: 10,
       resourceText: 'Henüz Belirlenmedi',
-      start: e.values.start,
-      end: e.values.end,
-      taskPlannedStartDate: e.values.start,
-      taskPlannedEndDate: e.values.end,
-      plannedDuration: 0,
-      actualDuration: 0,
+      // rotayı elle seçtirmek gerekebilir
+      routeLevelNumber: 0,
     };
+    this.resourceAssignments.push({
+      id: this.resourceAssignments.length,
+      taskId: e.key,
+      resourceId: 10,
+    });
 
     let test = 'test';
+
     // this.gantt.instance.refresh();
   }
   // TreeList Columns

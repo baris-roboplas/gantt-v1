@@ -1,11 +1,9 @@
 {
-  "dummyData": [
+  "ganttData": [
     {
-      "tasks": [
-
-      ],
-      "dependencies": [
-      ],
+      "id": 1,
+      "tasks": [],
+      "dependencies": [],
       "resources": [
         {
           "id": 1,
@@ -122,138 +120,136 @@
           "text": "Erp'de Yok",
           "resourceType": "Daha Sonra Güncellenecek"
         }
-
       ],
-      "resourceAssignments": [
+      "resourceAssignments": []
+    }
+  ],
+  "ERPbasicData": [
+    {
+      "id": 1,
+      "taskStatusList": [
         {
-          "id": 0,
-          "taskId": 3,
-          "resourceId": 1
-        }
-      ],
-      "taskStatusListOrder": [
-        {
-          "statusId": 1,
+          "id": 1,
           "statusName": "Tasarımdayken Başka Projeye Geçildi",
           "statusdisplayColor": "Açık Mavi",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 2,
+          "id": 2,
           "statusName": "Tasarım Bitti",
           "statusdisplayColor": "Açık Yeşil",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 3,
+          "id": 3,
           "statusName": "Tasarım İptal",
           "statusdisplayColor": "Açık Sarı",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 4,
+          "id": 4,
           "statusName": "Tasarım Beklemede",
           "statusdisplayColor": "Turuncu",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 5,
+          "id": 5,
           "statusName": "Tasarım Aşamasında",
           "statusdisplayColor": "Açık Gri",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 6,
+          "id": 6,
           "statusName": "Sipariş veya Revizyon Formu Revizyona Uğramıştır",
           "statusdisplayColor": "Siyah",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 7,
+          "id": 7,
           "statusName": "Müşteriden Bilgi Bekleniyor",
           "statusdisplayColor": "Açık Mor",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 8,
+          "id": 8,
           "statusName": "Müşteri Onayı Bekleniyor",
           "statusdisplayColor": "Koyu Pembe",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
-          "statusId": 9,
+          "id": 9,
           "statusName": "Testi Yapılan(Hazır) Proje",
           "statusdisplayColor": "Koyu Gri",
           "statusGroup": "Robot Süreçleri"
         },
         {
-          "statusId": 10,
+          "id": 10,
           "statusName": "Testte Olan Proje",
           "statusdisplayColor": "Koyu Mavi",
           "statusGroup": "Robot Süreçleri"
         },
         {
-          "statusId": 11,
+          "id": 11,
           "statusName": "Yükleme Yapılan Proje",
           "statusdisplayColor": "Kırmızı",
           "statusGroup": "Robot Süreçleri"
         },
         {
-          "statusId": 12,
+          "id": 12,
           "statusName": "Tasarımda Olan Proje",
           "statusdisplayColor": "Koyu Mor",
           "statusGroup": "Robot Süreçleri"
         },
         {
-          "statusId": 13,
+          "id": 13,
           "statusName": "İmalatta Olan Proje",
           "statusdisplayColor": "Koyu Gri",
           "statusGroup": "Robot Süreçleri"
         },
         {
-          "statusId": 14,
+          "id": 14,
           "statusName": "Kamerada Olan Proje",
           "statusdisplayColor": "Koyu Sarı",
           "statusGroup": "Robot Süreçleri"
         },
         {
-          "statusId": 15,
+          "id": 15,
           "statusName": "Operasyon Başladı",
           "statusdisplayColor": "Çok Açık Yeşil",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
-          "statusId": 16,
+          "id": 16,
           "statusName": "Operasyon Tamamlandı",
           "statusdisplayColor": "Koyu Yeşil",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
-          "statusId": 17,
+          "id": 17,
           "statusName": "Operasyon Durdu",
           "statusdisplayColor": "Sarı",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
-          "statusId": 18,
+          "id": 18,
           "statusName": "Operasyon Iptal",
           "statusdisplayColor": "Kırmızı",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
-          "statusId": 19,
+          "id": 19,
           "statusName": "Operasyon Bekliyor",
           "statusdisplayColor": "Beyaz",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
-          "statusId": 20,
+          "id": 20,
           "statusName": "Henüz Belirlenmedi",
           "statusdisplayColor": "Beyaz",
           "statusGroup": "ERP"
         },
         {
-          "statusId": 21,
+          "id": 21,
           "statusName": "Ön Hazırlığı Yapılan Proje",
           "statusdisplayColor": "Pembe",
           "statusGroup": "Robot Süreçleri"

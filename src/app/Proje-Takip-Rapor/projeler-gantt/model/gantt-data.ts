@@ -2578,7 +2578,7 @@ export interface CustomTaskDetailsForm {
 //           "resourceId": 18
 //         }
 //       ],
-//       "taskStatusListOrder": [
+//       "taskStatusList": [
 //         {
 //           "statusId": 1,
 //           "statusName": "Tasarımdayken Başka Projeye Geçildi",
