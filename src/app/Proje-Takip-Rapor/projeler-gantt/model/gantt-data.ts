@@ -2,7 +2,8 @@
 export class Task {
   id!: number;
 
-  parentId!: number;
+  // B.D: Şimdilik ? olarak kalsın
+  parentId?: number;
 
   title!: string;
 
@@ -32,41 +33,10 @@ export class Task {
 
   routeLevelNumber!: number;
 
-  // constructor(
-  //   id: number,
-  //   parentId: number,
-  //   title: string,
-  //   start: Date,
-  //   end: Date,
-  //   progress: number,
-  //   taskPlannedStartDate: Date,
-  //   taskPlannedEndDate: Date,
-  //   actualDuration: number,
-  //   plannedDuration: number,
-  //   taskCompany: string,
-  //   taskIsRevision: boolean,
-  //   taskCustomer: string,
-  //   taskStatus: string,
-  //   taskNotes: string,
-  //   routeLevelNumber: number
-  // ) {
-  //   this.id = id;
-  //   this.parentId = parentId;
-  //   this.title = title;
-  //   this.start = start;
-  //   this.end = end;
-  //   this.progress = progress;
-  //   this.taskPlannedStartDate = taskPlannedStartDate;
-  //   this.taskPlannedEndDate = taskPlannedEndDate;
-  //   this.actualDuration = actualDuration;
-  //   this.plannedDuration = plannedDuration;
-  //   this.taskCompany = taskCompany;
-  //   this.taskIsRevision = taskIsRevision;
-  //   this.taskCustomer = taskCustomer;
-  //   this.taskStatus = taskStatus;
-  //   this.taskNotes = taskNotes;
-  //   this.routeLevelNumber = routeLevelNumber;
-  // }
+  resourceId!: number;
+
+  resourceText!: string;
+
 }
 
 export class Dependency {
@@ -116,6 +86,7 @@ export interface CustomTaskDetailsForm {
 }
 
 // {
+
 //   "dummyData": [
 //     {
 //       "tasks": [

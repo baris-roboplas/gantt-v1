@@ -95,20 +95,20 @@ export class GanttDataService {
 
   updateGanttData(newData: any) {
     this.http
-      .patch<any>(this.dummyApi + '/ganttData/1/tasks', newData.tasks)
+      .put<any>(this.dummyApi + '/ganttData/1', newData)
       .pipe(shareReplay(1))
       .subscribe();
-      this.http
-      .patch<any>(this.dummyApi + '/ganttData/1/dependencies', newData.dependencies)
-      .pipe(shareReplay(1))
-      .subscribe();
-      this.http
-      .patch<any>(this.dummyApi + '/ganttData/1/resources', newData.resources)
-      .pipe(shareReplay(1))
-      .subscribe();
-      this.http
-      .patch<any>(this.dummyApi + '/ganttData/1/resourceAssignments', newData.resourceAssignments)
-      .pipe(shareReplay(1))
-      .subscribe();
+      // this.http
+      // .put<any>(this.dummyApi + '/ganttData/1', newData.dependencies)
+      // .pipe(shareReplay(1))
+      // .subscribe();
+      // this.http
+      // .put<any>(this.dummyApi + '/ganttData/1', newData.resources)
+      // .pipe(shareReplay(1))
+      // .subscribe();
+      // this.http
+      // .put<any>(this.dummyApi + '/ganttData/1', newData.resourceAssignments)
+      // .pipe(shareReplay(1))
+      // .subscribe();
   }
 }

@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { DxGanttComponent } from 'devextreme-angular';
+import { DxGanttComponent, DxTreeListComponent } from 'devextreme-angular';
 import {
   Task,
   Dependency,
@@ -36,6 +36,7 @@ export class ProjelerGanttComponent implements OnInit {
   dependencies!: Dependency[];
   resources!: Resource[];
   resourceAssignments!: ResourceAssignment[];
+
   // B.D: Modelleri Yapılabilir Belki
   taskStatusList!: any;
   taskOperationList!: any;
@@ -46,6 +47,7 @@ export class ProjelerGanttComponent implements OnInit {
   customers: any = [
     'Henüz Belirlenmedi',
     '"Erp"de Yok',
+    'TURAN',
     'Customer-1',
     'Customer-2',
     'Customer-3',
@@ -143,7 +145,7 @@ export class ProjelerGanttComponent implements OnInit {
       id: 13,
       dataField: 'taskNotes',
       caption: 'Notlar',
-      isVisible: false,
+      isVisible: true,
     },
     {
       id: 14,
@@ -155,19 +157,19 @@ export class ProjelerGanttComponent implements OnInit {
       id: 15,
       dataField: 'resourceId',
       caption: 'Kaynak ID',
-      isVisible: false,
+      isVisible: true,
     },
     {
       id: 16,
       dataField: 'resourceText',
       caption: 'Kaynak Ismi',
-      isVisible: false,
+      isVisible: true,
     },
     {
       id: 17,
       dataField: 'routeLevelNumber',
-      caption: 'Rota Seviyesi?',
-      isVisible: false,
+      caption: 'Rota Seviyesi',
+      isVisible: true,
     },
   ];
   columnListDataSource: any = new DataSource({
@@ -194,6 +196,7 @@ export class ProjelerGanttComponent implements OnInit {
   // custom toolbar settings
   infoPopupButtonOptions: any;
   saveDataButtonOptions: any;
+  refreshGanttButtonOptions: any;
   exportButtonOptions: any;
 
   // export options/filters definitions
@@ -235,9 +238,10 @@ export class ProjelerGanttComponent implements OnInit {
     private el: ElementRef
   ) {}
 
-  // Dom
+  // instances
   @ViewChild(DxGanttComponent, { static: false })
   gantt!: DxGanttComponent;
+  // @ViewChild(DxTreeListComponent, { static: false }) treeList!: DxTreeListComponent;
 
   ngOnInit(): void {
     // obs & data
@@ -289,15 +293,15 @@ export class ProjelerGanttComponent implements OnInit {
     });
 
     // gantt properties
-    this.scaleType = 'weeks';
+    this.scaleType = 'months';
 
     //custom gantt settings
     this.titlePosition = 'outside';
     this.showResources = true;
-    this.showDependencies = false;
-    this.showDifferentTaskContent = 'Orijinal';
-    this.startDateRange = new Date(2022, 1, 1);
-    this.endDateRange = new Date(2024, 1, 1);
+    this.showDependencies = true;
+    this.showDifferentTaskContent = 'Görünüm-1';
+    this.startDateRange = new Date(new Date().getFullYear() - 2, 0);
+    this.endDateRange = new Date(new Date().getFullYear() + 2, 0);
 
     // gantt form
     this.customTaskDetailsForm = {
@@ -349,6 +353,14 @@ export class ProjelerGanttComponent implements OnInit {
         this.saveGantt();
       },
     };
+    this.refreshGanttButtonOptions = {
+      text: 'Gantt Yenile',
+      icon: 'refresh',
+      stylingMode: 'text',
+      onClick: () => {
+        this.refreshGantt();
+      },
+    };
   }
 
   onCustomCommandClick(e: any) {
@@ -398,7 +410,7 @@ export class ProjelerGanttComponent implements OnInit {
     }
     return 'all';
   }
-
+  // B.D: burası ne?
   onDateRangeBoxSelectionChanged(e: any) {
     this.customRangeDisabled = e.value !== 'Custom';
     this.ref.detectChanges();
@@ -412,14 +424,19 @@ export class ProjelerGanttComponent implements OnInit {
         dependencies: this.dependencies,
         resources: this.resources,
         resourceAssignments: this.resourceAssignments,
-      })
+      });
     }
   }
 
+  refreshGantt() {
+    this.gantt.instance.refresh();
+  }
+
   // Forms/Popups
-  dateDaysDiffCalculator(start: any, end: any) {
+  dateDaysDiffCalculator(start: string, end: string) {
     // To calculate the time difference of two dates
-    var Difference_In_Time = end.getTime() - start.getTime();
+    var Difference_In_Time =
+      new Date(end).getTime() - new Date(start).getTime();
 
     // To calculate the no. of days between two dates
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -427,46 +444,67 @@ export class ProjelerGanttComponent implements OnInit {
     return Math.round(Difference_In_Days);
   }
   onTaskEditDialogShowing(e: any) {
-    // Update Current Task
-    // B.D: BURADA ADD KONTROL MECBUR GIBI CUNKU BIR ONCEKI DEBUGTAKI FORM ONGUNCELLEMEYI BURADA YAP
     e.cancel = true;
+    // New Task Form
+    if (
+      !this.tasks
+        .find((task) => task.id === e.key)
+        ?.hasOwnProperty('taskPlannedStartDate')
+    ) {
+      this.customTaskDetailsForm = this.tasks.find((task) => task.id === e.key);
+      // // B.D: Parent yoksa e.parentId gelmiyor, duruma göre sonra ekle
+      // if (!this.customTaskDetailsForm['parentId']) {
+      //   this.customTaskDetailsForm['parentId'] = 0;
+      // }
+      this.customTaskDetailsForm = {
+        ...this.customTaskDetailsForm,
+        title: null,
+        taskPlannedStartDate: new Date(this.customTaskDetailsForm.start),
+        taskPlannedEndDate: new Date(this.customTaskDetailsForm.end),
+        plannedDuration: 0,
+        actualDuration: this.dateDaysDiffCalculator(
+          e.values.start,
+          e.values.end
+        ),
+        taskCompany: 'Roboplas',
+        taskCustomer: 'Henüz Belirlenmedi',
+        taskStatus: 'Henüz Belirlenmedi',
+        taskNotes: 'Buraya Not Girebilirsiniz!',
+        taskIsRevision: false,
+        resourceId: 10,
+        resourceText: 'Henüz Belirlenmedi',
+      };
+    }
+    // Update Task Form
+    else {
+      let selectedRowData = this.tasks.find((task) => task.id === e.key);
+      this.customTaskDetailsForm = {
+        ...selectedRowData,
+        resourceId: this.resources.find(
+          (resource) =>
+            resource.id ==
+            this.resourceAssignments.find((ra) => ra.taskId == e.key)
+              ?.resourceId
+        )?.id,
+        resourceText: this.resources.find(
+          (resource) =>
+            resource.id ==
+            this.resourceAssignments.find((ra) => ra.taskId == e.key)
+              ?.resourceId
+        )?.text,
+      };
+    }
 
-    // this.customTaskDetailsForm = this.tasks.find((t) => t.id === e.key);
-    this.customTaskDetailsForm = {
-      ...this.customTaskDetailsForm,
-      id: e.key,
-      start: new Date(this.customTaskDetailsForm.start),
-      end: new Date(this.customTaskDetailsForm.end),
-      taskPlannedStartDate: new Date(
-        this.customTaskDetailsForm.taskPlannedStartDate
-      ),
-      taskPlannedEndDate: new Date(
-        this.customTaskDetailsForm.taskPlannedEndDate
-      ),
-      plannedDuration: this.dateDaysDiffCalculator(
-        new Date(this.customTaskDetailsForm.taskPlannedStartDate),
-        new Date(this.customTaskDetailsForm.taskPlannedEndDate)
-      ),
-      actualDuration: this.dateDaysDiffCalculator(
-        new Date(this.customTaskDetailsForm.start),
-        new Date(this.customTaskDetailsForm.end)
-      ),
-      resourceId: this.resources.find(
-        (resource) =>
-          resource.id ==
-          this.resourceAssignments.find((ra) => ra.taskId == e.key)?.resourceId
-      )?.id,
-      resourceText: this.resources.find(
-        (resource) =>
-          resource.id ==
-          this.resourceAssignments.find((ra) => ra.taskId == e.key)?.resourceId
-      )?.text,
-    };
     this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
     this.isTaskDetailsFormPopupVisible = true;
     let test2 = 'test';
   }
-  byHiddenPopup(e: any) {}
+  // B.D: TEST EVENTLARI BURAYA YAZILDI
+  onGanttContentReady(e: any) {}
+  onGanttTaskUpdating(e: any) {}
+  onGanttTaskUpdated(e: any) {}
+  onGanttScaleCellPrepared(e: any) {}
+  onGanttOptionChanged(e: any) {}
   onFieldDataChanged(e: any) {
     if (e.dataField === 'start') {
       this.customTaskDetailsForm.actualDuration = this.dateDaysDiffCalculator(
@@ -493,33 +531,54 @@ export class ProjelerGanttComponent implements OnInit {
       );
     }
   }
-  onTaskUpdated(e: any) {
-    if (e.key != 0) {
-      // your code
-    }
-  }
 
   onSaveForm(e: any) {
     e.preventDefault();
     if (confirm('Proje/Görev/Operasyon Kaydet!') === true) {
-      const { resourceId, resourceText, ...everythingExceptresourceInfo } =
-        this.customTaskDetailsForm;
+      this.customTaskDetailsForm.resourceText = this.resources.find(
+        (resource) => resource.id == this.customTaskDetailsForm.resourceId
+      )?.text;
+      const {
+        resourceId,
+        resourceText,
+        start,
+        end,
+        taskPlannedStartDate,
+        taskPlannedEndDate,
+        ...everythingExceptresourceInfo
+      } = this.customTaskDetailsForm;
       this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
         ...everythingExceptresourceInfo,
+        start: new Date(start),
+        end: new Date(end),
+        taskPlannedStartDate: new Date(taskPlannedStartDate),
+        taskPlannedEndDate: new Date(taskPlannedEndDate),
+        resourceId: resourceId,
+        resourceText: resourceText,
+        // B.D: parentId: 0, eklenebilir eğer parent property yok ise... bunu en son ekle, problem çıkmazsa
       });
-      for (let i = 0; i < this.resourceAssignments.length; i++) {
-        if (
-          this.resourceAssignments[i].taskId === this.customTaskDetailsForm.id
-        ) {
-          this.resourceAssignments[i].resourceId = resourceId;
-        }
+      let resourceAssignmentIndex = this.resourceAssignments.findIndex(
+        (ra) => ra.taskId === this.customTaskDetailsForm.id
+      );
+      if (resourceAssignmentIndex === -1) {
+        this.resourceAssignments.push({
+          id: this.resourceAssignments.length,
+          taskId: this.customTaskDetailsForm.id,
+          resourceId: resourceId,
+        });
+      } else {
+        this.resourceAssignments[resourceAssignmentIndex].resourceId =
+          resourceId;
       }
+      // "refresh", ganttview güncellemesi için gerekli, treelist için şu an gerekli gözükmüyor.
       // this.gantt.instance.refresh();
+      this.isTaskDetailsFormPopupVisible = false;
     } else {
       this.customTaskDetailsForm = this.oldCustomTaskDetailsForm;
     }
-    this.isTaskDetailsFormPopupVisible = false;
+    let test5 = 'test';
   }
+
   // scale display formatter
   onScaleCellPrepared(e: any) {
     if (e.scaleType === 'weeks') {
@@ -554,48 +613,28 @@ export class ProjelerGanttComponent implements OnInit {
       ...e.values,
       title: 'Yeni Proje/Görev/Operasyon',
     };
-
-    let test = 'test';
   }
   onGanttTaskInserted(e: any) {
-    // for (let index = 0; index < this.tasks.length; index++) {
-    //   if (this.tasks[index].id === e.key) {
-    //     this.tasks[index].id = index;
-    //     break;
-    //   }
-    // }
-    // Yeni Task Oluşturulduktan sonra Varsayılan değerlere göre form oluşur...
+    e.cancel
+    let taskIndex = this.tasks.findIndex((task) => task.id === e.key);
 
-    this.customTaskDetailsForm = {
-      id: e.key,
-      parentId: e.values.parentId,
-      title: e.values.title,
-      taskPlannedStartDate: new Date(),
-      taskPlannedEndDate: new Date(),
-      plannedDuration: 0,
-      start: new Date(),
-      end: new Date(),
-      actualDuration: 0,
-      progress: e.values.progress,
-      taskCompany: 'Roboplas',
-      taskCustomer: 'Henüz Belirlenmedi',
-      taskStatus: 'Henüz Belirlenmedi',
-      taskNotes: 'Buraya Not Girebilirsiniz!',
-      taskIsRevision: false,
-      resourceId: 10,
-      resourceText: 'Henüz Belirlenmedi',
-      // rotayı elle seçtirmek gerekebilir
-      routeLevelNumber: 0,
-    };
-    this.resourceAssignments.push({
-      id: this.resourceAssignments.length,
-      taskId: e.key,
-      resourceId: 10,
-    });
-
+    if (!this.tasks[taskIndex].hasOwnProperty('parentId')) {
+      // bu akışı bozabilir, kontrol et
+      this.tasks[taskIndex]['parentId'] = 0;
+    }
+    // id ataması
+    // B.D: id 0 verilemiyor çünkü devextreme ganttcomponenti 0 idli taskı göstermiyor
+    let filteredTasks = this.tasks.filter(
+      (task) => typeof task.id === 'number'
+    );
+    let objMax = filteredTasks.reduce((max, current) =>
+      max.id > current.id ? max : current
+    );
+    this.tasks[taskIndex]['id'] = objMax.id + 1;
+    let gantt: any = this.gantt.instance;
+      let ganttTreeList = gantt['_treeList'] as dxTreeList;
     let test = 'test';
 
-    // this.gantt.instance.refresh();
   }
   // TreeList Columns
   onColumListTagBoxContentReady(e: any) {
@@ -629,40 +668,50 @@ export class ProjelerGanttComponent implements OnInit {
     // this.treeColor();
   }
 
+  // B.D: Buna gerek yok gibi, zaten kalıcı olarak çalışmıyor.
   ngAfterViewInit() {
     setTimeout(() => {
-      // this.treeColor();
-      if (this.tasks) {
-        let dxGanttTaskWrappers = this.el.nativeElement.querySelectorAll(
-          '.dx-gantt-taskWrapper'
-        );
+      // instances
+      // let gantt: any = this.gantt.instance;
+      // let ganttTreeList = gantt['_treeList'] as dxTreeList;
 
-        // B.D: Sanırım scroll veya responsive değiştikçe tekrar repaint ediyor, bu sebeple row positionları eski haline dönüyor!
-        for (
-          let index = 0, increase = 0;
-          index < dxGanttTaskWrappers.length;
-          index++, increase = increase + 58
-        ) {
-          // let el = this.renderer.selectRootElement(dxGanttTaskWrappers, true);
-          let toptest1 = 'test';
-          this.renderer.removeStyle(dxGanttTaskWrappers[index], 'top');
-          let toptest2 = 'test';
-          this.renderer.setStyle(
-            dxGanttTaskWrappers[index],
-            'top',
-            `${increase}px`
-          );
-          let toptest3 = 'test';
-          // if ((index === 5)) break;
-        }
-        let toptest4 = 'test';
-        // this.gantt.instance.repaint();
-        let toptest5 = 'test';
-      }
+      // ganttTreeList.on('onNodesInitialized', (e: any) => {
+      //   let test1 = 'test';
+      // });
+      // ganttTreeList.forEachNode(function (node: any) {
+      //   let result1 = node;
+      //   let result2 = ganttTreeList.collapseRow(node.key);
+      // });
+      // this.treeColor();
+      // if (this.tasks) {
+      //   let dxGanttTaskWrappers = this.el.nativeElement.querySelectorAll(
+      //     '.dx-gantt-taskWrapper'
+      //   );
+      //   // B.D: Sanırım scroll veya responsive değiştikçe tekrar repaint ediyor, bu sebeple row positionları eski haline dönüyor!
+      //   for (
+      //     let index = 0, increase = 0;
+      //     index < dxGanttTaskWrappers.length;
+      //     index++, increase = increase + 58
+      //   ) {
+      //     // let el = this.renderer.selectRootElement(dxGanttTaskWrappers, true);
+      //     let toptest1 = 'test';
+      //     this.renderer.removeStyle(dxGanttTaskWrappers[index], 'top');
+      //     let toptest2 = 'test';
+      //     this.renderer.setStyle(
+      //       dxGanttTaskWrappers[index],
+      //       'top',
+      //       `${increase}px`
+      //     );
+      //     let toptest3 = 'test';
+      //     // if ((index === 5)) break;
+      //   }
+      //   let toptest4 = 'test';
+      //   // this.gantt.instance.repaint();
+      //   let toptest5 = 'test';
+      // }
     }, 1000);
   }
 
-  onGanttContentReady(e: any) {}
   //tree list
 
   // ccc() {

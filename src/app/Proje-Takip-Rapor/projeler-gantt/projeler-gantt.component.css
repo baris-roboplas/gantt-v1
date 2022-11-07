@@ -133,3 +133,8 @@
   color: #f05b41;
   margin-right: 2px;
 }
+
+::ng-deep  .dx-item-content.dx-multiview-item-content {
+  padding-bottom:2rem!important;
+}
+

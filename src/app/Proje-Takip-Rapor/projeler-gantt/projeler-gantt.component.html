@@ -11,7 +11,7 @@
               <div class="label">Görünüm Tipi:</div>
               <div class="value">
                 <dx-select-box
-                  [items]="['Orijinal', 'Özelleştirilmiş-1']"
+                  [items]="['Görünüm-1', 'Görünüm-2']"
                   [(value)]="showDifferentTaskContent"
                   (valueChange)="repaint()"
                 ></dx-select-box>
@@ -36,7 +36,10 @@
                 ></dx-select-box>
               </div>
             </div>
-            <div *ngIf="showDifferentTaskContent === 'Orijinal'" class="option">
+            <div
+              *ngIf="showDifferentTaskContent === 'Görünüm-1'"
+              class="option"
+            >
               <div class="label">İsimlendirme Pozisyonu</div>
               <div class="value">
                 <dx-select-box
@@ -45,7 +48,10 @@
                 ></dx-select-box>
               </div>
             </div>
-            <div *ngIf="showDifferentTaskContent === 'Orijinal'" class="option">
+            <div
+              *ngIf="showDifferentTaskContent === 'Görünüm-1'"
+              class="option"
+            >
               <div class="label">Kaynakları Göster</div>
               <div class="value">
                 <dx-check-box [(value)]="showResources"></dx-check-box>
@@ -109,10 +115,13 @@
       <div class="col-12" id="projectGantt">
         <!-- [rootValue]="0" -->
         <dx-gantt
+          (onOptionChanged)="onGanttOptionChanged($event)"
+          (onScaleCellPrepared)="onGanttScaleCellPrepared($event)"
+          (onTaskUpdating)="onGanttTaskUpdating($event)"
+          (onTaskUpdated)="onGanttTaskUpdated($event)"
           (onTaskInserting)="onGanttTaskInserting($event)"
           (onTaskInserted)="onGanttTaskInserted($event)"
           (onContentReady)="onGanttContentReady($event)"
-          (onTaskUpdated)="onTaskUpdated($event)"
           (onScaleCellPrepared)="onScaleCellPrepared($event)"
           [firstDayOfWeek]="1"
           [taskListWidth]="1000"
@@ -123,11 +132,13 @@
           [showResources]="showResources"
           [showDependencies]="showDependencies"
           [taskContentTemplate]="
-            showDifferentTaskContent == 'Orijinal'
+            showDifferentTaskContent == 'Görünüm-1'
               ? undefined
               : showDifferentTaskContent
           "
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
+          [startDateRange]="startDateRange"
+          [endDateRange]="endDateRange"
         >
           <!-- [startDateRange]="startDateRange"
         [endDateRange]="endDateRange" -->
@@ -154,8 +165,14 @@
           <dxi-column
             dataField="title"
             caption="Proje/Görev/Operasyon"
-            [width]="200"
+            [width]="100"
             [(visible)]="columnList[2].isVisible"
+          ></dxi-column>
+          <dxi-column
+            dataField="taskNotes"
+            caption="Notlar"
+            dataType="string"
+            [(visible)]="columnList[13].isVisible"
           ></dxi-column>
           <dxi-column
             dataField="taskPlannedStartDate"
@@ -222,12 +239,7 @@
             dataType="string"
             [(visible)]="columnList[12].isVisible"
           ></dxi-column>
-          <dxi-column
-            dataField="taskNotes"
-            caption="Notlar"
-            dataType="string"
-            [(visible)]="columnList[13].isVisible"
-          ></dxi-column>
+
           <dxi-column
             dataField="taskIsRevision"
             caption="Revizyon?"
@@ -267,11 +279,13 @@
             <dxi-item name="zoomOut"></dxi-item>
             <dxi-item name="separator"></dxi-item>
             <dxi-item
-              *ngIf="showDifferentTaskContent === 'Orijinal'"
+              *ngIf="showDifferentTaskContent === 'Görünüm-1'"
               name="showResources"
             ></dxi-item>
             <dxi-item name="showDependencies"></dxi-item>
             <dxi-item name="separator"></dxi-item>
+            <dxi-item widget="dxButton" [options]="refreshGanttButtonOptions">
+            </dxi-item>
             <dxi-item widget="dxButton" [options]="saveDataButtonOptions">
             </dxi-item>
             <dxi-item name="separator"></dxi-item>
@@ -286,7 +300,7 @@
           <!-- Setting -->
           <dxo-validation
             [autoUpdateParentTasks]="true"
-            [validateDependencies]="true"
+            [validateDependencies]="false"
             [enablePredecessorGap]="true"
           ></dxo-validation>
           <dxo-editing [enabled]="true"></dxo-editing>
@@ -298,19 +312,39 @@
           <dxo-filter-row [visible]="true"></dxo-filter-row>
 
           <!-- Custom TaskContentTemplate -->
-          <div *dxTemplate="let item of 'Özelleştirilmiş-1'">
+          <div *dxTemplate="let item of 'Görünüm-2'">
             <!-- Planned Task Status Bar -->
             <!-- 'width.px': item.taskSize.width, -->
             <div
+              *ngIf="item.taskData.actualDuration == 0"
+              [ngStyle]="{
+                'height.px': '15',
+                'width.px': '15',
+                'background-color': '#555',
+                transform: 'rotate(45deg)',
+                'font-size': '0',
+                'top.px': '10',
+                position: 'absolute'
+              }"
+            ></div>
+            <div
               class="planned-task"
               [ngStyle]="
-                item.taskData.routeLevelNumber == 1
+                item.taskData.routeLevelNumber == 0
                   ? {
                       'width.px': item.taskSize.width,
                       'background-color': '#5cb85c',
                       'border-top-color:': '#5cb85c',
                       'border-left-color:': '#5cb85c',
                       'border-right-color:': '#5cb85c'
+                    }
+                  : item.taskData.routeLevelNumber == 1
+                  ? {
+                      'width.px': item.taskSize.width,
+                      'background-color': '#A149FA',
+                      'border-top-color:': '#A149FA',
+                      'border-left-color:': '#A149FA',
+                      'border-right-color:': '#A149FA'
                     }
                   : {
                       'width.px': item.taskSize.width
@@ -445,7 +479,6 @@
       id="popup"
       [(visible)]="isTaskDetailsFormPopupVisible"
       [hideOnOutsideClick]="false"
-      (onHidden)="byHiddenPopup($event)"
     >
       <!-- 1. title hazır liste veya custom olacak parent id varsa diye 4.resimhaizrlayan boolean olarak ngif* olacak 5. -->
       <dx-scroll-view width="100%" height="100%">
@@ -454,7 +487,7 @@
             <dx-form
               (onFieldDataChanged)="onFieldDataChanged($event)"
               id="form"
-              [formData]="customTaskDetailsForm"
+              [(formData)]="customTaskDetailsForm"
               labelLocation="left"
               [showColonAfterLabel]="false"
               [showValidationSummary]="true"
@@ -475,7 +508,6 @@
                   <!-- If Project Row, then show -->
                   <dxi-item
                     *ngIf="
-                      customTaskDetailsForm.parentId === 0 ||
                       customTaskDetailsForm.parentId === null ||
                       customTaskDetailsForm.parentId === undefined
                     "
@@ -487,7 +519,6 @@
                   <!-- Start: If Not Project Row, then show -->
                   <dxi-item
                     *ngIf="
-                      customTaskDetailsForm.parentId !== 0 &&
                       customTaskDetailsForm.parentId !== null &&
                       customTaskDetailsForm.parentId !== undefined
                     "
@@ -560,6 +591,7 @@
                     dataField="start"
                     editorType="dxDateBox"
                     [isRequired]="true"
+                    [disabled]="this.customTaskDetailsForm.parentId === null"
                     ><dxo-label [text]="'Gerçekleşen Başlangıç'"> </dxo-label
                   ></dxi-item>
                   <!-- Gerçekleşen Bitiş -->
@@ -768,7 +800,11 @@
                   </dxi-item>
                 </dxi-item>
                 <!-- Sütun-3 -->
-                <dxi-item itemType="group" caption="Görev Detayları-3">
+                <dxi-item
+                  itemType="group"
+                  caption="Görev Detayları-3"
+                  cssClass="ganttFormColumn3"
+                >
                   <!-- Tabs -->
                   <dxi-item itemType="tabbed">
                     <dxo-tab-panel-options> </dxo-tab-panel-options>
@@ -782,7 +818,7 @@
                           items: companies,
                           placeholder: 'Firma Seçiniz',
                           searchEnabled: true,
-                          searchTimeout: 200
+                          searchTimeout: 100
                         }"
                         [isRequired]="true"
                         ><dxo-label [text]="'Firma'"> </dxo-label
@@ -795,17 +831,34 @@
                           items: customers,
                           placeholder: 'Müşteri Seçiniz',
                           searchEnabled: true,
-                          searchTimeout: 200
+                          searchTimeout: 100
                         }"
                         [isRequired]="true"
                         ><dxo-label [text]="'Müşteri'"> </dxo-label
+                      ></dxi-item>
+                      <dxi-item
+                        dataField="routeLevelNumber"
+                        editorType="dxNumberBox"
+                        [editorOptions]="{
+                          showSpinButtons: true,
+                          readOnly: false,
+                          min: 0
+                        }"
+                        [isRequired]="true"
+                        ><dxo-label [text]="'Rota Seviyesi'"> </dxo-label
                       ></dxi-item>
                     </dxi-tab>
                     <!-- Tab-2 -->
                     <!-- Notlar -->
                     <dxi-tab title="Notlar">
                       <!-- Notlar -->
-                      <dxi-item dataField="taskNotes" editorType="dxTextArea">
+                      <dxi-item
+                        dataField="taskNotes"
+                        editorType="dxTextArea"
+                        [editorOptions]="{
+                          autoResizeEnabled: true
+                        }"
+                      >
                         <dxo-label [text]="'Notlar'"> </dxo-label>
                       </dxi-item>
                     </dxi-tab>
