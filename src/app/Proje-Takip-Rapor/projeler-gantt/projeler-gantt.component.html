@@ -12,7 +12,7 @@
               <div class="value">
                 <dx-select-box
                   [items]="['Görünüm-1', 'Görünüm-2']"
-                  [(value)]="showDifferentTaskContent"
+                  [(value)]="taskContentChoice"
                   (valueChange)="repaint()"
                 ></dx-select-box>
               </div>
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div
-              *ngIf="showDifferentTaskContent === 'Görünüm-1'"
+              *ngIf="taskContentChoice === 'Görünüm-1'"
               class="option"
             >
               <div class="label">İsimlendirme Pozisyonu</div>
@@ -49,7 +49,7 @@
               </div>
             </div>
             <div
-              *ngIf="showDifferentTaskContent === 'Görünüm-1'"
+              *ngIf="taskContentChoice === 'Görünüm-1'"
               class="option"
             >
               <div class="label">Kaynakları Göster</div>
@@ -131,11 +131,13 @@
           [showResources]="showResources"
           [showDependencies]="showDependencies"
           [taskContentTemplate]="
-            showDifferentTaskContent == 'Görünüm-1'
+            taskContentChoice == 'Görünüm-1'
               ? undefined
-              : showDifferentTaskContent
+              : taskContentChoice
           "
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
+          (onCustomCommand)="onCustomCommandClick($event)"
+      (onContextMenuPreparing)="onContextMenuPreparing($event)"
           [startDateRange]="startDateRange"
           [endDateRange]="endDateRange"
         >
@@ -150,6 +152,8 @@
             resourceIdExpr="resourceKey"
             taskIdExpr="taskKey"
           ></dxo-resource-assignments>
+          <dxo-context-menu [items]="contextMenuItems"></dxo-context-menu>
+
           <!-- Columns -->
           <!-- Burası for loop ile yapılabilir -->
           <dxi-column
@@ -280,7 +284,7 @@
             <dxi-item name="zoomOut"></dxi-item>
             <dxi-item name="separator"></dxi-item>
             <dxi-item
-              *ngIf="showDifferentTaskContent === 'Görünüm-1'"
+              *ngIf="taskContentChoice === 'Görünüm-1'"
               name="showResources"
             ></dxi-item>
             <dxi-item name="showDependencies"></dxi-item>
@@ -374,7 +378,7 @@
     </div>
     <!-- Export Options -->
     <!-- Popup yapılabilir -->
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-12">
         <div class="options">
           <div class="column">
@@ -451,8 +455,8 @@
               <div class="value">
                 <dx-date-box
                   [disabled]="customRangeDisabled"
-                  [(value)]="startDate"
-                  [max]="endDate"
+                  [(value)]="customStartDate"
+                  [max]="customEndDate"
                   type="date"
                 >
                 </dx-date-box>
@@ -463,8 +467,8 @@
               <div class="value">
                 <dx-date-box
                   [disabled]="customRangeDisabled"
-                  [(value)]="endDate"
-                  [min]="startDate"
+                  [(value)]="customEndDate"
+                  [min]="customStartDate"
                   type="date"
                 >
                 </dx-date-box>
@@ -473,7 +477,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Task Details Popup/Form -->
     <dx-popup
@@ -487,7 +491,7 @@
 
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
-          <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm.start">
+          <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm.start" >
             <dx-form
               (onFieldDataChanged)="onFieldDataChanged($event)"
 

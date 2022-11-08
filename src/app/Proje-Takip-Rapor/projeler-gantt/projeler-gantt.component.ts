@@ -5,11 +5,11 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
-  ViewChildren,
 } from '@angular/core';
 import {
   DxFormComponent,
   DxGanttComponent,
+  DxSchedulerComponent,
   DxTreeListComponent,
 } from 'devextreme-angular';
 import {
@@ -17,6 +17,9 @@ import {
   Dependency,
   Resource,
   ResourceAssignment,
+  TaskStatusList,
+  TaskOperationList,
+  CustomTaskDetailsForm,
 } from './model/gantt-data';
 
 import { GanttDataService } from './services/gantt-data.service';
@@ -35,20 +38,39 @@ import ArrayStore from 'devextreme/data/array_store';
   styleUrls: ['./projeler-gantt.component.css'],
 })
 export class ProjelerGanttComponent implements OnInit {
-  // default gantt dataSource
+  // Default Gantt DataSources
   tasks!: Task[];
   dependencies!: Dependency[];
   resources!: Resource[];
   resourceAssignments!: ResourceAssignment[];
+  contextMenuItems = [
+    {
+      name: 'addTask',
+      text: 'Yeni Iş Ekle',
+    },
+    {
+      name: 'taskdetails',
+      text: 'Iş Detay Bak',
+    },
+    {
+      name: 'deleteTask',
+      text: 'Işi Sil',
+    },
+    {
+      beginGroup: true,
+      name: 'addDefaultSubTasks',
+      text: 'Varsayılan Alt Işleri Ekle',
+      icon: 'hierarchy',
+    },
+  ];
 
-  // B.D: Modelleri Yapılabilir Belki
-  taskStatusList!: any;
-  taskOperationList!: any;
-  dataSourceFromtaskOperationList!: any; // B.D: tip datasource olabilir
-  dataSourceFromtaskStatusList!: any;
-  dataSourceFromresources!: any;
-  companies: any = ['Roboplas', 'Roboter', 'Roboplas NA'];
-  customers: any = [
+  taskStatusList!: TaskStatusList[];
+  taskOperationList!: TaskOperationList;
+  dataSourceFromtaskOperationList!: DataSource;
+  dataSourceFromtaskStatusList!: DataSource;
+  dataSourceFromresources!: DataSource;
+  companies = ['Roboplas', 'Roboter', 'Roboplas NA'];
+  customers = [
     'Henüz Belirlenmedi',
     '"Erp"de Yok',
     'TURAN',
@@ -65,7 +87,7 @@ export class ProjelerGanttComponent implements OnInit {
   ];
 
   // column settings
-  columnList: any[] = [
+  columnList = [
     {
       id: 0,
       dataField: 'taskKey',
@@ -176,13 +198,13 @@ export class ProjelerGanttComponent implements OnInit {
       isVisible: true,
     },
   ];
-  columnListDataSource: any = new DataSource({
+  columnListDataSource: DataSource = new DataSource({
     store: new ArrayStore({
       data: this.columnList,
       key: 'id',
     }),
   });
-  columnListTagBoxListValue: any[] = this.columnList
+  columnListTagBoxListValue = this.columnList
     .filter((column: any) => column.isVisible == true)
     .map((column: any) => column.id);
 
@@ -193,15 +215,14 @@ export class ProjelerGanttComponent implements OnInit {
   titlePosition!: string;
   showResources!: any;
   showDependencies!: any;
-  showDifferentTaskContent!: any;
+  taskContentChoice!: string;
   startDateRange!: any;
   endDateRange!: any;
 
   // custom toolbar settings
-  infoPopupButtonOptions: any;
-  saveDataButtonOptions: any;
-  refreshGanttButtonOptions: any;
-  exportButtonOptions: any;
+  saveDataButtonOptions!: object;
+  refreshGanttButtonOptions!: object;
+  exportButtonOptions!: object;
 
   // export options/filters definitions
   formats: string[] = ['A0', 'A1', 'A2', 'A3', 'A4', 'Auto'];
@@ -213,8 +234,8 @@ export class ProjelerGanttComponent implements OnInit {
   landscapeCheckBoxValue!: any;
   startTaskIndex!: number;
   endTaskIndex!: number;
-  startDate!: any;
-  endDate!: any;
+  customStartDate!: any;
+  customEndDate!: any;
   customRangeDisabled!: boolean;
 
   // sorting
@@ -222,8 +243,8 @@ export class ProjelerGanttComponent implements OnInit {
   showSortIndexes!: boolean;
 
   // Task Details Form/Popup
-  customTaskDetailsForm: any; // model yapılabilir
-  oldCustomTaskDetailsForm: any;
+  customTaskDetailsForm!: CustomTaskDetailsForm; // model yapılabilir
+  oldCustomTaskDetailsForm!: CustomTaskDetailsForm;
   submitButtonOptions = {
     text: 'Görev Detaylarını Kaydet',
     useSubmitBehavior: true,
@@ -237,9 +258,7 @@ export class ProjelerGanttComponent implements OnInit {
   dataLoading$!: Observable<any>;
   constructor(
     private ganttDataService: GanttDataService,
-    private ref: ChangeDetectorRef,
-    private renderer: Renderer2,
-    private el: ElementRef
+    private ref: ChangeDetectorRef
   ) {}
 
   // instances
@@ -247,7 +266,9 @@ export class ProjelerGanttComponent implements OnInit {
   gantt!: DxGanttComponent;
   @ViewChild(DxFormComponent, { static: false }) DxForm!: DxFormComponent;
   @ViewChild(DxTreeListComponent, { static: false })
-  DxTreeList!: DxTreeListComponent;
+  treeList!: DxTreeListComponent;
+  @ViewChild(DxSchedulerComponent, { static: false })
+  scheduler!: DxSchedulerComponent;
 
   ngOnInit(): void {
     // obs & data
@@ -306,7 +327,7 @@ export class ProjelerGanttComponent implements OnInit {
     this.titlePosition = 'outside';
     this.showResources = true;
     this.showDependencies = true;
-    this.showDifferentTaskContent = 'Görünüm-1';
+    this.taskContentChoice = 'Görünüm-1';
     this.startDateRange = new Date(new Date().getFullYear() - 2, 0);
     this.endDateRange = new Date(new Date().getFullYear() + 2, 0);
 
@@ -318,7 +339,7 @@ export class ProjelerGanttComponent implements OnInit {
       start: null,
       end: null,
       actualDuration: null,
-      progress: null,
+      progress: 0,
       taskPlannedStartDate: null,
       taskPlannedEndDate: null,
       plannedDuration: null,
@@ -329,6 +350,7 @@ export class ProjelerGanttComponent implements OnInit {
       taskNotes: 'Buraya Not Girebilirsiniz!',
       resourceKey: '10',
       resourceText: 'Henüz Belirlenmedi',
+      routeLevelNumber: null,
     };
 
     // export options/filters
@@ -370,10 +392,12 @@ export class ProjelerGanttComponent implements OnInit {
   }
 
   onCustomCommandClick(e: any) {
-    if (e.name == 'ToggleDisplayOfResources') {
-      this.showResources = !this.showResources;
+    if (e.name === 'addDefaultSubTasks') {
+      this.addMassTasks();
     }
   }
+  addMassTasks() {}
+  onContextMenuPreparing(e: any) {}
 
   // Export Options/Filters
   exportButtonClick() {
@@ -386,14 +410,22 @@ export class ProjelerGanttComponent implements OnInit {
     if (dataRangeMode === 'custom') {
       dataRange = {
         startIndex: this.startTaskIndex,
-        endIndex: this.endTaskIndex,
-        startDate: this.startDate,
-        endDate: this.endDate,
+        endIndex: this.endTaskIndex - 1,
+        startDate: this.customStartDate,
+        endDate: this.customEndDate,
       };
     }
-    // else {
-    //   dataRange = dataRangeMode;
-    // }
+    // B.D: GanttComponent "all" durumunda start ve end viewlerin alınmasını kendi hallediyor ama bu özellik deprecated olmuş dolayısıyla ne olur ne olmaz diye bu şekilde yazdım.
+    if (dataRangeMode === 'all') {
+      dataRange = {
+        startDate: this.startDateRange,
+        endDate: this.endDateRange,
+      };
+    }
+
+    // B.D: GanttComponent "visible" durumunda start ve end viewlerin alınmasını kendi hallediyor bu özellik deprecated olmuş ama görünen ganttview'ın start ve end değerlerini almak için bir yöntem bulamadım henüz.
+    // if(dataRangeMode === 'visible') {}
+
     exportGanttToPdf({
       component: gantt,
       createDocumentMethod: (args?: any) => new jsPDF(args),
@@ -452,36 +484,39 @@ export class ProjelerGanttComponent implements OnInit {
 
   onTaskEditDialogHiding(e: any) {}
   onTaskEditDialogHidden(e: any) {
-    this.DxForm.instance.resetValues();
+    this.DxForm?.instance.resetValues();
     // this.DxForm.instance.getEditor('routeLevelNumber')?.option('value', null);
     // formRef.current.instance.getEditor("birthDate").option("isValid", true);
   }
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
+    let findCurrentTaskObj = this.tasks.find((task) => task.taskKey === e.key);
     // New Task Form
-    if (
-      !this.tasks
-        .find((task) => task.taskKey === e.key)
-        ?.hasOwnProperty('taskPlannedStartDate')
-    ) {
-      let taskFormData = this.tasks.find((task) => task.taskKey === e.key);
-
+    if (!findCurrentTaskObj?.hasOwnProperty('taskPlannedStartDate')) {
+      // initial form values to be shown
       this.customTaskDetailsForm = {
-        ...taskFormData,
         ...this.customTaskDetailsForm,
-        taskPlannedStartDate: new Date(this.customTaskDetailsForm.start),
-        taskPlannedEndDate: new Date(this.customTaskDetailsForm.end),
-        plannedDuration: 0,
+        ...findCurrentTaskObj,
+        taskPlannedStartDate: new Date(e.values.start),
+        taskPlannedEndDate: new Date(e.values.end),
+        plannedDuration: this.dateDaysDiffCalculator(
+          e.values.start,
+          e.values.end
+        ),
         actualDuration: this.dateDaysDiffCalculator(
           e.values.start,
           e.values.end
         ),
+        title: null,
       };
+      let test1 = 'test1';
     }
     // Update Task Form
     else {
-      let selectedRowData = this.tasks.find((task) => task.taskKey === e.key);
+      // form sync with data
+      let selectedRowData = findCurrentTaskObj;
       this.customTaskDetailsForm = {
+        ...this.customTaskDetailsForm,
         ...selectedRowData,
         resourceKey: this.resources.find(
           (resource) =>

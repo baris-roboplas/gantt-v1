@@ -1,6 +1,7 @@
 {
   "ganttData": [
     {
+      "id": 1,
       "tasks": [
         {
           "parentTaskKey": null,
@@ -1115,8 +1116,7 @@
           "taskKey": "39",
           "resourceKey": "10"
         }
-      ],
-      "id": 1
+      ]
     }
   ],
   "ERPbasicData": [
@@ -1253,6 +1253,7 @@
       "taskOperationList": [
         {
           "id": 1,
+          "key": "1",
           "name": "Sipariş Süreci",
           "displayColor": "Çok Açık Mavi",
           "variousInfoRelations": [
@@ -1260,10 +1261,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 2,
+          "key": "2",
           "name": "Siparişin Alınması",
           "displayColor": "Çok Açık Mavi",
           "variousInfoRelations": [
@@ -1271,10 +1273,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Sipariş Süreci",
-          "preRouteId": 1
+          "preRouteKey": "1"
         },
         {
           "id": 3,
+          "key": "3",
           "name": "Sipariş Bilgi Toplama",
           "displayColor": "Çok Açık Mavi",
           "variousInfoRelations": [
@@ -1282,10 +1285,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Sipariş Süreci",
-          "preRouteId": 1
+          "preRouteKey": "1"
         },
         {
           "id": 4,
+          "key": "4",
           "name": "Tasarım Süreci",
           "displayColor": "Bej",
           "variousInfoRelations": [
@@ -1293,10 +1297,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 5,
+          "key": "5",
           "name": "Tasarım Işlemi(TASARIMCIYA TESLIM TARIHI)",
           "displayColor": "Bej",
           "variousInfoRelations": [
@@ -1304,10 +1309,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Tasarım Süreci",
-          "preRouteId": 4
+          "preRouteKey": "4"
         },
         {
           "id": 6,
+          "key": "6",
           "name": "Imalat Resminin Hazırlanması",
           "displayColor": "Bej",
           "variousInfoRelations": [
@@ -1315,10 +1321,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Tasarım Süreci",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 7,
+          "key": "7",
           "name": "Şase Üretim Süreci",
           "displayColor": "Açık Mavi",
           "variousInfoRelations": [
@@ -1326,10 +1333,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 8,
+          "key": "8",
           "name": "Şase; Dış Imalat",
           "displayColor": "Açık Mavi",
           "variousInfoRelations": [
@@ -1337,10 +1345,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Şase Üretim Süreci",
-          "preRouteId": 7
+          "preRouteKey": "7"
         },
         {
           "id": 9,
+          "key": "9",
           "name": "Şase; Lazer Kesim",
           "displayColor": "Açık Mavi",
           "variousInfoRelations": [
@@ -1348,10 +1357,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Şase Üretim Süreci",
-          "preRouteId": 7
+          "preRouteKey": "7"
         },
         {
           "id": 10,
+          "key": "10",
           "name": "Şase; Kaynak",
           "displayColor": "Açık Mavi",
           "variousInfoRelations": [
@@ -1359,10 +1369,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Şase Üretim Süreci",
-          "preRouteId": 7
+          "preRouteKey": "7"
         },
         {
           "id": 11,
+          "key": "11",
           "name": "Şase; Teslim",
           "displayColor": "Açık Mavi",
           "variousInfoRelations": [
@@ -1370,10 +1381,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Şase Üretim Süreci",
-          "preRouteId": 7
+          "preRouteKey": "7"
         },
         {
           "id": 12,
+          "key": "12",
           "name": "Dizme Üretim Süreci",
           "displayColor": "Açık Turuncu",
           "variousInfoRelations": [
@@ -1381,10 +1393,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 13,
+          "key": "13",
           "name": "Dizme; Iç Imalat",
           "displayColor": "Açık Turuncu",
           "variousInfoRelations": [
@@ -1392,10 +1405,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Dizme Üretim Süreci",
-          "preRouteId": 12
+          "preRouteKey": "12"
         },
         {
           "id": 14,
+          "key": "14",
           "name": "Dizme; Dış Imalat",
           "displayColor": "Açık Turuncu",
           "variousInfoRelations": [
@@ -1403,10 +1417,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Dizme Üretim Süreci",
-          "preRouteId": 12
+          "preRouteKey": "12"
         },
         {
           "id": 15,
+          "key": "15",
           "name": "Dizme; Satın Alma / Depo",
           "displayColor": "Açık Turuncu",
           "variousInfoRelations": [
@@ -1414,10 +1429,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Dizme Üretim Süreci",
-          "preRouteId": 12
+          "preRouteKey": "12"
         },
         {
           "id": 16,
+          "key": "16",
           "name": "Dizme; Montaj",
           "displayColor": "Açık Turuncu",
           "variousInfoRelations": [
@@ -1425,10 +1441,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Dizme Üretim Süreci",
-          "preRouteId": 12
+          "preRouteKey": "12"
         },
         {
           "id": 17,
+          "key": "17",
           "name": "Dizme; Tesisat",
           "displayColor": "Açık Turuncu",
           "variousInfoRelations": [
@@ -1436,10 +1453,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Dizme Üretim Süreci",
-          "preRouteId": 12
+          "preRouteKey": "12"
         },
         {
           "id": 18,
+          "key": "18",
           "name": "Ana Aks Kol Üretim Süreci",
           "displayColor": "Açık Mor",
           "variousInfoRelations": [
@@ -1447,10 +1465,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 19,
+          "key": "19",
           "name": "Ana Aks Kol; Iç Imalat",
           "displayColor": "Açık Mor",
           "variousInfoRelations": [
@@ -1458,10 +1477,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Ana Aks Kol Üretim Süreci",
-          "preRouteId": 18
+          "preRouteKey": "18"
         },
         {
           "id": 20,
+          "key": "20",
           "name": "Ana Aks Kol; Dış Imalat ",
           "displayColor": "Açık Mor",
           "variousInfoRelations": [
@@ -1469,10 +1489,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Ana Aks Kol Üretim Süreci",
-          "preRouteId": 18
+          "preRouteKey": "18"
         },
         {
           "id": 21,
+          "key": "21",
           "name": "Ana Aks Kol; Satın Alma / Depo ",
           "displayColor": "Açık Mor",
           "variousInfoRelations": [
@@ -1480,10 +1501,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Ana Aks Kol Üretim Süreci",
-          "preRouteId": 18
+          "preRouteKey": "18"
         },
         {
           "id": 22,
+          "key": "22",
           "name": "Ana Aks Kol; Montaj ",
           "displayColor": "Açık Mor",
           "variousInfoRelations": [
@@ -1491,10 +1513,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Ana Aks Kol Üretim Süreci",
-          "preRouteId": 18
+          "preRouteKey": "18"
         },
         {
           "id": 23,
+          "key": "23",
           "name": "Ana Aks Kol; Tesisat ",
           "displayColor": "Açık Mor",
           "variousInfoRelations": [
@@ -1502,10 +1525,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Ana Aks Kol Üretim Süreci",
-          "preRouteId": 18
+          "preRouteKey": "18"
         },
         {
           "id": 24,
+          "key": "24",
           "name": "Seperatör Üretim Süreci",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1513,10 +1537,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 25,
+          "key": "25",
           "name": "Seperatör; Iç Imalat",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1524,10 +1549,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Seperatör Üretim Süreci",
-          "preRouteId": 24
+          "preRouteKey": "24"
         },
         {
           "id": 26,
+          "key": "26",
           "name": "Seperatör; Dış Imalat",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1535,10 +1561,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Seperatör Üretim Süreci",
-          "preRouteId": 24
+          "preRouteKey": "24"
         },
         {
           "id": 27,
+          "key": "27",
           "name": "Seperatör; Satın Alma / Depo",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1546,10 +1573,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Seperatör Üretim Süreci",
-          "preRouteId": 24
+          "preRouteKey": "24"
         },
         {
           "id": 28,
+          "key": "28",
           "name": "Seperatör; Montaj",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1557,10 +1585,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Seperatör Üretim Süreci",
-          "preRouteId": 24
+          "preRouteKey": "24"
         },
         {
           "id": 29,
+          "key": "29",
           "name": "Seperatör; Tesisat",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1568,10 +1597,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Seperatör Üretim Süreci",
-          "preRouteId": 24
+          "preRouteKey": "24"
         },
         {
           "id": 30,
+          "key": "30",
           "name": "Test Süreci",
           "displayColor": "Gri",
           "variousInfoRelations": [
@@ -1579,10 +1609,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 31,
+          "key": "31",
           "name": "Test; Mekanik Ayar",
           "displayColor": "Gri",
           "variousInfoRelations": [
@@ -1590,10 +1621,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Test",
-          "preRouteId": 30
+          "preRouteKey": "30"
         },
         {
           "id": 32,
+          "key": "32",
           "name": "Test; Elektrik Testi",
           "displayColor": "Gri",
           "variousInfoRelations": [
@@ -1601,10 +1633,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Test",
-          "preRouteId": 30
+          "preRouteKey": "30"
         },
         {
           "id": 33,
+          "key": "33",
           "name": "Test; Yazılım Testi",
           "displayColor": "Gri",
           "variousInfoRelations": [
@@ -1612,10 +1645,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Test",
-          "preRouteId": 30
+          "preRouteKey": "30"
         },
         {
           "id": 34,
+          "key": "34",
           "name": "Test; Proje Kontrol",
           "displayColor": "Gri",
           "variousInfoRelations": [
@@ -1623,10 +1657,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Test",
-          "preRouteId": 30
+          "preRouteKey": "30"
         },
         {
           "id": 35,
+          "key": "35",
           "name": "Yükleme Formunun Hazırlanması",
           "displayColor": "Açık Kahverengi",
           "variousInfoRelations": [
@@ -1634,10 +1669,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Yükleme Süreçleri",
-          "preRouteId": 46
+          "preRouteKey": "46"
         },
         {
           "id": 36,
+          "key": "36",
           "name": "Yüklemenin Gerçekleştirilmesi",
           "displayColor": "Koyu Kahverengi",
           "variousInfoRelations": [
@@ -1645,10 +1681,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Yükleme Süreçleri",
-          "preRouteId": 46
+          "preRouteKey": "46"
         },
         {
           "id": 37,
+          "key": "37",
           "name": "Etiket Transfer Üretim Süreci",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1656,10 +1693,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 38,
+          "key": "38",
           "name": "Etiket Transfer; Iç Imalat",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1667,10 +1705,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Etiket Transfer Üretim Süreci",
-          "preRouteId": 37
+          "preRouteKey": "37"
         },
         {
           "id": 39,
+          "key": "39",
           "name": "Etiket Transfer; Dış Imalat",
           "displayColOrderor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1678,10 +1717,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Etiket Transfer Üretim Süreci",
-          "preRouteId": 37
+          "preRouteKey": "37"
         },
         {
           "id": 40,
+          "key": "40",
           "name": "Etiket Transfer; Satın Alma / Depo",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1689,10 +1729,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Etiket Transfer Üretim Süreci",
-          "preRouteId": 37
+          "preRouteKey": "37"
         },
         {
           "id": 41,
+          "key": "41",
           "name": "Etiket Transfer; Montaj",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1700,10 +1741,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Etiket Transfer Üretim Süreci",
-          "preRouteId": 37
+          "preRouteKey": "37"
         },
         {
           "id": 42,
+          "key": "42",
           "name": "Etiket Transfer; Tesisat",
           "displayColor": "Açık Yeşil",
           "variousInfoRelations": [
@@ -1711,10 +1753,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Etiket Transfer Üretim Süreci",
-          "preRouteId": 37
+          "preRouteKey": "37"
         },
         {
           "id": 43,
+          "key": "43",
           "name": "Yeni Proje/Görev/Operasyon",
           "displayColor": "Beyaz",
           "variousInfoRelations": [
@@ -1722,10 +1765,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "ERP Yazılım Süreçleri",
-          "preRouteId": 47
+          "preRouteKey": "47"
         },
         {
           "id": 44,
+          "key": "44",
           "name": "Tasarımcıya Teslim Tarihi",
           "displayColor": "beyaz",
           "variousInfoRelations": [
@@ -1733,10 +1777,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Tasarım Süreci",
-          "preRouteId": 4
+          "preRouteKey": "4"
         },
         {
           "id": 45,
+          "key": "45",
           "name": "Tasarım Hazırlık",
           "displayColor": "beyaz",
           "variousInfoRelations": [
@@ -1744,10 +1789,11 @@
           ],
           "routeLevelNumber": 2,
           "routeLevelName": "Tasarım Süreci",
-          "preRouteId": 4
+          "preRouteKey": "4"
         },
         {
           "id": 46,
+          "key": "46",
           "name": "Yükleme Süreçleri",
           "displayColor": "Koyu Kahverengi",
           "variousInfoRelations": [
@@ -1755,10 +1801,11 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         },
         {
           "id": 47,
+          "key": "47",
           "name": "ERP Ekran Geliştirmesi",
           "displayColor": "Beyaz",
           "variousInfoRelations": [
@@ -1766,7 +1813,7 @@
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
-          "preRouteId": 0
+          "preRouteKey": "0"
         }
       ]
     }
