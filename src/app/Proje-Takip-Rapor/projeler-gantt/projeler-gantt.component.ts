@@ -481,7 +481,14 @@ export class ProjelerGanttComponent implements OnInit {
 
     return Math.round(Difference_In_Days);
   }
+  onSelectionChanged(e:any){
 
+  }
+  onContentReady(e:any){
+
+  }
+  onInitialized(e:any){
+  }
   onTaskEditDialogHiding(e: any) {}
   onTaskEditDialogHidden(e: any) {
     this.DxForm?.instance.resetValues();

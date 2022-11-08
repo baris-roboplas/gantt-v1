@@ -1,114 +1,247 @@
 <ng-container *ngIf="(dataLoading$ | async) === false">
   <div class="container-fluid" #ganttElement>
-    <!-- Gantt Options -->
-    <div class="row mt-3 mb-3">
+    <div class="row">
       <div class="col-12">
-        <div class="options">
-          <!-- Sütun-1 -->
-          <div class="column">
-            <div class="caption">Genel Ayarlar</div>
-            <div class="option">
-              <div class="label">Görünüm Tipi:</div>
-              <div class="value">
-                <dx-select-box
-                  [items]="['Görünüm-1', 'Görünüm-2']"
-                  [(value)]="taskContentChoice"
-                  (valueChange)="repaint()"
-                ></dx-select-box>
+        <dx-accordion
+          #accordion
+          [selectedItem]="[]"
+          [collapsible]="true"
+          [multiple]="false"
+          [animationDuration]="450"
+          (onSelectionChanged)="onSelectionChanged($event)"
+      (onContentReady)="onContentReady($event)"
+      (onInitialized)="onInitialized($event)"
+
+        >
+
+          <dxi-item title="Çıktı Ayarları">
+            <!-- Export Options -->
+            <div class="row">
+              <div class="col-12">
+                {{ accordion.selectedItem | json }}
+                <div class="options">
+                  <div class="column">
+                    <div class="caption">Export Options</div>
+                    <div class="option">
+                      <div class="label">Document format:</div>
+                      <div class="value">
+                        <dx-select-box
+                          id="formatBox"
+                          [items]="formats"
+                          [(value)]="formatBoxValue"
+                        >
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">Landscape orientation:</div>
+                      <div class="value">
+                        <dx-check-box
+                          [(value)]="landscapeCheckBoxValue"
+                        ></dx-check-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">Export mode:</div>
+                      <div class="value">
+                        <dx-select-box
+                          [items]="exportModes"
+                          [(value)]="exportModeBoxValue"
+                        >
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">Date range:</div>
+                      <div class="value">
+                        <dx-select-box
+                          [items]="dateRanges"
+                          [(value)]="dateRangeBoxValue"
+                          (onValueChanged)="
+                            onDateRangeBoxSelectionChanged($event)
+                          "
+                        >
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="caption">Task Filter Options</div>
+                    <div class="option">
+                      <div class="label">Start task (index):</div>
+                      <div class="value">
+                        <dx-number-box
+                          [disabled]="customRangeDisabled"
+                          [(value)]="startTaskIndex"
+                          [min]="0"
+                          [max]="endTaskIndex"
+                          [showSpinButtons]="true"
+                        >
+                        </dx-number-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">End task (index):</div>
+                      <div class="value">
+                        <dx-number-box
+                          [disabled]="customRangeDisabled"
+                          [(value)]="endTaskIndex"
+                          [min]="startTaskIndex"
+                          [max]="tasks.length - 1"
+                          [showSpinButtons]="true"
+                        >
+                        </dx-number-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">Start date:</div>
+                      <div class="value">
+                        <dx-date-box
+                          [disabled]="customRangeDisabled"
+                          [(value)]="customStartDate"
+                          [max]="customEndDate"
+                          type="date"
+                        >
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">End date:</div>
+                      <div class="value">
+                        <dx-date-box
+                          [disabled]="customRangeDisabled"
+                          [(value)]="customEndDate"
+                          [min]="customStartDate"
+                          type="date"
+                        >
+                        </dx-date-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> </dxi-item
+          ><dxi-item title="Gantt Ayarları">
+            <!-- Gantt Options -->
+            <div class="row mt-3 mb-3">
+              <div class="col-12">
+                {{ accordion.selectedItem | json }}
+
+                <div class="options">
+                  <!-- Sütun-1 -->
+                  <div class="column">
+                    <div class="caption">Genel Ayarlar</div>
+                    <div class="option">
+                      <div class="label">Görünüm Tipi:</div>
+                      <div class="value">
+                        <dx-select-box
+                          [items]="['Görünüm-1', 'Görünüm-2']"
+                          [(value)]="taskContentChoice"
+                          (valueChange)="repaint()"
+                        ></dx-select-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">Zaman Dilimi Görünümü:</div>
+                      <div class="value">
+                        <dx-select-box
+                          [items]="[
+                            'auto',
+                            'minutes',
+                            'hours',
+                            'sixHours',
+                            'days',
+                            'weeks',
+                            'months',
+                            'quarters',
+                            'years'
+                          ]"
+                          [(value)]="scaleType"
+                        ></dx-select-box>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="taskContentChoice === 'Görünüm-1'"
+                      class="option"
+                    >
+                      <div class="label">İsimlendirme Pozisyonu</div>
+                      <div class="value">
+                        <dx-select-box
+                          [items]="['inside', 'outside', 'none']"
+                          [(value)]="titlePosition"
+                        ></dx-select-box>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="taskContentChoice === 'Görünüm-1'"
+                      class="option"
+                    >
+                      <div class="label">Kaynakları Göster</div>
+                      <div class="value">
+                        <dx-check-box [(value)]="showResources"></dx-check-box>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="label">Bağımlılıkları Göster</div>
+                      <div class="value">
+                        <dx-check-box
+                          [(value)]="showDependencies"
+                        ></dx-check-box>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Sütun-2 -->
+                  <div class="column">
+                    <div class="caption">Görünüme Bağlı Ayarlar</div>
+                    <!-- TreeView Sütun Seçme TagBox -->
+                    <div class="option">
+                      <div class="label">Gösterilecek Sütunlar</div>
+                      <div class="value">
+                        <dx-tag-box
+                          [dataSource]="columnListDataSource"
+                          valueExpr="id"
+                          displayExpr="caption"
+                          [(value)]="columnListTagBoxListValue"
+                          [searchEnabled]="false"
+                          (onValueChanged)="
+                            onColumnListTagboxValueChanged($event)
+                          "
+                          (onMultiTagPreparing)="
+                            onColumListTagBoxMultiTagPreparing($event)
+                          "
+                          [showSelectionControls]="true"
+                          [applyValueMode]="'useButtons'"
+                          [acceptCustomValue]="false"
+                          [multiline]="true"
+                          selectAllMode="allPages"
+                          [maxDisplayedTags]="2"
+                          [showMultiTagOnly]="false"
+                        ></dx-tag-box>
+                      </div>
+                    </div>
+                    <!-- Gantt Start Date Range -->
+                    <div class="option">
+                      <div class="label">Başlangıç Tarihi Aralığı:</div>
+                      <div class="value">
+                        <dx-date-box [(value)]="startDateRange"> </dx-date-box>
+                      </div>
+                    </div>
+                    <!-- Gantt End Date Range -->
+                    <div class="option">
+                      <div class="label">Bitiş Tarihi Aralığı:</div>
+                      <div class="value">
+                        <dx-date-box [(value)]="endDateRange"> </dx-date-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="option">
-              <div class="label">Zaman Dilimi Görünümü:</div>
-              <div class="value">
-                <dx-select-box
-                  [items]="[
-                    'auto',
-                    'minutes',
-                    'hours',
-                    'sixHours',
-                    'days',
-                    'weeks',
-                    'months',
-                    'quarters',
-                    'years'
-                  ]"
-                  [(value)]="scaleType"
-                ></dx-select-box>
-              </div>
-            </div>
-            <div
-              *ngIf="taskContentChoice === 'Görünüm-1'"
-              class="option"
-            >
-              <div class="label">İsimlendirme Pozisyonu</div>
-              <div class="value">
-                <dx-select-box
-                  [items]="['inside', 'outside', 'none']"
-                  [(value)]="titlePosition"
-                ></dx-select-box>
-              </div>
-            </div>
-            <div
-              *ngIf="taskContentChoice === 'Görünüm-1'"
-              class="option"
-            >
-              <div class="label">Kaynakları Göster</div>
-              <div class="value">
-                <dx-check-box [(value)]="showResources"></dx-check-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">Bağımlılıkları Göster</div>
-              <div class="value">
-                <dx-check-box [(value)]="showDependencies"></dx-check-box>
-              </div>
-            </div>
-          </div>
-          <!-- Sütun-2 -->
-          <div class="column">
-            <div class="caption">Görünüme Bağlı Ayarlar</div>
-            <!-- TreeView Sütun Seçme TagBox -->
-            <div class="option">
-              <div class="label">Gösterilecek Sütunlar</div>
-              <div class="value">
-                <dx-tag-box
-                  [dataSource]="columnListDataSource"
-                  valueExpr="id"
-                  displayExpr="caption"
-                  [(value)]="columnListTagBoxListValue"
-                  [searchEnabled]="false"
-                  (onValueChanged)="onColumnListTagboxValueChanged($event)"
-                  (onMultiTagPreparing)="
-                    onColumListTagBoxMultiTagPreparing($event)
-                  "
-                  [showSelectionControls]="true"
-                  [applyValueMode]="'useButtons'"
-                  [acceptCustomValue]="false"
-                  [multiline]="true"
-                  selectAllMode="allPages"
-                  [maxDisplayedTags]="2"
-                  [showMultiTagOnly]="false"
-                ></dx-tag-box>
-              </div>
-            </div>
-            <!-- Gantt Start Date Range -->
-            <div class="option">
-              <div class="label">Başlangıç Tarihi Aralığı:</div>
-              <div class="value">
-                <dx-date-box [(value)]="startDateRange"> </dx-date-box>
-              </div>
-            </div>
-            <!-- Gantt End Date Range -->
-            <div class="option">
-              <div class="label">Bitiş Tarihi Aralığı:</div>
-              <div class="value">
-                <dx-date-box [(value)]="endDateRange"> </dx-date-box>
-              </div>
-            </div>
-          </div>
-        </div>
+          </dxi-item>
+        </dx-accordion>
       </div>
     </div>
+
     <!-- Gantt -->
     <div class="row">
       <div class="col-12" id="projectGantt">
@@ -131,24 +264,33 @@
           [showResources]="showResources"
           [showDependencies]="showDependencies"
           [taskContentTemplate]="
-            taskContentChoice == 'Görünüm-1'
-              ? undefined
-              : taskContentChoice
+            taskContentChoice == 'Görünüm-1' ? undefined : taskContentChoice
           "
           (onTaskEditDialogShowing)="onTaskEditDialogShowing($event)"
           (onCustomCommand)="onCustomCommandClick($event)"
-      (onContextMenuPreparing)="onContextMenuPreparing($event)"
+          (onContextMenuPreparing)="onContextMenuPreparing($event)"
           [startDateRange]="startDateRange"
           [endDateRange]="endDateRange"
         >
           <!-- [startDateRange]="startDateRange"
         [endDateRange]="endDateRange" -->
           <!-- DataSources -->
-          <dxo-tasks [dataSource]="tasks" keyExpr="taskKey" parentIdExpr="parentTaskKey"></dxo-tasks>
-          <dxo-dependencies [dataSource]="dependencies" keyExpr="dependencyKey"></dxo-dependencies>
-          <dxo-resources [dataSource]="resources" keyExpr="resourceKey"></dxo-resources>
+          <dxo-tasks
+            [dataSource]="tasks"
+            keyExpr="taskKey"
+            parentIdExpr="parentTaskKey"
+          ></dxo-tasks>
+          <dxo-dependencies
+            [dataSource]="dependencies"
+            keyExpr="dependencyKey"
+          ></dxo-dependencies>
+          <dxo-resources
+            [dataSource]="resources"
+            keyExpr="resourceKey"
+          ></dxo-resources>
           <dxo-resource-assignments
-            [dataSource]="resourceAssignments" keyExpr="raKey"
+            [dataSource]="resourceAssignments"
+            keyExpr="raKey"
             resourceIdExpr="resourceKey"
             taskIdExpr="taskKey"
           ></dxo-resource-assignments>
@@ -376,108 +518,6 @@
         </dx-gantt>
       </div>
     </div>
-    <!-- Export Options -->
-    <!-- Popup yapılabilir -->
-    <div class="row">
-      <div class="col-12">
-        <div class="options">
-          <div class="column">
-            <div class="caption">Export Options</div>
-            <div class="option">
-              <div class="label">Document format:</div>
-              <div class="value">
-                <dx-select-box
-                  id="formatBox"
-                  [items]="formats"
-                  [(value)]="formatBoxValue"
-                >
-                </dx-select-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">Landscape orientation:</div>
-              <div class="value">
-                <dx-check-box [(value)]="landscapeCheckBoxValue"></dx-check-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">Export mode:</div>
-              <div class="value">
-                <dx-select-box
-                  [items]="exportModes"
-                  [(value)]="exportModeBoxValue"
-                >
-                </dx-select-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">Date range:</div>
-              <div class="value">
-                <dx-select-box
-                  [items]="dateRanges"
-                  [(value)]="dateRangeBoxValue"
-                  (onValueChanged)="onDateRangeBoxSelectionChanged($event)"
-                >
-                </dx-select-box>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="caption">Task Filter Options</div>
-            <div class="option">
-              <div class="label">Start task (index):</div>
-              <div class="value">
-                <dx-number-box
-                  [disabled]="customRangeDisabled"
-                  [(value)]="startTaskIndex"
-                  [min]="0"
-                  [max]="endTaskIndex"
-                  [showSpinButtons]="true"
-                >
-                </dx-number-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">End task (index):</div>
-              <div class="value">
-                <dx-number-box
-                  [disabled]="customRangeDisabled"
-                  [(value)]="endTaskIndex"
-                  [min]="startTaskIndex"
-                  [max]="tasks.length - 1"
-                  [showSpinButtons]="true"
-                >
-                </dx-number-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">Start date:</div>
-              <div class="value">
-                <dx-date-box
-                  [disabled]="customRangeDisabled"
-                  [(value)]="customStartDate"
-                  [max]="customEndDate"
-                  type="date"
-                >
-                </dx-date-box>
-              </div>
-            </div>
-            <div class="option">
-              <div class="label">End date:</div>
-              <div class="value">
-                <dx-date-box
-                  [disabled]="customRangeDisabled"
-                  [(value)]="customEndDate"
-                  [min]="customStartDate"
-                  type="date"
-                >
-                </dx-date-box>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Task Details Popup/Form -->
     <dx-popup
@@ -487,21 +527,22 @@
       (onHidden)="onTaskEditDialogHidden($event)"
       (onHiding)="onTaskEditDialogHiding($event)"
     >
-    {{customTaskDetailsForm | json}}
+      {{ customTaskDetailsForm | json }}
 
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
-          <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm.start" >
+          <form
+            (submit)="onSaveForm($event)"
+            *ngIf="customTaskDetailsForm.start"
+          >
             <dx-form
               (onFieldDataChanged)="onFieldDataChanged($event)"
-
               id="form"
               [(formData)]="customTaskDetailsForm"
               labelLocation="left"
               [showColonAfterLabel]="false"
               [showValidationSummary]="true"
             >
-
               <!-- Ana Grup-1 -->
               <dxi-item itemType="group" [colCount]="3">
                 <!-- Sütun-1 -->
@@ -513,7 +554,10 @@
                     [editorOptions]="{ disabled: true }"
                   ></dxi-item>
                   <!-- parentTaskKey -->
-                  <dxi-item dataField="parentTaskKey" [visible]="false"></dxi-item>
+                  <dxi-item
+                    dataField="parentTaskKey"
+                    [visible]="false"
+                  ></dxi-item>
                   <!-- Proje/Görev/Operasyon -->
                   <!-- If Project Row, then show -->
                   <dxi-item
@@ -601,7 +645,9 @@
                     dataField="start"
                     editorType="dxDateBox"
                     [isRequired]="true"
-                    [disabled]="this.customTaskDetailsForm.parentTaskKey === null"
+                    [disabled]="
+                      this.customTaskDetailsForm.parentTaskKey === null
+                    "
                     ><dxo-label [text]="'Gerçekleşen Başlangıç'"> </dxo-label
                   ></dxi-item>
                   <!-- Gerçekleşen Bitiş -->
