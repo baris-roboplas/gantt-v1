@@ -7,7 +7,11 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { DxGanttComponent, DxTreeListComponent } from 'devextreme-angular';
+import {
+  DxFormComponent,
+  DxGanttComponent,
+  DxTreeListComponent,
+} from 'devextreme-angular';
 import {
   Task,
   Dependency,
@@ -64,14 +68,14 @@ export class ProjelerGanttComponent implements OnInit {
   columnList: any[] = [
     {
       id: 0,
-      dataField: 'id',
-      caption: 'ID',
+      dataField: 'taskKey',
+      caption: 'TASK KEY',
       isVisible: true,
     },
     {
       id: 1,
-      dataField: 'parentId',
-      caption: 'Üst ID',
+      dataField: 'parentTaskKey',
+      caption: 'PARENT TASK KEY',
       isVisible: true,
     },
     {
@@ -155,8 +159,8 @@ export class ProjelerGanttComponent implements OnInit {
     },
     {
       id: 15,
-      dataField: 'resourceId',
-      caption: 'Kaynak ID',
+      dataField: 'resourceKey',
+      caption: 'Kaynak Key',
       isVisible: true,
     },
     {
@@ -241,7 +245,9 @@ export class ProjelerGanttComponent implements OnInit {
   // instances
   @ViewChild(DxGanttComponent, { static: false })
   gantt!: DxGanttComponent;
-  // @ViewChild(DxTreeListComponent, { static: false }) treeList!: DxTreeListComponent;
+  @ViewChild(DxFormComponent, { static: false }) DxForm!: DxFormComponent;
+  @ViewChild(DxTreeListComponent, { static: false })
+  DxTreeList!: DxTreeListComponent;
 
   ngOnInit(): void {
     // obs & data
@@ -281,8 +287,9 @@ export class ProjelerGanttComponent implements OnInit {
         this.dataSourceFromresources = new DataSource({
           store: new ArrayStore({
             data: data[0].resources,
-            key: 'id',
+            key: 'resourceKey',
           }),
+          // B.D resrouceType ??????
           group: 'resourceType',
         });
 
@@ -305,8 +312,8 @@ export class ProjelerGanttComponent implements OnInit {
 
     // gantt form
     this.customTaskDetailsForm = {
-      id: null,
-      parentId: null,
+      taskKey: null,
+      parentTaskKey: null,
       title: null,
       start: null,
       end: null,
@@ -315,14 +322,13 @@ export class ProjelerGanttComponent implements OnInit {
       taskPlannedStartDate: null,
       taskPlannedEndDate: null,
       plannedDuration: null,
-      taskCompany: null,
-      taskIsRevision: null,
-      taskCustomer: null,
-      taskNotes: null,
-      taskStatus: null,
-      routeLevelNumber: null,
-      resourceId: null,
-      resourceText: null,
+      taskIsRevision: false,
+      taskCompany: 'Roboplas',
+      taskCustomer: 'Henüz Belirlenmedi',
+      taskStatus: 'Henüz Belirlenmedi',
+      taskNotes: 'Buraya Not Girebilirsiniz!',
+      resourceKey: '10',
+      resourceText: 'Henüz Belirlenmedi',
     };
 
     // export options/filters
@@ -443,22 +449,26 @@ export class ProjelerGanttComponent implements OnInit {
 
     return Math.round(Difference_In_Days);
   }
+
+  onTaskEditDialogHiding(e: any) {}
+  onTaskEditDialogHidden(e: any) {
+    this.DxForm.instance.resetValues();
+    // this.DxForm.instance.getEditor('routeLevelNumber')?.option('value', null);
+    // formRef.current.instance.getEditor("birthDate").option("isValid", true);
+  }
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
     // New Task Form
     if (
       !this.tasks
-        .find((task) => task.id === e.key)
+        .find((task) => task.taskKey === e.key)
         ?.hasOwnProperty('taskPlannedStartDate')
     ) {
-      this.customTaskDetailsForm = this.tasks.find((task) => task.id === e.key);
-      // // B.D: Parent yoksa e.parentId gelmiyor, duruma göre sonra ekle
-      // if (!this.customTaskDetailsForm['parentId']) {
-      //   this.customTaskDetailsForm['parentId'] = 0;
-      // }
+      let taskFormData = this.tasks.find((task) => task.taskKey === e.key);
+
       this.customTaskDetailsForm = {
+        ...taskFormData,
         ...this.customTaskDetailsForm,
-        title: null,
         taskPlannedStartDate: new Date(this.customTaskDetailsForm.start),
         taskPlannedEndDate: new Date(this.customTaskDetailsForm.end),
         plannedDuration: 0,
@@ -466,33 +476,27 @@ export class ProjelerGanttComponent implements OnInit {
           e.values.start,
           e.values.end
         ),
-        taskCompany: 'Roboplas',
-        taskCustomer: 'Henüz Belirlenmedi',
-        taskStatus: 'Henüz Belirlenmedi',
-        taskNotes: 'Buraya Not Girebilirsiniz!',
-        taskIsRevision: false,
-        resourceId: 10,
-        resourceText: 'Henüz Belirlenmedi',
       };
     }
     // Update Task Form
     else {
-      let selectedRowData = this.tasks.find((task) => task.id === e.key);
+      let selectedRowData = this.tasks.find((task) => task.taskKey === e.key);
       this.customTaskDetailsForm = {
         ...selectedRowData,
-        resourceId: this.resources.find(
+        resourceKey: this.resources.find(
           (resource) =>
-            resource.id ==
-            this.resourceAssignments.find((ra) => ra.taskId == e.key)
-              ?.resourceId
-        )?.id,
+            resource.resourceKey ==
+            this.resourceAssignments.find((ra) => ra.taskKey == e.key)
+              ?.resourceKey
+        )?.resourceKey,
         resourceText: this.resources.find(
           (resource) =>
-            resource.id ==
-            this.resourceAssignments.find((ra) => ra.taskId == e.key)
-              ?.resourceId
+            resource.resourceKey ==
+            this.resourceAssignments.find((ra) => ra.taskKey == e.key)
+              ?.resourceKey
         )?.text,
       };
+      let test6 = 'test';
     }
 
     this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
@@ -536,10 +540,11 @@ export class ProjelerGanttComponent implements OnInit {
     e.preventDefault();
     if (confirm('Proje/Görev/Operasyon Kaydet!') === true) {
       this.customTaskDetailsForm.resourceText = this.resources.find(
-        (resource) => resource.id == this.customTaskDetailsForm.resourceId
+        (resource) =>
+          resource.resourceKey == this.customTaskDetailsForm.resourceKey
       )?.text;
       const {
-        resourceId,
+        resourceKey,
         resourceText,
         start,
         end,
@@ -547,28 +552,28 @@ export class ProjelerGanttComponent implements OnInit {
         taskPlannedEndDate,
         ...everythingExceptresourceInfo
       } = this.customTaskDetailsForm;
-      this.gantt.instance.updateTask(this.customTaskDetailsForm.id, {
+      this.gantt.instance.updateTask(this.customTaskDetailsForm.taskKey, {
         ...everythingExceptresourceInfo,
         start: new Date(start),
         end: new Date(end),
         taskPlannedStartDate: new Date(taskPlannedStartDate),
         taskPlannedEndDate: new Date(taskPlannedEndDate),
-        resourceId: resourceId,
+        resourceKey: resourceKey,
         resourceText: resourceText,
         // B.D: parentId: 0, eklenebilir eğer parent property yok ise... bunu en son ekle, problem çıkmazsa
       });
       let resourceAssignmentIndex = this.resourceAssignments.findIndex(
-        (ra) => ra.taskId === this.customTaskDetailsForm.id
+        (ra) => ra.taskKey === this.customTaskDetailsForm.taskKey
       );
       if (resourceAssignmentIndex === -1) {
         this.resourceAssignments.push({
-          id: this.resourceAssignments.length,
-          taskId: this.customTaskDetailsForm.id,
-          resourceId: resourceId,
+          raKey: String(this.resourceAssignments.length),
+          taskKey: this.customTaskDetailsForm.taskKey,
+          resourceKey: resourceKey,
         });
       } else {
-        this.resourceAssignments[resourceAssignmentIndex].resourceId =
-          resourceId;
+        this.resourceAssignments[resourceAssignmentIndex].resourceKey =
+          resourceKey;
       }
       // "refresh", ganttview güncellemesi için gerekli, treelist için şu an gerekli gözükmüyor.
       // this.gantt.instance.refresh();
@@ -615,31 +620,16 @@ export class ProjelerGanttComponent implements OnInit {
     };
   }
   onGanttTaskInserted(e: any) {
-    e.cancel
-    let taskIndex = this.tasks.findIndex((task) => task.id === e.key);
+    e.cancel;
+    let taskIndex = this.tasks.findIndex((task) => task.taskKey === e.key);
 
-    if (!this.tasks[taskIndex].hasOwnProperty('parentId')) {
+    if (!this.tasks[taskIndex].hasOwnProperty('parentTaskKey')) {
       // bu akışı bozabilir, kontrol et
-      this.tasks[taskIndex]['parentId'] = 0;
+      this.tasks[taskIndex]['parentTaskKey'] = null;
     }
-    // id ataması
-    // B.D: id 0 verilemiyor çünkü devextreme ganttcomponenti 0 idli taskı göstermiyor
-    let filteredTasks = this.tasks.filter(
-      (task) => typeof task.id === 'number'
-    );
-    let objMax = filteredTasks.reduce((max, current) =>
-      max.id > current.id ? max : current
-    );
-    this.tasks[taskIndex]['id'] = objMax.id + 1;
-    let gantt: any = this.gantt.instance;
-      let ganttTreeList = gantt['_treeList'] as dxTreeList;
-    let test = 'test';
-
   }
   // TreeList Columns
-  onColumListTagBoxContentReady(e: any) {
-    // B.D: Gerek Kalmadı
-  }
+
   onColumnListTagboxValueChanged(e: any) {
     const newValue = e.value;
     this.columnList.forEach((column, index) => {
@@ -674,7 +664,6 @@ export class ProjelerGanttComponent implements OnInit {
       // instances
       // let gantt: any = this.gantt.instance;
       // let ganttTreeList = gantt['_treeList'] as dxTreeList;
-
       // ganttTreeList.on('onNodesInitialized', (e: any) => {
       //   let test1 = 'test';
       // });

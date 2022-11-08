@@ -1,9 +1,9 @@
 // bunları class değil interface yapmak daha iyi olur mu?
 export class Task {
-  id!: number;
+  taskKey!: string;
 
   // B.D: Şimdilik ? olarak kalsın
-  parentId?: number;
+  parentTaskKey!: string | null;
 
   title!: string;
 
@@ -33,14 +33,14 @@ export class Task {
 
   routeLevelNumber!: number;
 
-  resourceId!: number;
+  resourceKey!: string;
 
   resourceText!: string;
 
 }
 
 export class Dependency {
-  id!: number;
+  dependencyKey!: string;
 
   predecessorId!: number;
 
@@ -50,23 +50,25 @@ export class Dependency {
 }
 
 export class Resource {
-  id!: number;
+  resourceKey!: string;
 
   text!: string;
+
+  resourceType!: string;
 }
 
 export class ResourceAssignment {
-  id!: number;
+  raKey!: string;
 
-  taskId!: number;
+  taskKey!: string;
 
-  resourceId!: number;
+  resourceKey!: string;
 }
 
 export interface CustomTaskDetailsForm {
   // sonra dahil et
-  id: undefined | null | number;
-  parentId: undefined | null | number;
+  taskKey: undefined | null | string;
+  parentTaskKey: undefined | null | string;
   title: undefined | null | string;
   start: undefined | null | Date;
   end: undefined | null | Date;
@@ -81,7 +83,7 @@ export interface CustomTaskDetailsForm {
   taskNotes: undefined | null | string;
   taskStatus: undefined | null | string;
   routeLevelNumber: undefined | null | number;
-  resourceId: undefined | null | number;
+  resourceKey: undefined | null | string;
   resourceText: undefined | null | string;
 }
 

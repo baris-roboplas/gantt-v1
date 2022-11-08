@@ -3,13 +3,13 @@
     {
       "tasks": [
         {
-          "parentId":"0",
+          "parentTaskKey": null,
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
           "title": "Robot: 612",
           "color": "",
-          "id": "1",
+          "taskKey": "1",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2020-11-23T21:00:00.000Z",
           "taskPlannedEndDate": "2020-11-23T21:00:00.000Z",
@@ -19,18 +19,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
-          "resourceText": "Henüz Belirlenmedi",
+          "resourceKey": "16",
+          "resourceText": "DIŞ; Fason-3",
           "routeLevelNumber": 0
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2020-11-27T21:00:00.000Z",
           "progress": 0,
           "title": "Sipariş Süreci",
           "color": "",
-          "id": "2",
+          "taskKey": "2",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2020-11-23T21:00:00.000Z",
           "taskPlannedEndDate": "2020-11-27T21:00:00.000Z",
@@ -40,18 +40,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "2",
+          "parentTaskKey": "2",
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2020-11-24T21:00:00.000Z",
           "progress": 0,
           "title": "Siparişin Alınması",
           "color": "",
-          "id": "3",
+          "taskKey": "3",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2020-11-23T21:00:00.000Z",
           "taskPlannedEndDate": "2020-11-24T21:00:00.000Z",
@@ -61,18 +61,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "2",
+          "parentTaskKey": "2",
           "start": "2020-11-24T21:00:00.000Z",
           "end": "2020-11-27T21:00:00.000Z",
           "progress": 0,
           "title": "Sipariş Bilgi Toplama",
           "color": "",
-          "id": "4",
+          "taskKey": "4",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2020-11-24T21:00:00.000Z",
           "taskPlannedEndDate": "2020-11-27T21:00:00.000Z",
@@ -82,18 +82,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2020-11-27T21:00:00.000Z",
           "end": "2021-02-04T21:00:00.000Z",
           "progress": 0,
           "title": "Tasarım Süreci",
           "color": "",
-          "id": "5",
+          "taskKey": "5",
           "taskNotes": "1) 612 PROF - PRESS ROBOT. LAYOUT MÜŞTERİYE GÖNDERİLİP ONAYLADIKTAN SONRA İMALATA VERİLMELİDİR. SİPARİŞ:24.11.2020 TESLİM:CW09  ",
           "taskPlannedStartDate": "2020-11-27T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-14T21:00:00.000Z",
@@ -103,18 +103,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "5",
+          "parentTaskKey": "5",
           "start": "2020-11-27T21:00:00.000Z",
           "end": "2020-12-17T21:00:00.000Z",
           "progress": 0,
           "title": "Tasarım Hazırlık",
           "color": "",
-          "id": "6",
+          "taskKey": "6",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2020-11-27T21:00:00.000Z",
           "taskPlannedEndDate": "2020-11-28T21:00:00.000Z",
@@ -124,18 +124,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "5",
+          "parentTaskKey": "5",
           "start": "2021-02-03T21:00:00.000Z",
           "end": "2021-02-04T21:00:00.000Z",
           "progress": 0,
           "title": "Imalat Resminin Hazırlanması",
           "color": "",
-          "id": "7",
+          "taskKey": "7",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-13T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-14T21:00:00.000Z",
@@ -145,18 +145,18 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2021-02-05T21:00:00.000Z",
           "end": "2021-02-22T21:00:00.000Z",
           "progress": 0,
           "title": "Şase Üretim Süreci",
           "color": "",
-          "id": "8",
+          "taskKey": "8",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-28T21:00:00.000Z",
@@ -166,18 +166,18 @@
           "taskCustomer": "TURAN",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "8",
+          "parentTaskKey": "8",
           "start": "2021-02-05T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
           "title": "Şase; Dış Imalat",
           "color": "",
-          "id": "9",
+          "taskKey": "9",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -187,18 +187,18 @@
           "taskCustomer": "TURAN",
           "taskStatus": "Operasyon Tamamlandı",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "8",
+          "parentTaskKey": "8",
           "start": "2021-02-05T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
           "title": "Şase; Lazer Kesim",
           "color": "",
-          "id": "10",
+          "taskKey": "10",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -208,18 +208,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "8",
+          "parentTaskKey": "8",
           "start": "2021-02-14T21:00:00.000Z",
           "end": "2021-02-22T21:00:00.000Z",
           "progress": 0,
           "title": "Şase; Kaynak",
           "color": "",
-          "id": "11",
+          "taskKey": "11",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-17T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-28T21:00:00.000Z",
@@ -229,18 +229,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "8",
+          "parentTaskKey": "8",
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-02-21T21:00:00.000Z",
           "progress": 0,
           "title": "Şase; Teslim",
           "color": "",
-          "id": "12",
+          "taskKey": "12",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-27T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-27T21:00:00.000Z",
@@ -250,18 +250,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Dizme Üretim Süreci",
           "color": "",
-          "id": "13",
+          "taskKey": "13",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-10T21:00:00.000Z",
@@ -271,18 +271,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "13",
+          "parentTaskKey": "13",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
           "title": "Dizme; Iç Imalat",
           "color": "",
-          "id": "14",
+          "taskKey": "14",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -292,18 +292,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "13",
+          "parentTaskKey": "13",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Dizme; Dış Imalat",
           "color": "",
-          "id": "15",
+          "taskKey": "15",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-07T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-15T21:00:00.000Z",
@@ -313,18 +313,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "13",
+          "parentTaskKey": "13",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Dizme; Satın Alma / Depo",
           "color": "",
-          "id": "16",
+          "taskKey": "16",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-07T21:00:00.000Z",
           "taskPlannedEndDate": "2021-03-12T21:00:00.000Z",
@@ -334,18 +334,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "13",
+          "parentTaskKey": "13",
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Dizme; Montaj",
           "color": "",
-          "id": "17",
+          "taskKey": "17",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-21T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-02T21:00:00.000Z",
@@ -355,18 +355,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "13",
+          "parentTaskKey": "13",
           "start": "2021-02-24T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Dizme; Tesisat",
           "color": "",
-          "id": "18",
+          "taskKey": "18",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-29T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-10T21:00:00.000Z",
@@ -376,18 +376,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
           "title": "Ana Aks Kol Üretim Süreci",
           "color": "",
-          "id": "19",
+          "taskKey": "19",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-10T21:00:00.000Z",
@@ -397,18 +397,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "19",
+          "parentTaskKey": "19",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
           "title": "Ana Aks Kol; Iç Imalat",
           "color": "",
-          "id": "20",
+          "taskKey": "20",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -418,18 +418,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "19",
+          "parentTaskKey": "19",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Ana Aks Kol; Dış Imalat ",
           "color": "",
-          "id": "21",
+          "taskKey": "21",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -439,18 +439,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "19",
+          "parentTaskKey": "19",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Ana Aks Kol; Satın Alma / Depo ",
           "color": "",
-          "id": "22",
+          "taskKey": "22",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -460,18 +460,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "19",
+          "parentTaskKey": "19",
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-03-15T21:00:00.000Z",
           "progress": 0,
           "title": "Ana Aks Kol; Montaj ",
           "color": "",
-          "id": "23",
+          "taskKey": "23",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-01T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-02T21:00:00.000Z",
@@ -481,18 +481,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "19",
+          "parentTaskKey": "19",
           "start": "2021-02-24T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
           "title": "Ana Aks Kol; Tesisat ",
           "color": "",
-          "id": "24",
+          "taskKey": "24",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-29T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-10T21:00:00.000Z",
@@ -502,18 +502,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
           "title": "Etiket Transfer Üretim Süreci",
           "color": "",
-          "id": "26",
+          "taskKey": "26",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-10T21:00:00.000Z",
@@ -523,18 +523,18 @@
           "taskCustomer": "TURAN",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "26",
+          "parentTaskKey": "26",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
           "title": "Etiket Transfer; Iç Imalat",
           "color": "",
-          "id": "27",
+          "taskKey": "27",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -544,18 +544,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "26",
+          "parentTaskKey": "26",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Etiket Transfer; Dış Imalat",
           "color": "",
-          "id": "28",
+          "taskKey": "28",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -565,18 +565,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "26",
+          "parentTaskKey": "26",
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
           "title": "Etiket Transfer; Satın Alma / Depo",
           "color": "",
-          "id": "29",
+          "taskKey": "29",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-01-26T21:00:00.000Z",
@@ -586,18 +586,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "26",
+          "parentTaskKey": "26",
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
           "title": "Etiket Transfer; Montaj",
           "color": "",
-          "id": "30",
+          "taskKey": "30",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-21T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-02T21:00:00.000Z",
@@ -607,18 +607,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "26",
+          "parentTaskKey": "26",
           "start": "2021-02-24T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
           "title": "Etiket Transfer; Tesisat",
           "color": "",
-          "id": "31",
+          "taskKey": "31",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-01-29T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-10T21:00:00.000Z",
@@ -628,18 +628,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2021-02-15T21:00:00.000Z",
           "end": "2021-03-30T21:00:00.000Z",
           "progress": 0,
           "title": "Test",
           "color": "",
-          "id": "32",
+          "taskKey": "32",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-10T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-26T21:00:00.000Z",
@@ -649,18 +649,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "32",
+          "parentTaskKey": "32",
           "start": "2021-03-14T21:00:00.000Z",
           "end": "2021-03-17T21:00:00.000Z",
           "progress": 0,
           "title": "Test; Mekanik Ayar",
           "color": "",
-          "id": "33",
+          "taskKey": "33",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-10T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-13T21:00:00.000Z",
@@ -670,18 +670,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "32",
+          "parentTaskKey": "32",
           "start": "2021-03-14T21:00:00.000Z",
           "end": "2021-03-22T21:00:00.000Z",
           "progress": 0,
           "title": "Test; Elektrik Testi",
           "color": "",
-          "id": "34",
+          "taskKey": "34",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-10T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-13T21:00:00.000Z",
@@ -691,18 +691,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "32",
+          "parentTaskKey": "32",
           "start": "2021-02-15T21:00:00.000Z",
           "end": "2021-03-30T21:00:00.000Z",
           "progress": 0,
           "title": "Test; Yazılım Testi",
           "color": "",
-          "id": "35",
+          "taskKey": "35",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-14T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-22T21:00:00.000Z",
@@ -712,18 +712,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "32",
+          "parentTaskKey": "32",
           "start": "2021-03-29T21:00:00.000Z",
           "end": "2021-03-29T21:00:00.000Z",
           "progress": 0,
           "title": "Test; Proje Kontrol",
           "color": "",
-          "id": "36",
+          "taskKey": "36",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-22T21:00:00.000Z",
           "taskPlannedEndDate": "2021-03-26T21:00:00.000Z",
@@ -733,18 +733,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "1",
+          "parentTaskKey": "1",
           "start": "2021-05-31T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
           "title": "Yükleme Süreçleri",
           "color": "",
-          "id": "37",
+          "taskKey": "37",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-26T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-26T21:00:00.000Z",
@@ -754,18 +754,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 1
         },
         {
-          "parentId": "37",
+          "parentTaskKey": "37",
           "start": "2021-05-31T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
           "title": "Yükleme Formunun Hazırlanması",
           "color": "",
-          "id": "38",
+          "taskKey": "38",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-26T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-26T21:00:00.000Z",
@@ -775,18 +775,18 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         },
         {
-          "parentId": "37",
+          "parentTaskKey": "37",
           "start": "2021-05-31T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
           "title": "Yüklemenin Gerçekleştirilmesi",
           "color": "",
-          "id": "39",
+          "taskKey": "39",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-26T21:00:00.000Z",
           "taskPlannedEndDate": "2021-02-26T21:00:00.000Z",
@@ -796,14 +796,326 @@
           "taskCustomer": "Henüz Belirlenmedi",
           "taskStatus": "Henüz Belirlenmedi",
           "taskIsRevision": false,
-          "resourceId": 10,
+          "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
         }
       ],
       "dependencies": [],
-      "resources": [],
-      "resourceAssignments": [],
+      "resources": [
+        {
+          "resourceKey": "1",
+          "text": "TAS; Tasarımcı-1",
+          "resourceType": "Tasarım Ekibi"
+        },
+        {
+          "resourceKey": "2",
+          "text": "TAS; Tasarımcı-2",
+          "resourceType": "Tasarım Ekibi"
+        },
+        {
+          "resourceKey": "3",
+          "text": "TAS; Tasarımcı-3",
+          "resourceType": "Tasarım Ekibi"
+        },
+        {
+          "resourceKey": "4",
+          "text": "PRO; Proje Yöneticisi-1",
+          "resourceType": "Proje Yöneticileri"
+        },
+        {
+          "resourceKey": "5",
+          "text": "PRO; Proje Yöneticisi-2",
+          "resourceType": "Proje Yöneticileri"
+        },
+        {
+          "resourceKey": "6",
+          "text": "PRO; Proje Yöneticisi-3",
+          "resourceType": "Proje Yöneticileri"
+        },
+        {
+          "resourceKey": "7",
+          "text": "TEK; Çalışan-1",
+          "resourceType": "Teknik Servis Ekibi"
+        },
+        {
+          "resourceKey": "8",
+          "text": "TEK; Çalışan-2",
+          "resourceType": "Teknik Servis Ekibi"
+        },
+        {
+          "resourceKey": "9",
+          "text": "TEK; Çalışan-3",
+          "resourceType": "Teknik Servis Ekibi"
+        },
+        {
+          "resourceKey": "10",
+          "text": "Henüz Belirlenmedi",
+          "resourceType": "Daha Sonra Güncellenecek"
+        },
+        {
+          "resourceKey": "11",
+          "text": "ÜRE; Iş Merkezi-1",
+          "resourceType": "Üretım Kaynakları"
+        },
+        {
+          "resourceKey": "12",
+          "text": "ÜRE; Iş Merkezi-2",
+          "resourceType": "Üretım Kaynakları"
+        },
+        {
+          "resourceKey": "13",
+          "text": "ÜRE; Iş Merkezi-3",
+          "resourceType": "Üretım Kaynakları"
+        },
+        {
+          "resourceKey": "14",
+          "text": "DIŞ; Fason-1",
+          "resourceType": "Dış Kaynaklar"
+        },
+        {
+          "resourceKey": "15",
+          "text": "DIŞ; Fason-2",
+          "resourceType": "Dış Kaynaklar"
+        },
+        {
+          "resourceKey": "16",
+          "text": "DIŞ; Fason-3",
+          "resourceType": "Dış Kaynaklar"
+        },
+        {
+          "resourceKey": "18",
+          "text": "SAT; Satış Elemanı-1",
+          "resourceType": "Satış Pazarlama Ekibi"
+        },
+        {
+          "resourceKey": "19",
+          "text": "SAT; Satış Elemanı-2",
+          "resourceType": "Satış Pazarlama Ekibi"
+        },
+        {
+          "resourceKey": "20",
+          "text": "SAT; Satış Elemanı-3",
+          "resourceType": "Satış Pazarlama Ekibi"
+        },
+        {
+          "resourceKey": "21",
+          "text": "TES; Tester-1",
+          "resourceType": "Test Ekibi"
+        },
+        {
+          "resourceKey": "22",
+          "text": "TES; Tester-2",
+          "resourceType": "Test Ekibi"
+        },
+        {
+          "resourceKey": "23",
+          "text": "TES; Tester-3",
+          "resourceType": "Test Ekibi"
+        },
+        {
+          "resourceKey": "24",
+          "text": "Erp'de Yok",
+          "resourceType": "Daha Sonra Güncellenecek"
+        }
+      ],
+      "resourceAssignments": [
+        {
+          "raKey": "0",
+          "taskKey": "1",
+          "resourceKey": "16"
+        },
+        {
+          "raKey": "1",
+          "taskKey": "2",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "2",
+          "taskKey": "3",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "3",
+          "taskKey": "4",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "4",
+          "taskKey": "5",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "5",
+          "taskKey": "6",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "6",
+          "taskKey": "7",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "7",
+          "taskKey": "8",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "8",
+          "taskKey": "9",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "9",
+          "taskKey": "10",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "10",
+          "taskKey": "11",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "11",
+          "taskKey": "12",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "12",
+          "taskKey": "13",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "13",
+          "taskKey": "14",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "14",
+          "taskKey": "15",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "15",
+          "taskKey": "16",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "16",
+          "taskKey": "17",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "17",
+          "taskKey": "18",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "18",
+          "taskKey": "19",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "19",
+          "taskKey": "20",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "20",
+          "taskKey": "21",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "21",
+          "taskKey": "22",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "22",
+          "taskKey": "23",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "23",
+          "taskKey": "24",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "24",
+          "taskKey": "25",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "25",
+          "taskKey": "26",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "26",
+          "taskKey": "27",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "27",
+          "taskKey": "28",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "28",
+          "taskKey": "29",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "29",
+          "taskKey": "30",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "30",
+          "taskKey": "31",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "31",
+          "taskKey": "32",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "32",
+          "taskKey": "33",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "33",
+          "taskKey": "34",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "34",
+          "taskKey": "35",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "35",
+          "taskKey": "36",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "36",
+          "taskKey": "37",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "37",
+          "taskKey": "38",
+          "resourceKey": "10"
+        },
+        {
+          "raKey": "38",
+          "taskKey": "39",
+          "resourceKey": "10"
+        }
+      ],
       "id": 1
     }
   ],

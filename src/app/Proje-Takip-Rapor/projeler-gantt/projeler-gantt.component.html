@@ -77,7 +77,6 @@
                   displayExpr="caption"
                   [(value)]="columnListTagBoxListValue"
                   [searchEnabled]="false"
-                  (onContentReady)="onColumListTagBoxContentReady($event)"
                   (onValueChanged)="onColumnListTagboxValueChanged($event)"
                   (onMultiTagPreparing)="
                     onColumListTagBoxMultiTagPreparing($event)
@@ -143,23 +142,25 @@
           <!-- [startDateRange]="startDateRange"
         [endDateRange]="endDateRange" -->
           <!-- DataSources -->
-          <dxo-tasks [dataSource]="tasks"></dxo-tasks>
-          <dxo-dependencies [dataSource]="dependencies"></dxo-dependencies>
-          <dxo-resources [dataSource]="resources"></dxo-resources>
+          <dxo-tasks [dataSource]="tasks" keyExpr="taskKey" parentIdExpr="parentTaskKey"></dxo-tasks>
+          <dxo-dependencies [dataSource]="dependencies" keyExpr="dependencyKey"></dxo-dependencies>
+          <dxo-resources [dataSource]="resources" keyExpr="resourceKey"></dxo-resources>
           <dxo-resource-assignments
-            [dataSource]="resourceAssignments"
+            [dataSource]="resourceAssignments" keyExpr="raKey"
+            resourceIdExpr="resourceKey"
+            taskIdExpr="taskKey"
           ></dxo-resource-assignments>
           <!-- Columns -->
           <!-- Burası for loop ile yapılabilir -->
           <dxi-column
-            dataField="id"
-            caption="ID"
+            dataField="taskKey"
+            caption="TASK KEY"
             [width]="100"
             [(visible)]="columnList[0].isVisible"
           ></dxi-column>
           <dxi-column
-            dataField="parentId"
-            caption="Üst ID"
+            dataField="parentTaskKey"
+            caption="PARENT TASK KEY"
             [(visible)]="columnList[1].isVisible"
           ></dxi-column>
           <dxi-column
@@ -247,8 +248,8 @@
             [(visible)]="columnList[14].isVisible"
           ></dxi-column>
           <dxi-column
-            dataField="resourceId"
-            caption="Kaynak ID"
+            dataField="resourceKey"
+            caption="RESOURCE KEY"
             [width]="100"
             dataType="number"
             [(visible)]="columnList[15].isVisible"
@@ -479,37 +480,42 @@
       id="popup"
       [(visible)]="isTaskDetailsFormPopupVisible"
       [hideOnOutsideClick]="false"
+      (onHidden)="onTaskEditDialogHidden($event)"
+      (onHiding)="onTaskEditDialogHiding($event)"
     >
-      <!-- 1. title hazır liste veya custom olacak parent id varsa diye 4.resimhaizrlayan boolean olarak ngif* olacak 5. -->
+    {{customTaskDetailsForm | json}}
+
       <dx-scroll-view width="100%" height="100%">
         <div id="app-container">
-          <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm">
+          <form (submit)="onSaveForm($event)" *ngIf="customTaskDetailsForm.start">
             <dx-form
               (onFieldDataChanged)="onFieldDataChanged($event)"
+
               id="form"
               [(formData)]="customTaskDetailsForm"
               labelLocation="left"
               [showColonAfterLabel]="false"
               [showValidationSummary]="true"
             >
+
               <!-- Ana Grup-1 -->
               <dxi-item itemType="group" [colCount]="3">
                 <!-- Sütun-1 -->
                 <dxi-item itemType="group" caption="Görev Detayları-1">
                   <!-- id -->
                   <dxi-item
-                    dataField="id"
+                    dataField="taskKey"
                     [visible]="false"
                     [editorOptions]="{ disabled: true }"
                   ></dxi-item>
-                  <!-- parentId -->
-                  <dxi-item dataField="parentId" [visible]="false"></dxi-item>
+                  <!-- parentTaskKey -->
+                  <dxi-item dataField="parentTaskKey" [visible]="false"></dxi-item>
                   <!-- Proje/Görev/Operasyon -->
                   <!-- If Project Row, then show -->
                   <dxi-item
                     *ngIf="
-                      customTaskDetailsForm.parentId === null ||
-                      customTaskDetailsForm.parentId === undefined
+                      customTaskDetailsForm.parentTaskKey === null ||
+                      customTaskDetailsForm.parentTaskKey === undefined
                     "
                     dataField="title"
                     [isRequired]="true"
@@ -519,8 +525,8 @@
                   <!-- Start: If Not Project Row, then show -->
                   <dxi-item
                     *ngIf="
-                      customTaskDetailsForm.parentId !== null &&
-                      customTaskDetailsForm.parentId !== undefined
+                      customTaskDetailsForm.parentTaskKey !== null &&
+                      customTaskDetailsForm.parentTaskKey !== undefined
                     "
                     [isRequired]="true"
                   >
@@ -591,7 +597,7 @@
                     dataField="start"
                     editorType="dxDateBox"
                     [isRequired]="true"
-                    [disabled]="this.customTaskDetailsForm.parentId === null"
+                    [disabled]="this.customTaskDetailsForm.parentTaskKey === null"
                     ><dxo-label [text]="'Gerçekleşen Başlangıç'"> </dxo-label
                   ></dxi-item>
                   <!-- Gerçekleşen Bitiş -->
@@ -705,9 +711,9 @@
                     <dxo-label [text]="'Kaynak'"></dxo-label>
                     <div *dxTemplate>
                       <dx-select-box
-                        [(value)]="customTaskDetailsForm.resourceId"
+                        [(value)]="customTaskDetailsForm.resourceKey"
                         [dataSource]="dataSourceFromresources"
-                        valueExpr="id"
+                        valueExpr="resourceKey"
                         [grouped]="true"
                         displayExpr="text"
                         [searchEnabled]="true"
