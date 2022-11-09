@@ -14,6 +14,7 @@ export interface ERPbasicData {
 export interface Task {
   taskKey: string;
 
+  color?: string;
   parentTaskKey: string | null;
 
   title: string;
@@ -98,7 +99,7 @@ export interface CustomTaskDetailsForm {
   start: any;
   end: any;
   actualDuration: any;
-  progress: number;
+  progress: any;
   taskPlannedStartDate: any;
   taskPlannedEndDate: any;
   plannedDuration: any;

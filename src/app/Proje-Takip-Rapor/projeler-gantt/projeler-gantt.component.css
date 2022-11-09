@@ -2,9 +2,30 @@
   height: 700px;
 }
 
+/* gantt accordion */
+::ng-deep #ganttContainer .dx-accordion-item-body {
+  padding: 0!important;
+}
+::ng-deep #ganttContainer .dx-state-focused.dx-accordion-item {
+  /* background-color: transparent!important; */
+}
+::ng-deep #ganttContainer .dx-accordion-item.dx-accordion-item-opened {
+  border:0;
+}
+::ng-deep #ganttContainer .dx-accordion-item.dx-accordion-item-closed {
+  border:0;
+}
+/* ::ng-deep .dx-accordion-item-opened {
+  border: red;
+} */
+/* ::ng-deep .dx-accordion-item:last-child {
+  border: yellow;
+}
+::ng-deep .dx-accordion-item {
+  border: purple;
+} */
 /* options */
 .options {
-  margin-bottom: 20px;
   background-color: rgba(191, 191, 191, 0.15);
 }
 

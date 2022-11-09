@@ -1,11 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   DxFormComponent,
   DxGanttComponent,
@@ -339,17 +332,18 @@ export class ProjelerGanttComponent implements OnInit {
       start: null,
       end: null,
       actualDuration: null,
-      progress: 0,
+      progress: null,
       taskPlannedStartDate: null,
       taskPlannedEndDate: null,
       plannedDuration: null,
       taskIsRevision: false,
-      taskCompany: 'Roboplas',
-      taskCustomer: 'Henüz Belirlenmedi',
-      taskStatus: 'Henüz Belirlenmedi',
-      taskNotes: 'Buraya Not Girebilirsiniz!',
-      resourceKey: '10',
-      resourceText: 'Henüz Belirlenmedi',
+      taskCompany: null,
+      taskCustomer: null,
+      taskStatus: null,
+      taskNotes: null,
+      resourceKey: null,
+      // B.D: resourcetext gerek yok gibi, sil
+      resourceText: null,
       routeLevelNumber: null,
     };
 
@@ -481,19 +475,23 @@ export class ProjelerGanttComponent implements OnInit {
 
     return Math.round(Difference_In_Days);
   }
-  onSelectionChanged(e:any){
+  onSelectionChanged(e: any) {}
+  onContentReady(e: any) {}
+  onInitialized(e: any) {}
+  onTaskEditDialogHiding(e: any) {
 
   }
-  onContentReady(e:any){
-
-  }
-  onInitialized(e:any){
-  }
-  onTaskEditDialogHiding(e: any) {}
   onTaskEditDialogHidden(e: any) {
-    this.DxForm?.instance.resetValues();
     // this.DxForm.instance.getEditor('routeLevelNumber')?.option('value', null);
     // formRef.current.instance.getEditor("birthDate").option("isValid", true);
+
+
+    this.DxForm?.instance.resetValues();
+    // B.D: nedense resetvalues aşağıdaki propertyleri resetlemiyor, bu yüzden aşağıdaki gibi manuel null yazdım.
+    this.customTaskDetailsForm.resourceText = null;
+    this.customTaskDetailsForm.taskKey = null;
+    this.customTaskDetailsForm.taskNotes = null;
+    this.customTaskDetailsForm.title = null;
   }
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
@@ -660,10 +658,14 @@ export class ProjelerGanttComponent implements OnInit {
       ...e.values,
       title: 'Yeni Proje/Görev/Operasyon',
     };
+    // delete person.color
   }
   onGanttTaskInserted(e: any) {
     e.cancel;
     let taskIndex = this.tasks.findIndex((task) => task.taskKey === e.key);
+
+    // B.D: DevExtreme kendi ekliyor, gerek olmadığı için siliyorum
+    delete this.tasks[taskIndex].color;
 
     if (!this.tasks[taskIndex].hasOwnProperty('parentTaskKey')) {
       // bu akışı bozabilir, kontrol et
