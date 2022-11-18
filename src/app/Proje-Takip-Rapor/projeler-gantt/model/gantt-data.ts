@@ -12,12 +12,14 @@ export interface ERPbasicData {
   taskOperationList: TaskOperationList[];
 }
 export interface Task {
+  projectCode: string;
+
+  title: string;
+
   taskKey: string;
 
   color?: string;
   parentTaskKey: string | null;
-
-  title: string;
 
   start: Date;
 
@@ -93,9 +95,10 @@ export interface TaskOperationList {
   preRouteKey: string;
 }
 export interface CustomTaskDetailsForm {
+  projectCode: any;
+  title: string;
   taskKey: any;
   parentTaskKey: any;
-  title: any;
   start: any;
   end: any;
   actualDuration: any;
@@ -111,4 +114,8 @@ export interface CustomTaskDetailsForm {
   routeLevelNumber: any;
   resourceKey: any;
   resourceText: any;
+}
+
+export interface ReferenceProjectSelectionForm {
+  referenceProjectCode: string | null;
 }

@@ -3,6 +3,7 @@ import {
   DxFormComponent,
   DxGanttComponent,
   DxSchedulerComponent,
+  DxTagBoxComponent,
   DxTreeListComponent,
 } from 'devextreme-angular';
 import {
@@ -13,8 +14,9 @@ import {
   TaskStatusList,
   TaskOperationList,
   CustomTaskDetailsForm,
+  ReferenceProjectSelectionForm,
 } from './model/gantt-data';
-
+import TagBox from 'devextreme/ui/tag_box';
 import { GanttDataService } from './services/gantt-data.service';
 
 import { exportGantt as exportGanttToPdf } from 'devextreme/pdf_exporter';
@@ -25,6 +27,12 @@ import dxTreeList from 'devextreme/ui/tree_list';
 import * as moment from 'moment';
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
+import dxContextMenu from 'devextreme/ui/context_menu';
+import dxButton from 'devextreme/ui/button';
+import dxTagBox from 'devextreme/ui/tag_box';
+
+import { v4 as uuidv4 } from 'uuid';
+import Form from 'devextreme/ui/form';
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
@@ -36,29 +44,8 @@ export class ProjelerGanttComponent implements OnInit {
   dependencies!: Dependency[];
   resources!: Resource[];
   resourceAssignments!: ResourceAssignment[];
-  contextMenuItems = [
-    {
-      name: 'addTask',
-      text: 'Yeni Iş Ekle',
-    },
-    {
-      name: 'taskdetails',
-      text: 'Iş Detay Bak',
-    },
-    {
-      name: 'deleteTask',
-      text: 'Işi Sil',
-    },
-    {
-      beginGroup: true,
-      name: 'addDefaultSubTasks',
-      text: 'Varsayılan Alt Işleri Ekle',
-      icon: 'hierarchy',
-    },
-  ];
-
   taskStatusList!: TaskStatusList[];
-  taskOperationList!: TaskOperationList;
+  taskOperationList!: TaskOperationList[];
   dataSourceFromtaskOperationList!: DataSource;
   dataSourceFromtaskStatusList!: DataSource;
   dataSourceFromresources!: DataSource;
@@ -78,128 +65,186 @@ export class ProjelerGanttComponent implements OnInit {
     'Customer-9',
     'Customer-10',
   ];
+  ganttSelectedTaskRowKey!: string;
 
   // column settings
+  // B.D: At present, the DevExtreme Gantt does not support the ability to save new column width values modified by a user. Bu sebeple sütun genişiklikleri için localstorage kullanarak kişiselleştirme yapamıyoruz https://supportcenter.devexpress.com/ticket/details/t1069973/dxgantt-column-width
   columnList = [
     {
-      id: 0,
-      dataField: 'taskKey',
-      caption: 'TASK KEY',
+      id: 18,
+      dataField: 'projectCode',
+      caption: 'Proje Kodu',
       isVisible: true,
-    },
-    {
-      id: 1,
-      dataField: 'parentTaskKey',
-      caption: 'PARENT TASK KEY',
-      isVisible: true,
+      format: null,
+      dataType: 'string',
+      width: 100,
     },
     {
       id: 2,
       dataField: 'title',
       caption: 'Proje/Görev/Operasyon',
       isVisible: true,
+      format: null,
+      dataType: 'string',
+      width: 150,
+    },
+    {
+      id: 0,
+      dataField: 'taskKey',
+      caption: 'Task Key',
+      isVisible: false,
+      format: null,
+      dataType: 'string',
+      width: null,
+    },
+    {
+      id: 1,
+      dataField: 'parentTaskKey',
+      caption: 'Parent Task Key',
+      isVisible: false,
+      format: 'shortDate',
+      dataType: 'string',
+      width: null,
     },
     {
       id: 3,
       dataField: 'taskPlannedStartDate',
       caption: 'Planlanmış Başlangıç',
       isVisible: true,
+      format: 'shortDate',
+      dataType: 'date',
+      width: null,
     },
     {
       id: 4,
       dataField: 'taskPlannedEndDate',
       caption: 'Planlanmış Bitiş',
       isVisible: true,
+      format: 'shortDate',
+      dataType: 'date',
+      width: null,
     },
 
     {
       id: 5,
       dataField: 'plannedDuration',
       caption: 'Planlanan Süre',
-      isVisible: false,
+      isVisible: true,
+      format: null,
+      dataType: 'number',
+      width: null,
     },
     {
       id: 6,
       dataField: 'start',
       caption: 'Güncel Başlangıç',
       isVisible: true,
+      format: 'shortDate',
+      dataType: 'date',
+      width: null,
     },
     {
       id: 7,
       dataField: 'end',
       caption: 'Güncel Bitiş',
       isVisible: true,
+      format: 'shortDate',
+      dataType: 'date',
+      width: null,
     },
     {
       id: 8,
       dataField: 'actualDuration',
       caption: 'Güncel Süre',
-      isVisible: false,
+      isVisible: true,
+      format: null,
+      dataType: 'number',
+      width: null,
     },
     {
       id: 9,
       dataField: 'progress',
       caption: 'Tamamlanma %',
       isVisible: false,
+      format: null,
+      dataType: 'number',
+      width: null,
     },
     {
       id: 10,
       dataField: 'taskCompany',
       caption: 'Firma',
       isVisible: false,
+      format: null,
+      dataType: 'string',
+      width: null,
     },
     {
       id: 11,
       dataField: 'taskCustomer',
       caption: 'Müşteri',
       isVisible: false,
+      format: null,
+      dataType: 'string',
+      width: null,
     },
     {
       id: 12,
       dataField: 'taskStatus',
       caption: 'Durum',
       isVisible: false,
+      format: null,
+      dataType: 'string',
+      width: null,
     },
     {
       id: 13,
       dataField: 'taskNotes',
       caption: 'Notlar',
-      isVisible: true,
+      isVisible: false,
+      format: null,
+      dataType: 'string',
+      width: null,
     },
     {
       id: 14,
       dataField: 'taskIsRevision',
       caption: 'Revizyon?',
       isVisible: false,
+      format: null,
+      dataType: 'boolean',
+      width: null,
     },
     {
       id: 15,
       dataField: 'resourceKey',
       caption: 'Kaynak Key',
-      isVisible: true,
+      isVisible: false,
+      format: null,
+      dataType: 'number',
+      width: null,
     },
     {
       id: 16,
       dataField: 'resourceText',
       caption: 'Kaynak Ismi',
-      isVisible: true,
+      isVisible: false,
+      format: null,
+      dataType: 'string',
+      width: null,
     },
     {
       id: 17,
       dataField: 'routeLevelNumber',
       caption: 'Rota Seviyesi',
-      isVisible: true,
+      isVisible: false,
+      format: null,
+      dataType: 'number',
+      width: null,
     },
   ];
-  columnListDataSource: DataSource = new DataSource({
-    store: new ArrayStore({
-      data: this.columnList,
-      key: 'id',
-    }),
-  });
-  columnListTagBoxListValue = this.columnList
-    .filter((column: any) => column.isVisible == true)
-    .map((column: any) => column.id);
+  tagBoxcolumnListDataSource!: DataSource;
+  tagBoxTagListValue: any[] = [];
 
   // gantt properties
   scaleType!: string;
@@ -209,12 +254,15 @@ export class ProjelerGanttComponent implements OnInit {
   showResources!: any;
   showDependencies!: any;
   taskContentChoice!: string;
+  areTasksColorful!: boolean;
+  isGanttEditable!: boolean;
   startDateRange!: any;
   endDateRange!: any;
 
   // custom toolbar settings
-  saveDataButtonOptions!: object;
+  resetTreeListColumnViewsButtonOptions!: object;
   refreshGanttButtonOptions!: object;
+  saveDataButtonOptions!: object;
   exportButtonOptions!: object;
 
   // export options/filters definitions
@@ -236,14 +284,26 @@ export class ProjelerGanttComponent implements OnInit {
   showSortIndexes!: boolean;
 
   // Task Details Form/Popup
-  customTaskDetailsForm!: CustomTaskDetailsForm; // model yapılabilir
+  customTaskDetailsForm!: CustomTaskDetailsForm;
   oldCustomTaskDetailsForm!: CustomTaskDetailsForm;
-  submitButtonOptions = {
+  ganntFormSubmitButtonOptions = {
     text: 'Görev Detaylarını Kaydet',
     useSubmitBehavior: true,
     type: 'default',
   };
   isTaskDetailsFormPopupVisible = false;
+
+  // Reference Project, Form/Popup
+  referenceProjectSelectionFormData!: ReferenceProjectSelectionForm;
+  referenceProjectSubmitButtonOptions = {
+    text: 'Onayla',
+    useSubmitBehavior: true,
+    type: 'default',
+  };
+  isReferencedProjectPopupVisible = false;
+
+  // Tree List Columns
+  fixedColumnsList: any[] = [];
 
   // Obs
   ganttData$!: Observable<any>;
@@ -255,13 +315,17 @@ export class ProjelerGanttComponent implements OnInit {
   ) {}
 
   // instances
-  @ViewChild(DxGanttComponent, { static: false })
+  @ViewChild(DxGanttComponent)
   gantt!: DxGanttComponent;
-  @ViewChild(DxFormComponent, { static: false }) DxForm!: DxFormComponent;
-  @ViewChild(DxTreeListComponent, { static: false })
+  @ViewChild('customTaskDetailsDOM') customTaskDetailsDOM!: DxFormComponent;
+  @ViewChild('referenceProjectSelectionFormDOM')
+  referenceProjectSelectionFormDOM!: DxFormComponent;
+  @ViewChild(DxTreeListComponent)
   treeList!: DxTreeListComponent;
-  @ViewChild(DxSchedulerComponent, { static: false })
+  @ViewChild(DxSchedulerComponent)
   scheduler!: DxSchedulerComponent;
+  @ViewChild(DxTagBoxComponent)
+  treeListColumnTagBox!: DxTagBoxComponent;
 
   ngOnInit(): void {
     // obs & data
@@ -313,6 +377,17 @@ export class ProjelerGanttComponent implements OnInit {
       }
     });
 
+    this.tagBoxcolumnListDataSource = new DataSource({
+      store: new ArrayStore({
+        data: this.columnList.filter(
+          (column) =>
+            // B.D: Sabit Sütunların Değiştirilmesine İzin Vermiyoruz
+            this.fixedColumnsList.includes(column) === false
+        ),
+        key: 'id',
+      }),
+    });
+
     // gantt properties
     this.scaleType = 'months';
 
@@ -320,7 +395,9 @@ export class ProjelerGanttComponent implements OnInit {
     this.titlePosition = 'outside';
     this.showResources = true;
     this.showDependencies = true;
-    this.taskContentChoice = 'Görünüm-1';
+    this.taskContentChoice = 'Görünüm-2';
+    this.areTasksColorful = true;
+    this.isGanttEditable = true;
     this.startDateRange = new Date(new Date().getFullYear() - 2, 0);
     this.endDateRange = new Date(new Date().getFullYear() + 2, 0);
 
@@ -328,7 +405,8 @@ export class ProjelerGanttComponent implements OnInit {
     this.customTaskDetailsForm = {
       taskKey: null,
       parentTaskKey: null,
-      title: null,
+      projectCode: null,
+      title: '',
       start: null,
       end: null,
       actualDuration: null,
@@ -345,6 +423,11 @@ export class ProjelerGanttComponent implements OnInit {
       // B.D: resourcetext gerek yok gibi, sil
       resourceText: null,
       routeLevelNumber: null,
+    };
+
+    // reference project form
+    this.referenceProjectSelectionFormData = {
+      referenceProjectCode: null,
     };
 
     // export options/filters
@@ -367,6 +450,23 @@ export class ProjelerGanttComponent implements OnInit {
     this.showSortIndexes = true;
 
     // toolbar
+    this.resetTreeListColumnViewsButtonOptions = {
+      hint: 'Iş Listesi Sütun Görünümleri Ilk Hallerine Döner',
+      icon: 'chevrondoubleleft',
+      stylingMode: 'text',
+      text: 'Sütun Görünümünü Sıfırla',
+      onClick: () => this.resetTreeListColumnViewsButtonClick(),
+    };
+
+    this.refreshGanttButtonOptions = {
+      text: 'Gantt Yenile',
+      hint: "Gantt'ın Otomatik Güncellenmemesi Durumunda Manuel Güncellemeyi Sağlar",
+      icon: 'refresh',
+      stylingMode: 'text',
+      onClick: () => {
+        this.refreshGantt();
+      },
+    };
     this.saveDataButtonOptions = {
       text: 'Tüm Verileri Kaydet',
       icon: 'save',
@@ -375,23 +475,64 @@ export class ProjelerGanttComponent implements OnInit {
         this.saveGantt();
       },
     };
-    this.refreshGanttButtonOptions = {
-      text: 'Gantt Yenile',
-      icon: 'refresh',
-      stylingMode: 'text',
-      onClick: () => {
-        this.refreshGantt();
-      },
-    };
+    // TreeList Columns
+    this.fixedColumnsList = this.columnList.filter(
+      (column) =>
+        column.dataField === 'title' || column.dataField === 'projectCode'
+    );
+    // TreeList Columns TagBox
+    this.tagBoxTagListValue = this.columnList
+      .filter(
+        (column) =>
+          // B.D: Sabit Sütunların Değiştirilmesine İzin Vermiyoruz
+          this.fixedColumnsList.includes(column) === false
+      )
+      .filter((column: any) => column.isVisible == true)
+      .map((column: any) => column.id);
   }
 
-  onCustomCommandClick(e: any) {
-    if (e.name === 'addDefaultSubTasks') {
-      this.addMassTasks();
+  addReferenceProjectSubTasks() {
+    let findTask = this.tasks.find(
+      (task) => task.taskKey === this.ganttSelectedTaskRowKey
+    );
+    // Check if the task is not subtask
+    if (findTask?.parentTaskKey === null) {
+      this.isReferencedProjectPopupVisible = true;
+    } else {
+      alert(
+        'Alt görevleri toplu olarak ekleyebilmek için bir ana görev seçmelisiniz!'
+      );
     }
   }
-  addMassTasks() {}
-  onContextMenuPreparing(e: any) {}
+  onCustomCommandClick(e: any) {
+    if (e.name === 'addReferenceProjectSubTasks') {
+      this.addReferenceProjectSubTasks();
+    }
+  }
+  onGanttTaskSelectionChanged(e: any) {
+    // B.D: Silinecek Gerek yok
+    this.ganttSelectedTaskRowKey = e.selectedRowKey;
+  }
+  onContextMenuPreparing(e: any) {
+    e.items[0].text = 'Ekle';
+    e.items[0].items[0].text = 'Yeni Iş';
+    e.items[0].items[1].text = 'Yeni Alt Iş';
+    e.items[1].text = 'Iş Düzenle/Incele';
+    e.items[2].text = 'Iş Sil';
+    e.items[3].text = 'Bağımlılık Sil';
+    e.items[4] = {
+      beginGroup: true,
+      name: 'addReferenceProjectSubTasks',
+      text: 'Referans Projeye Göre Alt Görevleri Ekle',
+      icon: 'hierarchy',
+      disabled: true,
+    };
+    if (this.isGanttEditable) {
+      e.items[4].disabled = false;
+    } else {
+      e.items[4].disabled = true;
+    }
+  }
 
   // Export Options/Filters
   exportButtonClick() {
@@ -449,6 +590,15 @@ export class ProjelerGanttComponent implements OnInit {
   }
 
   // toolbar
+  resetTreeListColumnViewsButtonClick() {
+    let gantt: any = this.gantt.instance;
+    let treeList = gantt['_treeList'] as dxTreeList;
+    treeList.clearFilter();
+    treeList.clearSorting();
+    treeList.option('allowColumnReordering', true);
+    this.gantt.instance.repaint();
+  }
+  refreshGantt() {}
   saveGantt() {
     if (confirm('Tüm Veriler Kaydedilsin Mi?)')) {
       this.ganttDataService.updateGanttData({
@@ -460,43 +610,26 @@ export class ProjelerGanttComponent implements OnInit {
     }
   }
 
-  refreshGantt() {
-    this.gantt.instance.refresh();
-  }
-
   // Forms/Popups
   dateDaysDiffCalculator(start: string, end: string) {
     // To calculate the time difference of two dates
-    var Difference_In_Time =
+    let Difference_In_Time =
       new Date(end).getTime() - new Date(start).getTime();
 
     // To calculate the no. of days between two dates
-    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+    let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
     return Math.round(Difference_In_Days);
   }
-  onSelectionChanged(e: any) {}
-  onContentReady(e: any) {}
-  onInitialized(e: any) {}
-  onTaskEditDialogHiding(e: any) {
-
-  }
+  onTaskEditDialogHiding(e: any) {}
   onTaskEditDialogHidden(e: any) {
-    // this.DxForm.instance.getEditor('routeLevelNumber')?.option('value', null);
-    // formRef.current.instance.getEditor("birthDate").option("isValid", true);
-
-
-    this.DxForm?.instance.resetValues();
-    // B.D: nedense resetvalues aşağıdaki propertyleri resetlemiyor, bu yüzden aşağıdaki gibi manuel null yazdım.
-    this.customTaskDetailsForm.resourceText = null;
-    this.customTaskDetailsForm.taskKey = null;
-    this.customTaskDetailsForm.taskNotes = null;
-    this.customTaskDetailsForm.title = null;
+    this.customTaskDetailsDOM?.instance.resetValues();
   }
   onTaskEditDialogShowing(e: any) {
     e.cancel = true;
     let findCurrentTaskObj = this.tasks.find((task) => task.taskKey === e.key);
     // New Task Form
+    // B.D: REFACTOR: Object.hasOwn ile değiştir
     if (!findCurrentTaskObj?.hasOwnProperty('taskPlannedStartDate')) {
       // initial form values to be shown
       this.customTaskDetailsForm = {
@@ -512,7 +645,7 @@ export class ProjelerGanttComponent implements OnInit {
           e.values.start,
           e.values.end
         ),
-        title: null,
+        title: '',
       };
       let test1 = 'test1';
     }
@@ -540,16 +673,169 @@ export class ProjelerGanttComponent implements OnInit {
     }
 
     this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
+
+    let ganntFormSubmitButton = this.customTaskDetailsDOM.instance.getButton(
+      'ganntFormSubmitButton'
+    ) as dxButton;
+    if (this.isGanttEditable) {
+      ganntFormSubmitButton.option('disabled', false);
+    } else {
+      ganntFormSubmitButton.option('disabled', true);
+    }
+
     this.isTaskDetailsFormPopupVisible = true;
     let test2 = 'test';
   }
-  // B.D: TEST EVENTLARI BURAYA YAZILDI
-  onGanttContentReady(e: any) {}
+  onGanttContentReady(e: any) {
+    // if(colorizationChecked) {}
+    this.ganttTreeListPainter();
+    this.ganttEditModeHandler();
+    // B.D: Resmi olarak timeout kullanılması öneriliyor çünkü eğer kullanılmazsa, arka plandaki başka methodlarda da timeout olduğu için çakışma oluyormuş.
+    setTimeout(() => {
+      this.gantt.instance.collapseAll();
+      this.gantt.instance.scrollToDate(new Date('october 17, 2020'));
+    }, 100);
+  }
+
+  // Gantt Tree List Painter
+  ganttTreeListPainter() {
+    if (this.areTasksColorful) {
+      this.treeColor();
+    } else {
+      this.treeColorClear();
+    }
+    this.repaintTreeList();
+  }
+  treeColor() {
+    let gant: any = this.gantt.instance;
+    let tree = gant['_treeList'] as dxTreeList;
+    tree.on('rowPrepared', (e: any) => {
+      if (e.rowType === 'data') {
+        let task = e.data as Task;
+        for (const cell of e.cells) {
+          // Title Color
+          if (cell.column.dataField === 'title' && task.parentTaskKey) {
+            cell.cellElement.style.backgroundColor =
+              this.taskOperationList.find((taskOperation) => {
+                return taskOperation.name === task.title;
+              })?.displayColor;
+
+            if (task.title.toLocaleLowerCase().includes('yükleme')) {
+              cell.cellElement.style.color = 'white';
+            }
+          } else if (cell.column.dataField === 'title' && !task.parentTaskKey) {
+            cell.cellElement.style.backgroundColor = this.taskStatusList.find(
+              (taskStatus) => {
+                return taskStatus.statusName === task.taskStatus;
+              }
+            )?.statusdisplayColor;
+            // Project Code & Task Status Color
+          } else if (
+            cell.column.dataField === 'projectCode' &&
+            task.parentTaskKey
+          ) {
+            e.rowElement.cells[0].style.backgroundColor =
+              this.taskStatusList.find((taskStatus) => {
+                return taskStatus.statusName === task.taskStatus;
+              })?.statusdisplayColor;
+          } else if (
+            cell.column.dataField === 'projectCode' &&
+            !task.parentTaskKey
+          ) {
+            e.rowElement.cells[0].style.backgroundColor =
+              this.taskStatusList.find((taskStatus) => {
+                return taskStatus.statusName === task.taskStatus;
+              })?.statusdisplayColor;
+          }
+        }
+      }
+
+      // melih
+      // if (e.rowType == 'data') {
+      //   e.rowElement.cells[0].style['background-color'] = 'red';
+      //   e.rowElement.cells[0].style['color'] = 'white';
+      // }
+    });
+  }
+  treeColorClear() {
+    let gant: any = this.gantt.instance;
+    let tree = gant['_treeList'] as dxTreeList;
+    tree.on('rowPrepared', (e: any) => {
+      if (e.rowType === 'data') {
+        let task = e.data as Task;
+        for (const cell of e.cells) {
+          // Title Color
+          if (cell.column.dataField === 'title' && task.parentTaskKey) {
+            cell.cellElement.style.backgroundColor =
+              e.rowElement.cells[
+                e.rowElement.cells.length - 1
+              ].style.backgroundColor;
+
+            if (task.title.toLocaleLowerCase().includes('yükleme')) {
+              cell.cellElement.style.color = '#333';
+            }
+          } else if (cell.column.dataField === 'title' && !task.parentTaskKey) {
+            cell.cellElement.style.backgroundColor =
+              e.rowElement.cells[
+                e.rowElement.cells.length - 1
+              ].style.backgroundColor;
+            // Project Code & Task Status Color
+          } else if (
+            cell.column.dataField === 'projectCode' &&
+            task.parentTaskKey
+          ) {
+            e.rowElement.cells[0].style.backgroundColor =
+              e.rowElement.cells[
+                e.rowElement.cells.length - 1
+              ].style.backgroundColor;
+          } else if (
+            cell.column.dataField === 'projectCode' &&
+            !task.parentTaskKey
+          ) {
+            e.rowElement.cells[0].style.backgroundColor =
+              e.rowElement.cells[
+                e.rowElement.cells.length - 1
+              ].style.backgroundColor;
+          }
+        }
+      }
+
+      // melih
+      // if (e.rowType == 'data') {
+      //   e.rowElement.cells[0].style['background-color'] = 'red';
+      //   e.rowElement.cells[0].style['color'] = 'white';
+      // }
+    });
+    this.repaintTreeList();
+  }
+
+  // Gantt Edit Mode Handler
+  ganttEditModeHandler() {
+    if (this.isGanttEditable) {
+      this.gantt.instance.option('editing.enabled', true);
+    } else {
+      this.gantt.instance.option('editing.enabled', false);
+    }
+  }
+  onSubmitButtonContentReady(e: any) {}
+  // repaint & refresh
+  repaintTreeList() {
+    let gantt: any = this.gantt.instance;
+    let tree = gantt['_treeList'] as dxTreeList;
+    tree.repaint();
+  }
+  refreshTreeList() {
+    let gantt: any = this.gantt.instance;
+    let tree = gantt['_treeList'] as dxTreeList;
+    tree.refresh();
+  }
   onGanttTaskUpdating(e: any) {}
   onGanttTaskUpdated(e: any) {}
   onGanttScaleCellPrepared(e: any) {}
   onGanttOptionChanged(e: any) {}
-  onFieldDataChanged(e: any) {
+
+  // Task Details Form
+  onGanttTaskFormFieldDataChanged(e: any) {
     if (e.dataField === 'start') {
       this.customTaskDetailsForm.actualDuration = this.dateDaysDiffCalculator(
         e.value,
@@ -575,8 +861,7 @@ export class ProjelerGanttComponent implements OnInit {
       );
     }
   }
-
-  onSaveForm(e: any) {
+  onGanttTaskSubmitForm(e: any) {
     e.preventDefault();
     if (confirm('Proje/Görev/Operasyon Kaydet!') === true) {
       this.customTaskDetailsForm.resourceText = this.resources.find(
@@ -623,7 +908,82 @@ export class ProjelerGanttComponent implements OnInit {
     }
     let test5 = 'test';
   }
+  // Reference Project Form / Popup
+  onReferenceProjectFieldDataChanged(e: any) {}
+  onReferenceProjectPopUpHided(e: any) {
+    // let element: any = document.getElementById('referenceProjectSelection');
+    // let instance = Form.getInstance(element) as Form;
+    // instance.resetValues();
+    this.referenceProjectSelectionFormDOM.instance.resetValues();
+  }
+  onSubmitReferenceProjectSelection(e: any) {
+    e.preventDefault();
+    let checkReferenceProject = this.tasks.some(
+      (task) =>
+        task.projectCode ===
+        this.referenceProjectSelectionFormData.referenceProjectCode
+    );
+    let findRootTask = this.tasks.find(
+      (task) => task.taskKey === this.ganttSelectedTaskRowKey
+    );
+    if (checkReferenceProject === false) {
+      alert('Bu Proje Koduna Ait Bir Proje Yok!');
+    }
+    // Check If User Assigned a Project Code
+    else if (findRootTask?.projectCode) {
+      let newSubTasksData: any = [];
+      let subTasksCount = 0;
+      // B.D: Referans Projenin SubTaskları Getirilir
+      for (let index = 0; index < this.tasks.length; index++) {
+        if (
+          this.tasks[index].projectCode ===
+          this.referenceProjectSelectionFormData.referenceProjectCode
+        ) {
+          // B.D: Tüm Task Datayı taramasın diye performans amaçlı, maximum olabilecek rota sayısı kadar döndürüyor
+          if (subTasksCount < this.taskOperationList.length) {
+            newSubTasksData.push({
+              ...this.tasks[index],
+            });
+            subTasksCount++;
+          } else {
+            break;
+          }
+        }
+      }
+      // Set New taskKeys & parentTaskKeys
+      let rootTaskKey = this.ganttSelectedTaskRowKey;
+      let newKey;
+      for (let i = 0; i < newSubTasksData.length; i++) {
+        i === 0 ? (newKey = rootTaskKey) : (newKey = uuidv4());
+        for (let j = 0; j < newSubTasksData.length; j++) {
+          if (newSubTasksData[i].taskKey === newSubTasksData[j].parentTaskKey) {
+            newSubTasksData[j].parentTaskKey = newKey;
+          }
+        }
+        newSubTasksData[i].taskKey = newKey;
+      }
+      // B.D: Kök Task Atıldı çünkü zaten this.tasks içinde var
+      let rootSubTask = newSubTasksData.shift();
 
+      let result = 'test';
+
+      for (const newSubTask of newSubTasksData) {
+        this.tasks.push({
+          ...newSubTask,
+          projectCode: findRootTask?.projectCode,
+          taskCompany: findRootTask?.taskCompany,
+          taskCustomer: findRootTask?.taskCustomer,
+        });
+      }
+      let result2 = 'test';
+      this.referenceProjectSelectionFormData.referenceProjectCode = null;
+      this.isReferencedProjectPopupVisible = false;
+      // this.gantt.instance.refresh();
+      let result3 = 'test';
+    } else {
+      alert('Lütfen Yeni Proje için Proje Kodu Veriniz!');
+    }
+  }
   // scale display formatter
   onScaleCellPrepared(e: any) {
     if (e.scaleType === 'weeks') {
@@ -631,7 +991,7 @@ export class ProjelerGanttComponent implements OnInit {
     }
   }
   // Custom Task Content Template
-  plannedTaskProgressWidthDefiner(item: any) {
+  actualTaskProgressWidthDefiner(item: any) {
     let progressWidth = `${parseFloat(item.taskData.progress) * 100 + '%'}`;
     return progressWidth;
   }
@@ -639,17 +999,26 @@ export class ProjelerGanttComponent implements OnInit {
   customProgressFormat(value: number) {
     return value * 100 + '%';
   }
-  actualTaskWidthDefiner(item: any) {
-    var taskRange = item.taskData.end - item.taskData.start;
-    var tickSize = item.taskSize.width / taskRange;
-    var actualTaskOffset = item.taskData.start - item.taskData.plannedStart;
-    var actualTaskRange = item.taskData.end - item.taskData.start;
+  plannedTaskWidthDefiner(item: any) {
+    let taskRange = item.taskData.end - item.taskData.start;
+    let tickSize = item.taskSize.width / taskRange;
+    let reFormattedTaskPlannedStartDate = new Date(
+      item.taskData.taskPlannedStartDate
+    );
+    let reFormattedTaskPlannedEndDate = new Date(
+      item.taskData.taskPlannedEndDate
+    );
+    let plannedTaskOffset =
+      reFormattedTaskPlannedStartDate.getTime() - item.taskData.start.getTime();
+    let plannedTaskRange =
+      reFormattedTaskPlannedEndDate.getTime() -
+      reFormattedTaskPlannedStartDate.getTime();
 
-    var actualTaskWidth = Math.round(actualTaskRange * tickSize);
-    var actualTaskLeftPosition = Math.round(actualTaskOffset * tickSize);
+    let plannedTaskWidth = Math.round(plannedTaskRange * tickSize);
+    let plannedTaskLeftPosition = Math.round(plannedTaskOffset * tickSize);
     return {
-      'width.px': actualTaskWidth,
-      'left.px': 55,
+      'width.px': plannedTaskWidth,
+      'left.px': plannedTaskLeftPosition,
     };
   }
   // TreeList Rows
@@ -658,7 +1027,6 @@ export class ProjelerGanttComponent implements OnInit {
       ...e.values,
       title: 'Yeni Proje/Görev/Operasyon',
     };
-    // delete person.color
   }
   onGanttTaskInserted(e: any) {
     e.cancel;
@@ -673,23 +1041,66 @@ export class ProjelerGanttComponent implements OnInit {
     }
   }
   // TreeList Columns
-
+  // onOpened
   onColumnListTagboxValueChanged(e: any) {
-    const newValue = e.value;
+    // B.D: TreeList Sütunlarını tagbox seçimine göre sıralayarak göstermek için...
+    // Sütunların Seçime Göre Sıralanması
+    const newTagBoxValue = e.value;
+    let oldColumnsList = this.columnList;
+    let newColumnsList: any[] = [];
+
+    for (let index = 0; index < newTagBoxValue.length; index++) {
+      let column = oldColumnsList.find(
+        (column) => column.id === newTagBoxValue[index]
+      );
+      newColumnsList.push(column);
+    }
+    newColumnsList = [
+      ...this.fixedColumnsList,
+      ...newColumnsList,
+      ...oldColumnsList.filter(
+        (value) =>
+          !newColumnsList.includes(value) &&
+          !this.fixedColumnsList.includes(value)
+      ),
+    ];
+    this.columnList = [...newColumnsList];
+
+    let result2 = 'test';
+
+    // Sabit olarak görünecek projectCode ve title sütunları dışında, görünmesi için seçilen sütunlar
+
     this.columnList.forEach((column, index) => {
-      if (newValue.includes(column.id)) {
-        this.columnList[index].isVisible = true;
-      } else {
-        this.columnList[index].isVisible = false;
+      if (!this.fixedColumnsList.includes(column)) {
+        if (newTagBoxValue.includes(column.id)) {
+          this.columnList[index].isVisible = true;
+        } else {
+          this.columnList[index].isVisible = false;
+        }
       }
     });
-    this.columnListTagBoxListValue.length = 0;
+    // Görünecek tagbox "tag" listesini belirleme
+    this.tagBoxTagListValue.length = 0;
     this.columnList.forEach((column) => {
-      if (column.isVisible === true) {
-        this.columnListTagBoxListValue.push(column.id);
+      if (!this.fixedColumnsList.includes(column)) {
+        if (column.isVisible === true) {
+          this.tagBoxTagListValue.push(column.id);
+        }
       }
+    });
+    // B.D: Sıralanmış Sütunlara göre Taglerde Tekrar Sıralanır
+    this.tagBoxcolumnListDataSource = new DataSource({
+      store: new ArrayStore({
+        data: this.columnList.filter(
+          (column) =>
+            // B.D: Sabit Sütunların Değiştirilmesine İzin Vermiyoruz
+            this.fixedColumnsList.includes(column) === false
+        ),
+        key: 'id',
+      }),
     });
   }
+  onColumnListTagBoxItemClick(e: any) {}
   onColumListTagBoxMultiTagPreparing(args: any) {
     if (args.text.includes('more')) {
       let formattedText = args.text.replace('more', 'Daha');
@@ -704,45 +1115,12 @@ export class ProjelerGanttComponent implements OnInit {
 
   // B.D: Buna gerek yok gibi, zaten kalıcı olarak çalışmıyor.
   ngAfterViewInit() {
-    setTimeout(() => {
-      // instances
-      // let gantt: any = this.gantt.instance;
-      // let ganttTreeList = gantt['_treeList'] as dxTreeList;
-      // ganttTreeList.on('onNodesInitialized', (e: any) => {
-      //   let test1 = 'test';
-      // });
-      // ganttTreeList.forEachNode(function (node: any) {
-      //   let result1 = node;
-      //   let result2 = ganttTreeList.collapseRow(node.key);
-      // });
-      // this.treeColor();
-      // if (this.tasks) {
-      //   let dxGanttTaskWrappers = this.el.nativeElement.querySelectorAll(
-      //     '.dx-gantt-taskWrapper'
-      //   );
-      //   // B.D: Sanırım scroll veya responsive değiştikçe tekrar repaint ediyor, bu sebeple row positionları eski haline dönüyor!
-      //   for (
-      //     let index = 0, increase = 0;
-      //     index < dxGanttTaskWrappers.length;
-      //     index++, increase = increase + 58
-      //   ) {
-      //     // let el = this.renderer.selectRootElement(dxGanttTaskWrappers, true);
-      //     let toptest1 = 'test';
-      //     this.renderer.removeStyle(dxGanttTaskWrappers[index], 'top');
-      //     let toptest2 = 'test';
-      //     this.renderer.setStyle(
-      //       dxGanttTaskWrappers[index],
-      //       'top',
-      //       `${increase}px`
-      //     );
-      //     let toptest3 = 'test';
-      //     // if ((index === 5)) break;
-      //   }
-      //   let toptest4 = 'test';
-      //   // this.gantt.instance.repaint();
-      //   let toptest5 = 'test';
-      // }
-    }, 1000);
+    // setTimeout(() => {
+    //   // instances
+    //   // let gantt: any = this.gantt.instance;
+    //   // let ganttTreeList = gantt['_treeList'] as dxTreeList;
+    //   // this.treeColor();
+    // }, 1000);
   }
 
   //tree list
@@ -759,18 +1137,6 @@ export class ProjelerGanttComponent implements OnInit {
   //     }
   //   }
   // }
-
-  //tree list
-  // treeColor() {
-  //   let gant: any = this.gantt.instance;
-  //   let tree = gant['_treeList'] as dxTreeList;
-  // tree.on('rowPrepared', (e: any) => {
-  //   if (e.rowType == 'data') {
-  //     console.log(e);
-  //     e.rowElement.cells[0].style['background-color'] = 'red';
-  //     e.rowElement.cells[0].style['color'] = 'white';
-  //   }
-  // });
 
   // tree.option('onSelectionChanged', () => {
   //   this.ccc();

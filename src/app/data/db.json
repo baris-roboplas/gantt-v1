@@ -1,23 +1,23 @@
 {
   "ganttData": [
     {
-      "id": 1,
       "tasks": [
         {
           "parentTaskKey": null,
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Robot: 612",
           "taskKey": "1",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2020-11-23T21:00:00.000Z",
-          "taskPlannedEndDate": "2020-11-23T21:00:00.000Z",
-          "plannedDuration": 0,
+          "taskPlannedEndDate": "2021-02-26T21:00:00.000Z",
+          "plannedDuration": 95,
           "actualDuration": 189,
           "taskCompany": "Roboplas",
           "taskCustomer": "Customer-1",
-          "taskStatus": "Operasyon Tamamlandı",
+          "taskStatus": "Testte Olan Proje",
           "taskIsRevision": false,
           "resourceKey": "16",
           "resourceText": "DIŞ; Fason-3",
@@ -28,6 +28,7 @@
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2020-11-27T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Sipariş Süreci",
           "taskKey": "2",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -48,6 +49,7 @@
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2020-11-24T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Siparişin Alınması",
           "taskKey": "3",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -68,6 +70,7 @@
           "start": "2020-11-24T21:00:00.000Z",
           "end": "2020-11-27T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Sipariş Bilgi Toplama",
           "taskKey": "4",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -88,6 +91,7 @@
           "start": "2020-11-27T21:00:00.000Z",
           "end": "2021-02-04T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Tasarım Süreci",
           "taskKey": "5",
           "taskNotes": "1) 612 PROF - PRESS ROBOT. LAYOUT MÜŞTERİYE GÖNDERİLİP ONAYLADIKTAN SONRA İMALATA VERİLMELİDİR. SİPARİŞ:24.11.2020 TESLİM:CW09  ",
@@ -108,6 +112,7 @@
           "start": "2020-11-27T21:00:00.000Z",
           "end": "2020-12-17T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Tasarım Hazırlık",
           "taskKey": "6",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -125,9 +130,31 @@
         },
         {
           "parentTaskKey": "5",
+          "start": "2020-11-27T21:00:00.000Z",
+          "end": "2020-12-17T21:00:00.000Z",
+          "progress": 0,
+          "projectCode": "612",
+          "title": "Tasarım Işlemi(TASARIMCIYA TESLIM TARIHI)",
+          "taskKey": "40",
+          "taskNotes": "Buraya Not Girebilirsiniz!",
+          "taskPlannedStartDate": "2020-11-27T21:00:00.000Z",
+          "taskPlannedEndDate": "2020-11-28T21:00:00.000Z",
+          "plannedDuration": 1,
+          "actualDuration": 20,
+          "taskCompany": "Roboplas",
+          "taskCustomer": "Customer-1",
+          "taskStatus": "Operasyon Başladı",
+          "taskIsRevision": false,
+          "resourceKey": "10",
+          "resourceText": "Henüz Belirlenmedi",
+          "routeLevelNumber": 2
+        },
+        {
+          "parentTaskKey": "5",
           "start": "2021-02-03T21:00:00.000Z",
           "end": "2021-02-04T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Imalat Resminin Hazırlanması",
           "taskKey": "7",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -148,6 +175,7 @@
           "start": "2021-02-05T21:00:00.000Z",
           "end": "2021-02-22T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Şase Üretim Süreci",
           "taskKey": "8",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -168,6 +196,7 @@
           "start": "2021-02-05T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Şase; Dış Imalat",
           "taskKey": "9",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -188,6 +217,7 @@
           "start": "2021-02-05T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Şase; Lazer Kesim",
           "taskKey": "10",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -208,6 +238,7 @@
           "start": "2021-02-14T21:00:00.000Z",
           "end": "2021-02-22T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Şase; Kaynak",
           "taskKey": "11",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -228,6 +259,7 @@
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-02-21T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Şase; Teslim",
           "taskKey": "12",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -248,6 +280,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Dizme Üretim Süreci",
           "taskKey": "13",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -257,7 +290,7 @@
           "actualDuration": 33,
           "taskCompany": "Roboplas",
           "taskCustomer": "Henüz Belirlenmedi",
-          "taskStatus": "Henüz Belirlenmedi",
+          "taskStatus": "Operasyon Durdu",
           "taskIsRevision": false,
           "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
@@ -268,6 +301,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Dizme; Iç Imalat",
           "taskKey": "14",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -288,6 +322,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Dizme; Dış Imalat",
           "taskKey": "15",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -308,6 +343,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Dizme; Satın Alma / Depo",
           "taskKey": "16",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -328,6 +364,7 @@
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Dizme; Montaj",
           "taskKey": "17",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -348,6 +385,7 @@
           "start": "2021-02-24T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Dizme; Tesisat",
           "taskKey": "18",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -368,6 +406,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Ana Aks Kol Üretim Süreci",
           "taskKey": "19",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -388,6 +427,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Ana Aks Kol; Iç Imalat",
           "taskKey": "20",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -408,6 +448,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Ana Aks Kol; Dış Imalat ",
           "taskKey": "21",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -428,6 +469,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Ana Aks Kol; Satın Alma / Depo ",
           "taskKey": "22",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -448,6 +490,7 @@
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-03-15T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Ana Aks Kol; Montaj ",
           "taskKey": "23",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -468,6 +511,7 @@
           "start": "2021-02-24T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Ana Aks Kol; Tesisat ",
           "taskKey": "24",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -488,6 +532,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Etiket Transfer Üretim Süreci",
           "taskKey": "26",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -508,6 +553,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-02-15T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Etiket Transfer; Iç Imalat",
           "taskKey": "27",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -528,6 +574,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Etiket Transfer; Dış Imalat",
           "taskKey": "28",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -548,6 +595,7 @@
           "start": "2021-02-07T21:00:00.000Z",
           "end": "2021-03-12T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Etiket Transfer; Satın Alma / Depo",
           "taskKey": "29",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -568,6 +616,7 @@
           "start": "2021-02-21T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Etiket Transfer; Montaj",
           "taskKey": "30",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -588,6 +637,7 @@
           "start": "2021-02-24T21:00:00.000Z",
           "end": "2021-03-16T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Etiket Transfer; Tesisat",
           "taskKey": "31",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -608,7 +658,8 @@
           "start": "2021-02-15T21:00:00.000Z",
           "end": "2021-03-30T21:00:00.000Z",
           "progress": 0,
-          "title": "Test",
+          "projectCode": "612",
+          "title": "Test Süreci",
           "taskKey": "32",
           "taskNotes": "Buraya Not Girebilirsiniz!",
           "taskPlannedStartDate": "2021-02-10T21:00:00.000Z",
@@ -628,6 +679,7 @@
           "start": "2021-03-14T21:00:00.000Z",
           "end": "2021-03-17T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Test; Mekanik Ayar",
           "taskKey": "33",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -648,6 +700,7 @@
           "start": "2021-03-14T21:00:00.000Z",
           "end": "2021-03-22T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Test; Elektrik Testi",
           "taskKey": "34",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -668,6 +721,7 @@
           "start": "2021-02-15T21:00:00.000Z",
           "end": "2021-03-30T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Test; Yazılım Testi",
           "taskKey": "35",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -688,6 +742,7 @@
           "start": "2021-03-29T21:00:00.000Z",
           "end": "2021-03-29T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Test; Proje Kontrol",
           "taskKey": "36",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -708,6 +763,7 @@
           "start": "2021-05-31T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Yükleme Süreçleri",
           "taskKey": "37",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -728,6 +784,7 @@
           "start": "2021-05-31T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Yükleme Formunun Hazırlanması",
           "taskKey": "38",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -748,6 +805,7 @@
           "start": "2021-05-31T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
+          "projectCode": "612",
           "title": "Yüklemenin Gerçekleştirilmesi",
           "taskKey": "39",
           "taskNotes": "Buraya Not Girebilirsiniz!",
@@ -762,6 +820,27 @@
           "resourceKey": "10",
           "resourceText": "Henüz Belirlenmedi",
           "routeLevelNumber": 2
+        },
+        {
+          "start": "2020-11-23T21:00:00.000Z",
+          "end": "2021-05-31T21:00:00.000Z",
+          "progress": 0,
+          "title": "611 MIKAFRIC ROBOT.BMB 250T ENJEKSİYON ÇALIŞACAK. 4 ADET ÜRÜN OLACAK 2810,2820,2830 VE 2 göz 2840   NOLU ÜRÜNLER ÇALIŞACAK.                                                                        SİPARİŞ:15.12.2020                               TESLİM:CW05",
+          "taskKey": "7b429487-89ba-d4e9-45ed-097ae4b46b4d",
+          "parentTaskKey": null,
+          "projectCode": "611",
+          "taskPlannedStartDate": "2020-11-23T21:00:00.000Z",
+          "taskPlannedEndDate": "2021-05-31T21:00:00.000Z",
+          "plannedDuration": 189,
+          "actualDuration": 189,
+          "taskCompany": "Roboplas",
+          "taskCustomer": "Customer-1",
+          "taskStatus": "Henüz Belirlenmedi",
+          "taskNotes": null,
+          "taskIsRevision": false,
+          "resourceKey": "10",
+          "resourceText": "Henüz Belirlenmedi",
+          "routeLevelNumber": 0
         }
       ],
       "dependencies": [],
@@ -1077,8 +1156,14 @@
           "raKey": "38",
           "taskKey": "39",
           "resourceKey": "10"
+        },
+        {
+          "raKey": "39",
+          "taskKey": "7b429487-89ba-d4e9-45ed-097ae4b46b4d",
+          "resourceKey": "10"
         }
-      ]
+      ],
+      "id": 1
     }
   ],
   "ERPbasicData": [
@@ -1088,127 +1173,127 @@
         {
           "id": 1,
           "statusName": "Tasarımdayken Başka Projeye Geçildi",
-          "statusdisplayColor": "Açık Mavi",
+          "statusdisplayColor": "#59C1BD",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 2,
           "statusName": "Tasarım Bitti",
-          "statusdisplayColor": "Açık Yeşil",
+          "statusdisplayColor": "#82CD47",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 3,
           "statusName": "Tasarım İptal",
-          "statusdisplayColor": "Açık Sarı",
+          "statusdisplayColor": "#F6F6C9",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 4,
           "statusName": "Tasarım Beklemede",
-          "statusdisplayColor": "Turuncu",
+          "statusdisplayColor": "#FD841F",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 5,
           "statusName": "Tasarım Aşamasında",
-          "statusdisplayColor": "Açık Gri",
+          "statusdisplayColor": "#D6E4E5",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 6,
           "statusName": "Sipariş veya Revizyon Formu Revizyona Uğramıştır",
-          "statusdisplayColor": "Siyah",
+          "statusdisplayColor": "#393E46",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 7,
           "statusName": "Müşteriden Bilgi Bekleniyor",
-          "statusdisplayColor": "Açık Mor",
+          "statusdisplayColor": "#9F73AB",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 8,
           "statusName": "Müşteri Onayı Bekleniyor",
-          "statusdisplayColor": "Koyu Pembe",
+          "statusdisplayColor": "#FB2576",
           "statusGroup": "Tasarım Iş Listesi"
         },
         {
           "id": 9,
           "statusName": "Testi Yapılan(Hazır) Proje",
-          "statusdisplayColor": "Koyu Gri",
+          "statusdisplayColor": "#3F3B6C",
           "statusGroup": "Robot Süreçleri"
         },
         {
           "id": 10,
           "statusName": "Testte Olan Proje",
-          "statusdisplayColor": "Koyu Mavi",
+          "statusdisplayColor": "#3E6D9C",
           "statusGroup": "Robot Süreçleri"
         },
         {
           "id": 11,
           "statusName": "Yükleme Yapılan Proje",
-          "statusdisplayColor": "Kırmızı",
+          "statusdisplayColor": "#E0144C",
           "statusGroup": "Robot Süreçleri"
         },
         {
           "id": 12,
           "statusName": "Tasarımda Olan Proje",
-          "statusdisplayColor": "Koyu Mor",
+          "statusdisplayColor": "#6C4AB6",
           "statusGroup": "Robot Süreçleri"
         },
         {
           "id": 13,
           "statusName": "İmalatta Olan Proje",
-          "statusdisplayColor": "Koyu Gri",
+          "statusdisplayColor": "#3F3B6C",
           "statusGroup": "Robot Süreçleri"
         },
         {
           "id": 14,
           "statusName": "Kamerada Olan Proje",
-          "statusdisplayColor": "Koyu Sarı",
+          "statusdisplayColor": "#F0FF42",
           "statusGroup": "Robot Süreçleri"
         },
         {
           "id": 15,
           "statusName": "Operasyon Başladı",
-          "statusdisplayColor": "Çok Açık Yeşil",
+          "statusdisplayColor": "#B3FFAE",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
           "id": 16,
           "statusName": "Operasyon Tamamlandı",
-          "statusdisplayColor": "Koyu Yeşil",
+          "statusdisplayColor": "#36AE7C",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
           "id": 17,
           "statusName": "Operasyon Durdu",
-          "statusdisplayColor": "Sarı",
+          "statusdisplayColor": "#F9D923",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
           "id": 18,
           "statusName": "Operasyon Iptal",
-          "statusdisplayColor": "Kırmızı",
+          "statusdisplayColor": "#EB5353",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
           "id": 19,
           "statusName": "Operasyon Bekliyor",
-          "statusdisplayColor": "Beyaz",
+          "statusdisplayColor": "#e6e6e6",
           "statusGroup": "Operasyon Süreçleri"
         },
         {
           "id": 20,
           "statusName": "Henüz Belirlenmedi",
-          "statusdisplayColor": "Beyaz",
+          "statusdisplayColor": "#e6e6e6",
           "statusGroup": "ERP"
         },
         {
           "id": 21,
           "statusName": "Ön Hazırlığı Yapılan Proje",
-          "statusdisplayColor": "Pembe",
+          "statusdisplayColor": "#FF99D7",
           "statusGroup": "Robot Süreçleri"
         }
       ],
@@ -1217,7 +1302,7 @@
           "id": 1,
           "key": "1",
           "name": "Sipariş Süreci",
-          "displayColor": "Çok Açık Mavi",
+          "displayColor": "#B8E8FC",
           "variousInfoRelations": [
             {}
           ],
@@ -1229,7 +1314,7 @@
           "id": 2,
           "key": "2",
           "name": "Siparişin Alınması",
-          "displayColor": "Çok Açık Mavi",
+          "displayColor": "#B8E8FC",
           "variousInfoRelations": [
             {}
           ],
@@ -1241,7 +1326,7 @@
           "id": 3,
           "key": "3",
           "name": "Sipariş Bilgi Toplama",
-          "displayColor": "Çok Açık Mavi",
+          "displayColor": "#B8E8FC",
           "variousInfoRelations": [
             {}
           ],
@@ -1253,7 +1338,7 @@
           "id": 4,
           "key": "4",
           "name": "Tasarım Süreci",
-          "displayColor": "Bej",
+          "displayColor": "#FFB9B9",
           "variousInfoRelations": [
             {}
           ],
@@ -1264,8 +1349,8 @@
         {
           "id": 5,
           "key": "5",
-          "name": "Tasarım Işlemi(TASARIMCIYA TESLIM TARIHI)",
-          "displayColor": "Bej",
+          "name": "Tasarım Hazırlık",
+          "displayColor": "#FFB9B9",
           "variousInfoRelations": [
             {}
           ],
@@ -1277,7 +1362,7 @@
           "id": 6,
           "key": "6",
           "name": "Imalat Resminin Hazırlanması",
-          "displayColor": "Bej",
+          "displayColor": "#FFB9B9",
           "variousInfoRelations": [
             {}
           ],
@@ -1289,7 +1374,7 @@
           "id": 7,
           "key": "7",
           "name": "Şase Üretim Süreci",
-          "displayColor": "Açık Mavi",
+          "displayColor": "#B9E0FF",
           "variousInfoRelations": [
             {}
           ],
@@ -1301,7 +1386,7 @@
           "id": 8,
           "key": "8",
           "name": "Şase; Dış Imalat",
-          "displayColor": "Açık Mavi",
+          "displayColor": "#B9E0FF",
           "variousInfoRelations": [
             {}
           ],
@@ -1313,7 +1398,7 @@
           "id": 9,
           "key": "9",
           "name": "Şase; Lazer Kesim",
-          "displayColor": "Açık Mavi",
+          "displayColor": "#B9E0FF",
           "variousInfoRelations": [
             {}
           ],
@@ -1325,7 +1410,7 @@
           "id": 10,
           "key": "10",
           "name": "Şase; Kaynak",
-          "displayColor": "Açık Mavi",
+          "displayColor": "#B9E0FF",
           "variousInfoRelations": [
             {}
           ],
@@ -1337,7 +1422,7 @@
           "id": 11,
           "key": "11",
           "name": "Şase; Teslim",
-          "displayColor": "Açık Mavi",
+          "displayColor": "#B9E0FF",
           "variousInfoRelations": [
             {}
           ],
@@ -1349,7 +1434,7 @@
           "id": 12,
           "key": "12",
           "name": "Dizme Üretim Süreci",
-          "displayColor": "Açık Turuncu",
+          "displayColor": "#FFAE6D",
           "variousInfoRelations": [
             {}
           ],
@@ -1361,7 +1446,7 @@
           "id": 13,
           "key": "13",
           "name": "Dizme; Iç Imalat",
-          "displayColor": "Açık Turuncu",
+          "displayColor": "#FFAE6D",
           "variousInfoRelations": [
             {}
           ],
@@ -1373,7 +1458,7 @@
           "id": 14,
           "key": "14",
           "name": "Dizme; Dış Imalat",
-          "displayColor": "Açık Turuncu",
+          "displayColor": "#FFAE6D",
           "variousInfoRelations": [
             {}
           ],
@@ -1385,7 +1470,7 @@
           "id": 15,
           "key": "15",
           "name": "Dizme; Satın Alma / Depo",
-          "displayColor": "Açık Turuncu",
+          "displayColor": "#FFAE6D",
           "variousInfoRelations": [
             {}
           ],
@@ -1397,7 +1482,7 @@
           "id": 16,
           "key": "16",
           "name": "Dizme; Montaj",
-          "displayColor": "Açık Turuncu",
+          "displayColor": "#FFAE6D",
           "variousInfoRelations": [
             {}
           ],
@@ -1409,7 +1494,7 @@
           "id": 17,
           "key": "17",
           "name": "Dizme; Tesisat",
-          "displayColor": "Açık Turuncu",
+          "displayColor": "#FFAE6D",
           "variousInfoRelations": [
             {}
           ],
@@ -1421,7 +1506,7 @@
           "id": 18,
           "key": "18",
           "name": "Ana Aks Kol Üretim Süreci",
-          "displayColor": "Açık Mor",
+          "displayColor": "#9F73AB",
           "variousInfoRelations": [
             {}
           ],
@@ -1433,7 +1518,7 @@
           "id": 19,
           "key": "19",
           "name": "Ana Aks Kol; Iç Imalat",
-          "displayColor": "Açık Mor",
+          "displayColor": "#9F73AB",
           "variousInfoRelations": [
             {}
           ],
@@ -1445,7 +1530,7 @@
           "id": 20,
           "key": "20",
           "name": "Ana Aks Kol; Dış Imalat ",
-          "displayColor": "Açık Mor",
+          "displayColor": "#9F73AB",
           "variousInfoRelations": [
             {}
           ],
@@ -1457,7 +1542,7 @@
           "id": 21,
           "key": "21",
           "name": "Ana Aks Kol; Satın Alma / Depo ",
-          "displayColor": "Açık Mor",
+          "displayColor": "#9F73AB",
           "variousInfoRelations": [
             {}
           ],
@@ -1469,7 +1554,7 @@
           "id": 22,
           "key": "22",
           "name": "Ana Aks Kol; Montaj ",
-          "displayColor": "Açık Mor",
+          "displayColor": "#9F73AB",
           "variousInfoRelations": [
             {}
           ],
@@ -1481,7 +1566,7 @@
           "id": 23,
           "key": "23",
           "name": "Ana Aks Kol; Tesisat ",
-          "displayColor": "Açık Mor",
+          "displayColor": "#9F73AB",
           "variousInfoRelations": [
             {}
           ],
@@ -1493,7 +1578,7 @@
           "id": 24,
           "key": "24",
           "name": "Seperatör Üretim Süreci",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1505,7 +1590,7 @@
           "id": 25,
           "key": "25",
           "name": "Seperatör; Iç Imalat",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1517,7 +1602,7 @@
           "id": 26,
           "key": "26",
           "name": "Seperatör; Dış Imalat",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1529,7 +1614,7 @@
           "id": 27,
           "key": "27",
           "name": "Seperatör; Satın Alma / Depo",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1541,7 +1626,7 @@
           "id": 28,
           "key": "28",
           "name": "Seperatör; Montaj",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1553,7 +1638,7 @@
           "id": 29,
           "key": "29",
           "name": "Seperatör; Tesisat",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1565,7 +1650,7 @@
           "id": 30,
           "key": "30",
           "name": "Test Süreci",
-          "displayColor": "Gri",
+          "displayColor": "#B2B2B2",
           "variousInfoRelations": [
             {}
           ],
@@ -1577,7 +1662,7 @@
           "id": 31,
           "key": "31",
           "name": "Test; Mekanik Ayar",
-          "displayColor": "Gri",
+          "displayColor": "#B2B2B2",
           "variousInfoRelations": [
             {}
           ],
@@ -1589,7 +1674,7 @@
           "id": 32,
           "key": "32",
           "name": "Test; Elektrik Testi",
-          "displayColor": "Gri",
+          "displayColor": "#B2B2B2",
           "variousInfoRelations": [
             {}
           ],
@@ -1601,7 +1686,7 @@
           "id": 33,
           "key": "33",
           "name": "Test; Yazılım Testi",
-          "displayColor": "Gri",
+          "displayColor": "#B2B2B2",
           "variousInfoRelations": [
             {}
           ],
@@ -1613,7 +1698,7 @@
           "id": 34,
           "key": "34",
           "name": "Test; Proje Kontrol",
-          "displayColor": "Gri",
+          "displayColor": "#B2B2B2",
           "variousInfoRelations": [
             {}
           ],
@@ -1625,7 +1710,7 @@
           "id": 35,
           "key": "35",
           "name": "Yükleme Formunun Hazırlanması",
-          "displayColor": "Açık Kahverengi",
+          "displayColor": "#D79771",
           "variousInfoRelations": [
             {}
           ],
@@ -1637,7 +1722,7 @@
           "id": 36,
           "key": "36",
           "name": "Yüklemenin Gerçekleştirilmesi",
-          "displayColor": "Koyu Kahverengi",
+          "displayColor": "#B05B3B",
           "variousInfoRelations": [
             {}
           ],
@@ -1649,7 +1734,7 @@
           "id": 37,
           "key": "37",
           "name": "Etiket Transfer Üretim Süreci",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1661,7 +1746,7 @@
           "id": 38,
           "key": "38",
           "name": "Etiket Transfer; Iç Imalat",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1673,7 +1758,7 @@
           "id": 39,
           "key": "39",
           "name": "Etiket Transfer; Dış Imalat",
-          "displayColOrderor": "Açık Yeşil",
+          "displayColOrderor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1685,7 +1770,7 @@
           "id": 40,
           "key": "40",
           "name": "Etiket Transfer; Satın Alma / Depo",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1697,7 +1782,7 @@
           "id": 41,
           "key": "41",
           "name": "Etiket Transfer; Montaj",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1709,7 +1794,7 @@
           "id": 42,
           "key": "42",
           "name": "Etiket Transfer; Tesisat",
-          "displayColor": "Açık Yeşil",
+          "displayColor": "#82CD47",
           "variousInfoRelations": [
             {}
           ],
@@ -1721,7 +1806,7 @@
           "id": 43,
           "key": "43",
           "name": "Yeni Proje/Görev/Operasyon",
-          "displayColor": "Beyaz",
+          "displayColor": "#e6e6e6",
           "variousInfoRelations": [
             {}
           ],
@@ -1730,34 +1815,10 @@
           "preRouteKey": "47"
         },
         {
-          "id": 44,
-          "key": "44",
-          "name": "Tasarımcıya Teslim Tarihi",
-          "displayColor": "beyaz",
-          "variousInfoRelations": [
-            {}
-          ],
-          "routeLevelNumber": 2,
-          "routeLevelName": "Tasarım Süreci",
-          "preRouteKey": "4"
-        },
-        {
-          "id": 45,
-          "key": "45",
-          "name": "Tasarım Hazırlık",
-          "displayColor": "beyaz",
-          "variousInfoRelations": [
-            {}
-          ],
-          "routeLevelNumber": 2,
-          "routeLevelName": "Tasarım Süreci",
-          "preRouteKey": "4"
-        },
-        {
           "id": 46,
           "key": "46",
           "name": "Yükleme Süreçleri",
-          "displayColor": "Koyu Kahverengi",
+          "displayColor": "#8E3200",
           "variousInfoRelations": [
             {}
           ],
@@ -1769,13 +1830,25 @@
           "id": 47,
           "key": "47",
           "name": "ERP Ekran Geliştirmesi",
-          "displayColor": "Beyaz",
+          "displayColor": "#F2E7D5",
           "variousInfoRelations": [
             {}
           ],
           "routeLevelNumber": 1,
           "routeLevelName": "Proje Süreçleri",
           "preRouteKey": "0"
+        },
+        {
+          "id": 48,
+          "key": "48",
+          "name": "Tasarım Işlemi(TASARIMCIYA TESLIM TARIHI)",
+          "displayColor": "#bfbfbf",
+          "variousInfoRelations": [
+            {}
+          ],
+          "routeLevelNumber": 2,
+          "routeLevelName": "Tasarım Süreci",
+          "preRouteKey": "4"
         }
       ]
     }
