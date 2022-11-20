@@ -18,7 +18,8 @@ import {
   providedIn: 'root',
 })
 export class GanttDataService {
-  dummyApi = 'http://localhost:3000';
+  // dummyApi = 'http://localhost:3000';
+  dummyApi = 'https://wiggly-pattern-bolt.glitch.me';
 
   // Data
   dataLoading$ = new BehaviorSubject<boolean>(false);
