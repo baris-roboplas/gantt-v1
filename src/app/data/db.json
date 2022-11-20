@@ -19,8 +19,8 @@
           "taskCustomer": "Customer-1",
           "taskStatus": "Testte Olan Proje",
           "taskIsRevision": false,
-          "resourceKey": "16",
-          "resourceText": "DIŞ; Fason-3",
+          "resourceKey": "4",
+          "resourceText": "PRO; Proje Yöneticisi-1",
           "routeLevelNumber": 0
         },
         {
@@ -825,7 +825,7 @@
           "start": "2020-11-23T21:00:00.000Z",
           "end": "2021-05-31T21:00:00.000Z",
           "progress": 0,
-          "title": "611 MIKAFRIC ROBOT.BMB 250T ENJEKSİYON ÇALIŞACAK. 4 ADET ÜRÜN OLACAK 2810,2820,2830 VE 2 göz 2840   NOLU ÜRÜNLER ÇALIŞACAK.                                                                        SİPARİŞ:15.12.2020                               TESLİM:CW05",
+          "title": "Robot: 611 MIKAFRIC ROBOT.BMB 250T ENJEKSİYON ÇALIŞACAK. 4 ADET ÜRÜN OLACAK 2810,2820,2830 VE 2 göz 2840   NOLU ÜRÜNLER ÇALIŞACAK.                                                                        SİPARİŞ:15.12.2020                               TESLİM:CW05",
           "taskKey": "7b429487-89ba-d4e9-45ed-097ae4b46b4d",
           "parentTaskKey": null,
           "projectCode": "611",
@@ -965,7 +965,7 @@
         {
           "raKey": "0",
           "taskKey": "1",
-          "resourceKey": "16"
+          "resourceKey": "4"
         },
         {
           "raKey": "1",

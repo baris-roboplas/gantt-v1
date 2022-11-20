@@ -4,6 +4,7 @@ import {
   DxGanttComponent,
   DxSchedulerComponent,
   DxTagBoxComponent,
+  DxToolbarComponent,
   DxTreeListComponent,
 } from 'devextreme-angular';
 import {
@@ -33,6 +34,7 @@ import dxTagBox from 'devextreme/ui/tag_box';
 
 import { v4 as uuidv4 } from 'uuid';
 import Form from 'devextreme/ui/form';
+import { Column } from 'jspdf-autotable';
 @Component({
   selector: 'app-projeler-gantt',
   templateUrl: './projeler-gantt.component.html',
@@ -78,6 +80,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: 100,
+      isFixed: true,
+      isDefaultVisible: true,
     },
     {
       id: 2,
@@ -87,6 +91,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: 150,
+      isFixed: true,
+      isDefaultVisible: true,
     },
     {
       id: 0,
@@ -96,6 +102,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 1,
@@ -105,6 +113,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: 'shortDate',
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 3,
@@ -114,6 +124,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: 'shortDate',
       dataType: 'date',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 4,
@@ -123,6 +135,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: 'shortDate',
       dataType: 'date',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
 
     {
@@ -133,6 +147,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'number',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 6,
@@ -142,6 +158,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: 'shortDate',
       dataType: 'date',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 7,
@@ -151,6 +169,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: 'shortDate',
       dataType: 'date',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 8,
@@ -160,6 +180,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'number',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 9,
@@ -169,6 +191,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'number',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 10,
@@ -178,6 +202,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 11,
@@ -187,6 +213,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 12,
@@ -196,6 +224,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 13,
@@ -205,6 +235,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 14,
@@ -214,6 +246,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'boolean',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 15,
@@ -223,6 +257,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'number',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 16,
@@ -232,6 +268,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'string',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
     {
       id: 17,
@@ -241,6 +279,8 @@ export class ProjelerGanttComponent implements OnInit {
       format: null,
       dataType: 'number',
       width: null,
+      isFixed: false,
+      isDefaultVisible: true,
     },
   ];
   tagBoxcolumnListDataSource!: DataSource;
@@ -256,8 +296,10 @@ export class ProjelerGanttComponent implements OnInit {
   taskContentChoice!: string;
   areTasksColorful!: boolean;
   isGanttEditable!: boolean;
+  isPresentationMode!: boolean;
   startDateRange!: any;
   endDateRange!: any;
+  treeListWidth!: any;
 
   // custom toolbar settings
   resetTreeListColumnViewsButtonOptions!: object;
@@ -326,8 +368,14 @@ export class ProjelerGanttComponent implements OnInit {
   scheduler!: DxSchedulerComponent;
   @ViewChild(DxTagBoxComponent)
   treeListColumnTagBox!: DxTagBoxComponent;
+  @ViewChild('ganttToolBarDOM') ganttToolBarDOM!: DxToolbarComponent;
 
   ngOnInit(): void {
+    // TreeList Fixed Columns
+    this.fixedColumnsList = this.columnList.filter(
+      (column) => column.isFixed === true
+    );
+
     // obs & data
     this.ganttDataService.getData();
     this.ganttData$ = this.ganttDataService.ganttData$;
@@ -376,13 +424,13 @@ export class ProjelerGanttComponent implements OnInit {
         // this.endDate = data.tasks[0]?.end;
       }
     });
-
+    // Column TagBox Dropdown List
     this.tagBoxcolumnListDataSource = new DataSource({
       store: new ArrayStore({
         data: this.columnList.filter(
           (column) =>
             // B.D: Sabit Sütunların Değiştirilmesine İzin Vermiyoruz
-            this.fixedColumnsList.includes(column) === false
+            column.isFixed === false
         ),
         key: 'id',
       }),
@@ -397,9 +445,11 @@ export class ProjelerGanttComponent implements OnInit {
     this.showDependencies = true;
     this.taskContentChoice = 'Görünüm-2';
     this.areTasksColorful = true;
-    this.isGanttEditable = true;
+    this.isGanttEditable = false;
+    this.isPresentationMode = true;
     this.startDateRange = new Date(new Date().getFullYear() - 2, 0);
     this.endDateRange = new Date(new Date().getFullYear() + 2, 0);
+    this.treeListWidth = 1000;
 
     // gantt form
     this.customTaskDetailsForm = {
@@ -452,7 +502,7 @@ export class ProjelerGanttComponent implements OnInit {
     // toolbar
     this.resetTreeListColumnViewsButtonOptions = {
       hint: 'Iş Listesi Sütun Görünümleri Ilk Hallerine Döner',
-      icon: 'chevrondoubleleft',
+      icon: 'alignjustify',
       stylingMode: 'text',
       text: 'Sütun Görünümünü Sıfırla',
       onClick: () => this.resetTreeListColumnViewsButtonClick(),
@@ -475,17 +525,13 @@ export class ProjelerGanttComponent implements OnInit {
         this.saveGantt();
       },
     };
-    // TreeList Columns
-    this.fixedColumnsList = this.columnList.filter(
-      (column) =>
-        column.dataField === 'title' || column.dataField === 'projectCode'
-    );
+
     // TreeList Columns TagBox
     this.tagBoxTagListValue = this.columnList
       .filter(
         (column) =>
           // B.D: Sabit Sütunların Değiştirilmesine İzin Vermiyoruz
-          this.fixedColumnsList.includes(column) === false
+          column.isFixed === false
       )
       .filter((column: any) => column.isVisible == true)
       .map((column: any) => column.id);
@@ -600,13 +646,21 @@ export class ProjelerGanttComponent implements OnInit {
   }
   refreshGantt() {}
   saveGantt() {
-    if (confirm('Tüm Veriler Kaydedilsin Mi?)')) {
-      this.ganttDataService.updateGanttData({
-        tasks: this.tasks,
-        dependencies: this.dependencies,
-        resources: this.resources,
-        resourceAssignments: this.resourceAssignments,
-      });
+    if (confirm('Tüm Veriler Kaydedilsin Mi?')) {
+      if (
+        this.tasks.every((task) => Object.hasOwn(task, 'projectCode')) === false
+      ) {
+        alert(
+          "Gantt'ta Bilgileri Eksik Görevler Bulunmaktadır. Lütfen Eksik Bilgileri Doldurunuz!"
+        );
+      } else {
+        this.ganttDataService.updateGanttData({
+          tasks: this.tasks,
+          dependencies: this.dependencies,
+          resources: this.resources,
+          resourceAssignments: this.resourceAssignments,
+        });
+      }
     }
   }
 
@@ -687,14 +741,28 @@ export class ProjelerGanttComponent implements OnInit {
     let test2 = 'test';
   }
   onGanttContentReady(e: any) {
-    // if(colorizationChecked) {}
+    let gantt: any = this.gantt.instance;
+    let tree = gantt['_treeList'] as dxTreeList;
+    this.ganttToolBarDOM.items;
     this.ganttTreeListPainter();
     this.ganttEditModeHandler();
+    // this.ganttPresentationModeHandler();
     // B.D: Resmi olarak timeout kullanılması öneriliyor çünkü eğer kullanılmazsa, arka plandaki başka methodlarda da timeout olduğu için çakışma oluyormuş.
+
+    tree.option('columnResizingMode', 'widget');
+    tree.option('allowColumnReordering', true);
+    for (const fixedColumn of this.columnList) {
+      if (fixedColumn.isFixed === true) {
+        tree.columnOption(fixedColumn.dataField, 'allowReordering', false);
+      }
+    }
     setTimeout(() => {
       this.gantt.instance.collapseAll();
-      this.gantt.instance.scrollToDate(new Date('october 17, 2020'));
-    }, 100);
+      // this.gantt.instance.scrollToDate(new Date());
+      // tarih vermek istesek örnek:
+      this.gantt.instance.scrollToDate(new Date('october 10, 2020'));
+      console.log("Gantt Content Ready");
+    }, 1000);
   }
 
   // Gantt Tree List Painter
@@ -817,6 +885,21 @@ export class ProjelerGanttComponent implements OnInit {
       this.gantt.instance.option('editing.enabled', false);
     }
   }
+  ganttPresentationModeHandler() {
+    let gantt: any = this.gantt.instance; // viewchild kullanabilir misin
+    // B.D: $$ lı yerler Private api yani dökumante edilmemiş çözüm olduğu için güncellemelerde değişiklik olabilir. Bu yüzden kullanılmaması öneriliyor, başka çözüm olmadığı için mecburen kullandık.
+    if (this.isPresentationMode) {
+      gantt.option('taskListWidth', 0);
+      gantt._splitter._setSplitterPositionLeft({ splitterPositionLeft: 0 }); // $$ private api
+      // gantt._splitter._containerWidth = 0;
+      // gantt._splitter._leftPanelPercentageWidth = 0;
+      this.gantt.instance.repaint();
+    } else {
+      gantt.option('taskListWidth', 1000);
+      gantt._splitter._setSplitterPositionLeft({ splitterPositionLeft: 1000 }); // $$ private api
+      this.gantt.instance.repaint();
+    }
+  }
   onSubmitButtonContentReady(e: any) {}
   // repaint & refresh
   repaintTreeList() {
@@ -910,10 +993,8 @@ export class ProjelerGanttComponent implements OnInit {
   }
   // Reference Project Form / Popup
   onReferenceProjectFieldDataChanged(e: any) {}
-  onReferenceProjectPopUpHided(e: any) {
-    // let element: any = document.getElementById('referenceProjectSelection');
-    // let instance = Form.getInstance(element) as Form;
-    // instance.resetValues();
+  onReferenceProjectPopUpHiding(e: any) {}
+  onReferenceProjectPopUpHidden(e: any) {
     this.referenceProjectSelectionFormDOM.instance.resetValues();
   }
   onSubmitReferenceProjectSelection(e: any) {
@@ -976,9 +1057,8 @@ export class ProjelerGanttComponent implements OnInit {
         });
       }
       let result2 = 'test';
-      this.referenceProjectSelectionFormData.referenceProjectCode = null;
       this.isReferencedProjectPopupVisible = false;
-      // this.gantt.instance.refresh();
+      this.gantt.instance.refresh();
       let result3 = 'test';
     } else {
       alert('Lütfen Yeni Proje için Proje Kodu Veriniz!');
@@ -1023,6 +1103,15 @@ export class ProjelerGanttComponent implements OnInit {
   }
   // TreeList Rows
   onGanttTaskInserting(e: any) {
+    // Aşağıdaki Propertyler DxGanttComponent yani DevExtreme Tarafından otomatik geliyor, gerisini ganttTask Formunu kaydederken "this.tasks"a custom ekliyoruz.
+    /*  key
+        parentId
+        title
+        progress
+        start
+        end
+        color
+     */
     e.values = {
       ...e.values,
       title: 'Yeni Proje/Görev/Operasyon',
@@ -1043,8 +1132,9 @@ export class ProjelerGanttComponent implements OnInit {
   // TreeList Columns
   // onOpened
   onColumnListTagboxValueChanged(e: any) {
-    // B.D: TreeList Sütunlarını tagbox seçimine göre sıralayarak göstermek için...
-    // Sütunların Seçime Göre Sıralanması
+    // B.D: 1.0 TreeList Sütunlarını tagbox seçimine göre sıralayarak göstermek için...
+
+    // 1.1 Sütunların Seçime Göre Sıralanması
     const newTagBoxValue = e.value;
     let oldColumnsList = this.columnList;
     let newColumnsList: any[] = [];
@@ -1055,20 +1145,26 @@ export class ProjelerGanttComponent implements OnInit {
       );
       newColumnsList.push(column);
     }
+    let fixedColumnsList = this.columnList.filter(
+      (column) => column.isFixed === true
+    );
     newColumnsList = [
-      ...this.fixedColumnsList,
+      ...fixedColumnsList,
       ...newColumnsList,
       ...oldColumnsList.filter(
-        (value) =>
-          !newColumnsList.includes(value) &&
-          !this.fixedColumnsList.includes(value)
+        (oldColumn) =>
+          !newColumnsList.some((newColumn) => oldColumn.id === newColumn.id) &&
+          !fixedColumnsList.some(
+            (fixedColumn) => oldColumn.id === fixedColumn.id
+          )
       ),
     ];
+
     this.columnList = [...newColumnsList];
 
     let result2 = 'test';
 
-    // Sabit olarak görünecek projectCode ve title sütunları dışında, görünmesi için seçilen sütunlar
+    // 1.2 Sabit olarak görünecek projectCode ve title sütunları dışında, görünmesi için seçilen sütunlar
 
     this.columnList.forEach((column, index) => {
       if (!this.fixedColumnsList.includes(column)) {
@@ -1079,7 +1175,7 @@ export class ProjelerGanttComponent implements OnInit {
         }
       }
     });
-    // Görünecek tagbox "tag" listesini belirleme
+    // B.D: 1.3 Görünecek tagbox "tag" listesini belirleme
     this.tagBoxTagListValue.length = 0;
     this.columnList.forEach((column) => {
       if (!this.fixedColumnsList.includes(column)) {
@@ -1088,13 +1184,13 @@ export class ProjelerGanttComponent implements OnInit {
         }
       }
     });
-    // B.D: Sıralanmış Sütunlara göre Taglerde Tekrar Sıralanır
+    // B.D: 1.4 Sıralanmış Sütunlara göre Taglerde Tekrar Sıralanır
     this.tagBoxcolumnListDataSource = new DataSource({
       store: new ArrayStore({
         data: this.columnList.filter(
           (column) =>
             // B.D: Sabit Sütunların Değiştirilmesine İzin Vermiyoruz
-            this.fixedColumnsList.includes(column) === false
+            column.isFixed === false
         ),
         key: 'id',
       }),
@@ -1121,6 +1217,10 @@ export class ProjelerGanttComponent implements OnInit {
     //   // let ganttTreeList = gantt['_treeList'] as dxTreeList;
     //   // this.treeColor();
     // }, 1000);
+    setTimeout(() => {
+      this.ganttPresentationModeHandler();
+      console.log('ngAfterViewInit');
+    }, 2000);
   }
 
   //tree list

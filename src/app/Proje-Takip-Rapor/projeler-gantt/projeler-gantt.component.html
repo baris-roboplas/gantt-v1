@@ -91,6 +91,19 @@
                     ></dx-switch>
                   </div>
                 </div>
+                <!-- Presentation Mode -->
+                <div class="option">
+                  <div class="label">Sunum Modu</div>
+                  <div class="value">
+                    <dx-switch
+                      [(value)]="isPresentationMode"
+                      (onValueChanged)="ganttPresentationModeHandler()"
+                      [switchedOnText]="'Açık'"
+                      [switchedOffText]="'Kapalı'"
+                      [width]="'20%'"
+                    ></dx-switch>
+                  </div>
+                </div>
               </div>
               <!-- Sütun-2 -->
               <div class="column">
@@ -258,7 +271,7 @@
           (onContentReady)="onGanttContentReady($event)"
           (onScaleCellPrepared)="onScaleCellPrepared($event)"
           [firstDayOfWeek]="1"
-          [taskListWidth]="1000"
+          [(taskListWidth)]="treeListWidth"
           scaleType="weeks"
           height="700"
           [taskTitlePosition]="titlePosition"
@@ -306,15 +319,15 @@
             *ngFor="let column of columnList; index as i; count as c"
           >
             <dxi-column
-              [dataField]="column.dataField"
-              [caption]="column.caption"
-              [width]="column.width"
+              [dataField]="column?.dataField"
+              [caption]="column?.caption"
+              [width]="column?.width"
               [(visible)]="column.isVisible"
               [format]="column.format"
               [dataType]="column.dataType"
             >
               <dxo-format
-                *ngIf="column.dataField === 'progress'"
+                *ngIf="column?.dataField === 'progress'"
                 type="percent"
                 [precision]="0"
               >
@@ -332,45 +345,44 @@
             ></dxi-column> -->
           </ng-container>
           <!-- Toolbar -->
-          <dxo-toolbar>
+          <dxo-toolbar #ganttToolBarDOM>
             <dxi-item name="undo"></dxi-item>
             <dxi-item name="redo"></dxi-item>
             <dxi-item name="separator"></dxi-item>
             <dxi-item name="collapseAll"></dxi-item>
             <dxi-item name="expandAll"></dxi-item>
             <dxi-item name="separator"></dxi-item>
-            <dxi-item name="addTask"></dxi-item>
-            <dxi-item name="deleteTask"></dxi-item>
-            <dxi-item name="separator"></dxi-item>
+            <dxi-item name="addTask" locateInMenu="auto"></dxi-item>
+            <dxi-item name="deleteTask" locateInMenu="auto"></dxi-item>
+            <dxi-item name="separator" locateInMenu="auto"></dxi-item>
             <dxi-item name="zoomIn"></dxi-item>
             <dxi-item name="zoomOut"></dxi-item>
             <dxi-item name="separator"></dxi-item>
             <dxi-item
-              *ngIf="taskContentChoice === 'Görünüm-1'"
-              name="showResources"
-            ></dxi-item>
-            <dxi-item name="showDependencies"></dxi-item>
-            <dxi-item name="separator"></dxi-item>
-            <dxi-item
               widget="dxButton"
               [options]="resetTreeListColumnViewsButtonOptions"
+              locateInMenu="auto"
             >
             </dxi-item>
-            <dxi-item widget="dxButton" [options]="refreshGanttButtonOptions">
+            <dxi-item
+              widget="dxButton"
+              [options]="refreshGanttButtonOptions"
+              locateInMenu="auto"
+            >
             </dxi-item>
             <dxi-item
               widget="dxButton"
               [options]="saveDataButtonOptions"
               [disabled]="!isGanttEditable"
+              locateInMenu="auto"
             >
             </dxi-item>
             <dxi-item name="separator"></dxi-item>
-            <dxi-item name="taskDetails"></dxi-item>
             <dxi-item name="fullScreen"></dxi-item>
-            <dxi-item name="resourceManager"></dxi-item>
             <dxi-item name="separator"></dxi-item>
             <dxi-item widget="dxButton" [options]="exportButtonOptions">
             </dxi-item>
+            <dxi-item name="separator"></dxi-item>
           </dxo-toolbar>
 
           <!-- Setting -->
@@ -901,8 +913,8 @@
       [showCloseButton]="true"
       container=".dx-viewport"
       [(visible)]="isReferencedProjectPopupVisible"
-      (onHidden)="onReferenceProjectPopUpHided($event)"
-
+      (onHiding)="onReferenceProjectPopUpHiding($event)"
+      (onHidden)="onReferenceProjectPopUpHidden($event)"
     >
       <form (submit)="onSubmitReferenceProjectSelection($event)">
         <dx-form
@@ -917,7 +929,7 @@
           <!-- Ana Grup-1 -->
           <dxi-item itemType="group" [colCount]="1">
             <!-- Sütun-1 -->
-            <dxi-item itemType="group" >
+            <dxi-item itemType="group">
               <dxi-item
                 dataField="referenceProjectCode"
                 [visible]="true"
