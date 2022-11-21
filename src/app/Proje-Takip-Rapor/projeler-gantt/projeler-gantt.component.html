@@ -957,3 +957,8 @@
     </dx-popup>
   </div>
 </ng-container>
+<ng-container *ngIf="(dataLoading$ | async) === true">
+  <div class="alert alert-primary" role="alert" [ngStyle]="{ 'font-size': 50 + 'px' }">
+    Backend Servisin Çalışması Bekleniyor, Birkaç Saniye Sonra Sayfayı Yenileyiniz...
+  </div>
+</ng-container>

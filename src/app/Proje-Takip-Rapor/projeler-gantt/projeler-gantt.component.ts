@@ -660,6 +660,7 @@ export class ProjelerGanttComponent implements OnInit {
           resources: this.resources,
           resourceAssignments: this.resourceAssignments,
         });
+        alert('Gantt Verileri Başarıyla Kaydedildi!');
       }
     }
   }
