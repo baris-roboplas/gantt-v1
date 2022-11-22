@@ -582,7 +582,7 @@ export class ProjelerGanttComponent implements OnInit {
 
   // Export Options/Filters
   exportButtonClick() {
-    const gantt = this.gantt.instance;
+    const gantt = this.gantt?.instance;
     const format = this.formatBoxValue.toLowerCase();
     const isLandscape = this.landscapeCheckBoxValue;
     const exportMode = this.getExportMode();
@@ -637,12 +637,12 @@ export class ProjelerGanttComponent implements OnInit {
 
   // toolbar
   resetTreeListColumnViewsButtonClick() {
-    let gantt: any = this.gantt.instance;
+    let gantt: any = this.gantt?.instance;
     let treeList = gantt['_treeList'] as dxTreeList;
     treeList.clearFilter();
     treeList.clearSorting();
     treeList.option('allowColumnReordering', true);
-    this.gantt.instance.repaint();
+    this.gantt?.instance.repaint();
   }
   refreshGantt() {}
   saveGantt() {
@@ -729,7 +729,7 @@ export class ProjelerGanttComponent implements OnInit {
 
     this.oldCustomTaskDetailsForm = { ...this.customTaskDetailsForm };
 
-    let ganntFormSubmitButton = this.customTaskDetailsDOM.instance.getButton(
+    let ganntFormSubmitButton = this.customTaskDetailsDOM?.instance.getButton(
       'ganntFormSubmitButton'
     ) as dxButton;
     if (this.isGanttEditable) {
@@ -742,7 +742,7 @@ export class ProjelerGanttComponent implements OnInit {
     let test2 = 'test';
   }
   onGanttContentReady(e: any) {
-    let gantt: any = this.gantt.instance;
+    let gantt: any = this.gantt?.instance;
     let tree = gantt['_treeList'] as dxTreeList;
     this.ganttToolBarDOM.items;
     this.ganttTreeListPainter();
@@ -758,10 +758,10 @@ export class ProjelerGanttComponent implements OnInit {
       }
     }
     setTimeout(() => {
-      this.gantt.instance.collapseAll();
+      this.gantt?.instance.collapseAll();
       // this.gantt.instance.scrollToDate(new Date());
       // tarih vermek istesek örnek:
-      this.gantt.instance.scrollToDate(new Date('october 10, 2020'));
+      this.gantt?.instance.scrollToDate(new Date('october 10, 2020'));
       console.log("Gantt Content Ready");
     }, 1000);
   }
@@ -776,7 +776,7 @@ export class ProjelerGanttComponent implements OnInit {
     this.repaintTreeList();
   }
   treeColor() {
-    let gant: any = this.gantt.instance;
+    let gant: any = this.gantt?.instance;
     let tree = gant['_treeList'] as dxTreeList;
     tree.on('rowPrepared', (e: any) => {
       if (e.rowType === 'data') {
@@ -827,7 +827,7 @@ export class ProjelerGanttComponent implements OnInit {
     });
   }
   treeColorClear() {
-    let gant: any = this.gantt.instance;
+    let gant: any = this.gantt?.instance;
     let tree = gant['_treeList'] as dxTreeList;
     tree.on('rowPrepared', (e: any) => {
       if (e.rowType === 'data') {
@@ -881,35 +881,35 @@ export class ProjelerGanttComponent implements OnInit {
   // Gantt Edit Mode Handler
   ganttEditModeHandler() {
     if (this.isGanttEditable) {
-      this.gantt.instance.option('editing.enabled', true);
+      this.gantt?.instance.option('editing.enabled', true);
     } else {
-      this.gantt.instance.option('editing.enabled', false);
+      this.gantt?.instance.option('editing.enabled', false);
     }
   }
   ganttPresentationModeHandler() {
-    let gantt: any = this.gantt.instance; // viewchild kullanabilir misin
+    let gantt: any = this.gantt?.instance; // viewchild kullanabilir misin
     // B.D: $$ lı yerler Private api yani dökumante edilmemiş çözüm olduğu için güncellemelerde değişiklik olabilir. Bu yüzden kullanılmaması öneriliyor, başka çözüm olmadığı için mecburen kullandık.
     if (this.isPresentationMode) {
       gantt.option('taskListWidth', 0);
       gantt._splitter._setSplitterPositionLeft({ splitterPositionLeft: 0 }); // $$ private api
       // gantt._splitter._containerWidth = 0;
       // gantt._splitter._leftPanelPercentageWidth = 0;
-      this.gantt.instance.repaint();
+      this.gantt?.instance.repaint();
     } else {
       gantt.option('taskListWidth', 1000);
       gantt._splitter._setSplitterPositionLeft({ splitterPositionLeft: 1000 }); // $$ private api
-      this.gantt.instance.repaint();
+      this.gantt?.instance.repaint();
     }
   }
   onSubmitButtonContentReady(e: any) {}
   // repaint & refresh
   repaintTreeList() {
-    let gantt: any = this.gantt.instance;
+    let gantt: any = this.gantt?.instance;
     let tree = gantt['_treeList'] as dxTreeList;
     tree.repaint();
   }
   refreshTreeList() {
-    let gantt: any = this.gantt.instance;
+    let gantt: any = this.gantt?.instance;
     let tree = gantt['_treeList'] as dxTreeList;
     tree.refresh();
   }
@@ -961,7 +961,7 @@ export class ProjelerGanttComponent implements OnInit {
         taskPlannedEndDate,
         ...everythingExceptresourceInfo
       } = this.customTaskDetailsForm;
-      this.gantt.instance.updateTask(this.customTaskDetailsForm.taskKey, {
+      this.gantt?.instance.updateTask(this.customTaskDetailsForm.taskKey, {
         ...everythingExceptresourceInfo,
         start: new Date(start),
         end: new Date(end),
@@ -996,7 +996,7 @@ export class ProjelerGanttComponent implements OnInit {
   onReferenceProjectFieldDataChanged(e: any) {}
   onReferenceProjectPopUpHiding(e: any) {}
   onReferenceProjectPopUpHidden(e: any) {
-    this.referenceProjectSelectionFormDOM.instance.resetValues();
+    this.referenceProjectSelectionFormDOM?.instance.resetValues();
   }
   onSubmitReferenceProjectSelection(e: any) {
     e.preventDefault();
@@ -1059,7 +1059,7 @@ export class ProjelerGanttComponent implements OnInit {
       }
       let result2 = 'test';
       this.isReferencedProjectPopupVisible = false;
-      this.gantt.instance.refresh();
+      this.gantt?.instance.refresh();
       let result3 = 'test';
     } else {
       alert('Lütfen Yeni Proje için Proje Kodu Veriniz!');
@@ -1206,7 +1206,7 @@ export class ProjelerGanttComponent implements OnInit {
   }
 
   repaint() {
-    this.gantt.instance.repaint();
+    this.gantt?.instance.repaint();
     // this.treeColor();
   }
 
