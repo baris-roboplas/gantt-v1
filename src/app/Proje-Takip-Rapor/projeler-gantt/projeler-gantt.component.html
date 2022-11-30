@@ -1,3 +1,26 @@
+<!-- Loading Screen -->
+<ng-container>
+  <div
+    [ngClass]="[
+      'position-fixed',
+      'w-100',
+      'h-100',
+      (pageDisplayDelayed$ | async) === false ? 'd-none' : 'd-flex justify-content-center align-items-center bg-info .text-white'
+    ]"
+    class=""
+    [ngStyle]="{ 'z-index': 9999 }"
+  >
+    <div class="spinner-grow" role="status">
+      <span class="sr-only" [ngStyle]="{ 'font-size': '50' + 'px' }"
+        >Loading...</span
+      >
+    </div>
+    <div [ngStyle]="{ 'font-size': '50' + 'px' }">Loading...</div>
+  </div>
+</ng-container>
+<!-- Resolver ile rotaya girmeden data alınıp sonra loading false yapılabilir mi? -->
+<!-- Page Content -->
+
 <ng-container *ngIf="(dataLoading$ | async) === false">
   <div class="container-fluid" #ganttContainer id="ganttContainer">
     <!-- accordion -->
@@ -955,10 +978,5 @@
         </dx-form>
       </form>
     </dx-popup>
-  </div>
-</ng-container>
-<ng-container *ngIf="(dataLoading$ | async) === true">
-  <div class="alert alert-primary" role="alert" [ngStyle]="{ 'font-size': 50 + 'px' }">
-    Backend Servisin Çalışması Bekleniyor, Birkaç Saniye Sonra Sayfayı Yenileyiniz...
   </div>
 </ng-container>

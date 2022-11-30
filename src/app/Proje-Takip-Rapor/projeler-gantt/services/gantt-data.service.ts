@@ -23,6 +23,7 @@ export class GanttDataService {
 
   // Data
   dataLoading$ = new BehaviorSubject<boolean>(false);
+  pageDisplayDelayed$ = new BehaviorSubject<boolean>(false);
 
   private _ganttDataSubject = new BehaviorSubject<any>(null);
   ganttData$: Observable<any> = this._ganttDataSubject;
@@ -69,6 +70,7 @@ export class GanttDataService {
       this._ERPbasicDataSubject.value === null
     ) {
       this.dataLoading$.next(true);
+      this.pageDisplayDelayed$.next(true);
     }
     forkJoin({
       requestOne: this.http.get<any>(this.dummyApi + '/ganttData'),
@@ -76,7 +78,13 @@ export class GanttDataService {
     })
       .pipe(
         shareReplay(1),
-        finalize(() => this.dataLoading$.next(false))
+        finalize(() => {
+          this.dataLoading$.next(false);
+          // B.D: Component Tamamen Hazır Hale geldikten sonra loading kaldırmak istiyoruz.
+          setTimeout(() => {
+            this.pageDisplayDelayed$.next(false);
+          }, 10000);
+        })
       )
       .subscribe(({ requestOne, requestTwo }) => {
         if (
@@ -99,17 +107,17 @@ export class GanttDataService {
       .put<any>(this.dummyApi + '/ganttData/1', newData)
       .pipe(shareReplay(1))
       .subscribe();
-      // this.http
-      // .put<any>(this.dummyApi + '/ganttData/1', newData.dependencies)
-      // .pipe(shareReplay(1))
-      // .subscribe();
-      // this.http
-      // .put<any>(this.dummyApi + '/ganttData/1', newData.resources)
-      // .pipe(shareReplay(1))
-      // .subscribe();
-      // this.http
-      // .put<any>(this.dummyApi + '/ganttData/1', newData.resourceAssignments)
-      // .pipe(shareReplay(1))
-      // .subscribe();
+    // this.http
+    // .put<any>(this.dummyApi + '/ganttData/1', newData.dependencies)
+    // .pipe(shareReplay(1))
+    // .subscribe();
+    // this.http
+    // .put<any>(this.dummyApi + '/ganttData/1', newData.resources)
+    // .pipe(shareReplay(1))
+    // .subscribe();
+    // this.http
+    // .put<any>(this.dummyApi + '/ganttData/1', newData.resourceAssignments)
+    // .pipe(shareReplay(1))
+    // .subscribe();
   }
 }

@@ -351,6 +351,7 @@ export class ProjelerGanttComponent implements OnInit {
   ganttData$!: Observable<any>;
   ERPbasicData$!: Observable<any>;
   dataLoading$!: Observable<any>;
+  pageDisplayDelayed$!: Observable<any>;
   constructor(
     private ganttDataService: GanttDataService,
     private ref: ChangeDetectorRef
@@ -370,6 +371,9 @@ export class ProjelerGanttComponent implements OnInit {
   treeListColumnTagBox!: DxTagBoxComponent;
   @ViewChild('ganttToolBarDOM') ganttToolBarDOM!: DxToolbarComponent;
 
+  // DevExtreme LifeCycle
+  onGanttContentReady_RenderCounts: number = 0;
+
   ngOnInit(): void {
     // TreeList Fixed Columns
     this.fixedColumnsList = this.columnList.filter(
@@ -381,6 +385,7 @@ export class ProjelerGanttComponent implements OnInit {
     this.ganttData$ = this.ganttDataService.ganttData$;
     this.ERPbasicData$ = this.ganttDataService.ERPbasicData$;
     this.dataLoading$ = this.ganttDataService.dataLoading$;
+    this.pageDisplayDelayed$ = this.ganttDataService.pageDisplayDelayed$;
 
     // dataSources
     this.ERPbasicData$.subscribe((data) => {
@@ -514,7 +519,7 @@ export class ProjelerGanttComponent implements OnInit {
       icon: 'refresh',
       stylingMode: 'text',
       onClick: () => {
-        this.refreshGantt();
+        this.gantt.instance.refresh();
       },
     };
     this.saveDataButtonOptions = {
@@ -535,6 +540,8 @@ export class ProjelerGanttComponent implements OnInit {
       )
       .filter((column: any) => column.isVisible == true)
       .map((column: any) => column.id);
+
+    // Subscript to the loadingDelayer
   }
 
   addReferenceProjectSubTasks() {
@@ -644,7 +651,6 @@ export class ProjelerGanttComponent implements OnInit {
     treeList.option('allowColumnReordering', true);
     this.gantt?.instance.repaint();
   }
-  refreshGantt() {}
   saveGantt() {
     if (confirm('Tüm Veriler Kaydedilsin Mi?')) {
       if (
@@ -747,8 +753,6 @@ export class ProjelerGanttComponent implements OnInit {
     this.ganttToolBarDOM.items;
     this.ganttTreeListPainter();
     this.ganttEditModeHandler();
-    // this.ganttPresentationModeHandler();
-    // B.D: Resmi olarak timeout kullanılması öneriliyor çünkü eğer kullanılmazsa, arka plandaki başka methodlarda da timeout olduğu için çakışma oluyormuş.
 
     tree.option('columnResizingMode', 'widget');
     tree.option('allowColumnReordering', true);
@@ -757,13 +761,18 @@ export class ProjelerGanttComponent implements OnInit {
         tree.columnOption(fixedColumn.dataField, 'allowReordering', false);
       }
     }
-    setTimeout(() => {
-      this.gantt?.instance.collapseAll();
-      // this.gantt.instance.scrollToDate(new Date());
-      // tarih vermek istesek örnek:
-      this.gantt?.instance.scrollToDate(new Date('october 10, 2020'));
-      console.log("Gantt Content Ready");
-    }, 1000);
+    console.log('Gantt Content Ready');
+    // B.D: Resmi olarak timeout kullanılması öneriliyor çünkü eğer kullanılmazsa, arka plandaki başka methodlarda da timeout olduğu için çakışma oluyormuş.
+    if (this.onGanttContentReady_RenderCounts > 0) {
+      setTimeout(() => {
+        this.gantt?.instance.collapseAll();
+        // this.gantt.instance.scrollToDate(new Date());
+        // tarih vermek istesek örnek:
+        this.gantt?.instance.scrollToDate(new Date('october 10, 2020'));
+        console.log('Gantt Content Ready timeout');
+      }, 3000);
+    }
+    this.onGanttContentReady_RenderCounts++;
   }
 
   // Gantt Tree List Painter
@@ -1218,10 +1227,12 @@ export class ProjelerGanttComponent implements OnInit {
     //   // let ganttTreeList = gantt['_treeList'] as dxTreeList;
     //   // this.treeColor();
     // }, 1000);
+    console.log('ngAfterViewInit');
+    // B.D: dxGantt Component'inin Angular'dan bağımsız Devextreme'e özel lifecycle'ı var, settimeout kullanarak bunun tamamlanmasını bekliyoruz.
     setTimeout(() => {
       this.ganttPresentationModeHandler();
-      console.log('ngAfterViewInit');
-    }, 2000);
+      console.log('ngAfterViewInit timeout');
+    }, 6000);
   }
 
   //tree list
