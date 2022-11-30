@@ -80,7 +80,7 @@ export class GanttDataService {
         shareReplay(1),
         finalize(() => {
           this.dataLoading$.next(false);
-          // B.D: Component Tamamen Hazır Hale geldikten sonra loading kaldırmak istiyoruz.
+          // B.D: Component Datası Backendden Çekildikten sonra ve devamında component Tamamen Hazır Hale geldikten sonra loading kaldırmak istiyoruz.
           setTimeout(() => {
             this.pageDisplayDelayed$.next(false);
           }, 10000);
